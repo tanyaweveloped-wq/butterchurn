@@ -91,9 +91,9 @@ import butterchurn from './libs/butterchurn@3.0.0-beta.5.js';
   //   2. The UA reports Quest/Oculus — narrows this to the headset itself,
   //      so a desktop/Android TWA install of the same PWA (if you ever ship
   //      one) doesn't also try to auto-enter VR.
-  const isInstalledQuestPwa =
-    window.matchMedia('(display-mode: standalone)').matches &&
-    /OculusBrowser|Quest/i.test(navigator.userAgent);
+  const isInstalledQuestPwa = "";
+    //window.matchMedia('(display-mode: standalone)').matches &&
+    ///OculusBrowser|Quest/i.test(navigator.userAgent);
 
   // ---------------------------------------------------------------------------
   // Preset bundle: one big /presets-bundle.json instead of one request per
