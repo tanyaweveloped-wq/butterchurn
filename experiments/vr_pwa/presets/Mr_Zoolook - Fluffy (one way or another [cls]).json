@@ -1,0 +1,77 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['rot1'] = 0; a['rot1']=0.1;",
+ "frame_eqs_str": "a['rot1']=((Math.abs(above(a['bass'], 1.3))>0.00001)?(-a['rot1']):(a['rot1'])); a['rot']=a['rot1']; a['wave_x']=(0.5+(Math.cos((a['time']*2.8))*0.3)); a['wave_r']=div(Math.floor(randint(101)),100); a['wave_g']=div(Math.floor(randint(101)),100); a['wave_b']=div(Math.floor(randint(101)),100); a['cx']=(0.5+((Math.sin((a['time']*3))*0.9)*a['rot1'])); a['cy']=(0.5+((Math.cos((a['time']*3))*0.9)*a['rot1'])); a['decay']=(0.995-(0.995*above(a['bass'], 2.45)));",
+ "pixel_eqs_str": "a['rot']=((Math.abs(above(a['rad'], 0.5))>0.00001)?(-a['rot']):(a['rot']));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.995,
+  "echo_zoom": 0.248318,
+  "echo_orient": 2,
+  "wave_mode": 6,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wave_a": 100,
+  "wave_scale": 0.838181,
+  "wave_smoothing": 0.396,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpanimspeed": 0.01,
+  "warpscale": 0.01,
+  "rot": -0.02,
+  "warp": 0.01,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

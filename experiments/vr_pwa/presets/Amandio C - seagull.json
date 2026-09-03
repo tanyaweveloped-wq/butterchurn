@@ -1,0 +1,95 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "scaling": 100,
+    "smoothing": 0,
+    "b": 0.22
+   },
+   "init_eqs_str": "a['q2'] = 0; a['q4'] = 0; a['q6'] = 0; a['q1'] = 0; a['q3'] = 0; a['q5'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x']=(0.4+(0.2*a['sample'])); a['y']=(0.5-(0.003*Math.sin(((2*3.14)*a['sample'])))); a['y']=(a['y']+((0.03*Math.sin((5*a['time'])))*Math.sin((1.57+((2*3.14)*a['sample']))))); a['y']=(((a['y']+(0.25*a['q2']))+(0.15*a['q4']))+(0.05*a['q6'])); a['x']=(((a['x']+(0.15*a['q1']))+(0.1*a['q3']))+(0.25*a['q5'])); a['r']=(1.01*a['sample']); a['g']=(1.01*a['sample']); a['b']=(1.01*a['sample']);"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "scaling": 0.01
+   },
+   "init_eqs_str": "a['q1'] = 0; a['q3'] = 0; a['q5'] = 0; a['q2'] = 0; a['q4'] = 0; a['q6'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x']=(0.4+(0.2*a['sample'])); a['y']=(0.5+(0.002*Math.sin(((2*3.14)*a['sample'])))); a['y']=(a['y']+((0.02*Math.sin((5*a['time'])))*Math.sin((1.57+((2*3.14)*a['sample']))))); a['x']=(((a['x']+(0.15*a['q1']))+(0.1*a['q3']))+(0.25*a['q5'])); a['y']=(((a['y']+(0.25*a['q2']))+(0.15*a['q4']))+(0.05*a['q6'])); a['r']=((-2.03*above(a['bass_att'], 1))+(2.03*a['sample'])); a['g']=(2.03*a['sample']); a['b']=(2.03*a['sample']);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['q6'] = 0; a['q1'] = 0; a['q5'] = 0; a['q4'] = 0; a['bass_att_'] = 0; a['q2'] = 0; a['q3'] = 0; a['q7'] = 0; a['q8'] = 0;",
+ "frame_eqs_str": "a['q1']=Math.sin(a['time']); a['q2']=Math.cos(a['time']); a['q3']=Math.sin((1.2*a['time'])); a['q4']=Math.cos((1.2*a['time'])); a['q5']=Math.sin((1.4*a['time'])); a['q6']=Math.cos((1.4*a['time'])); a['q7']=Math.sin((1.6*a['time'])); a['q8']=Math.cos((1.6*a['time'])); a['zoom']=1.002; a['wave_r']=above(a['bass_att_'], 1); a['wave_g']=above(a['bass_att_'], 1); a['wave_b']=above(a['bass_att_'], 1);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1,
+  "wave_mode": 6,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 0.121,
+  "wave_scale": 9.272,
+  "wave_smoothing": 0.9,
+  "modwavealphastart": 1.75,
+  "modwavealphaend": 1.39,
+  "warpscale": 0.01,
+  "zoomexp": 1.001,
+  "fshader": 0.5,
+  "warp": 0,
+  "wave_y": 0.4,
+  "ob_size": 0,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

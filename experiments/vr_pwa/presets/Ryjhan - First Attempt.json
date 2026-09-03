@@ -1,0 +1,89 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.3*Math.sin(a['time']))); a['wave_g']=(a['wave_g']+(0.7*Math.sin((a['time']*3.14)))); a['wave_b']=(a['wave_b']+(2.3*Math.tan((a['time']*a['zoom']))));",
+ "pixel_eqs_str": "a['rot']=(a['rot']+(0.2*Math.cos((a['rad']*0.0001))));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.92,
+  "echo_zoom": 0.162174,
+  "echo_alpha": 0.8,
+  "echo_orient": 3,
+  "wave_mode": 4,
+  "additivewave": 1,
+  "modwavealphabyvolume": 1,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "brighten": 1,
+  "wave_a": 100,
+  "wave_scale": 10.888094,
+  "wave_smoothing": 0.54,
+  "wave_mystery": 0.42,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpanimspeed": 2.905229,
+  "warpscale": 7.523901,
+  "zoomexp": 1.115668,
+  "fshader": 0.75,
+  "zoom": 0.972365,
+  "warp": 75.008774,
+  "sx": 1.269734,
+  "sy": 0.741923,
+  "wave_r": 0.7,
+  "wave_g": 0,
+  "wave_y": 0.05,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26
+ },
+ "warp": "",
+ "comp": ""
+}

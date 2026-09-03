@@ -1,0 +1,73 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=div(a['bass'],5); a['wave_g']=div(a['treb'],5); a['wave_b']=(a['time']*Math.sin((div(a['bass'],a['treb'])*10))); a['wave_x']=(0.4+div(Math.cos(a['bass']),2)); a['wave_y']=(0.25+div(a['treb'],10)); a['warp']=(div((a['warp']*Math.log(div((0.2*a['time']),2))),a['warp'])*Math.tan(randint(1))); a['decay']=(a['decay']+a['sy']); a['dx']=0.15; a['dy']=0.05;",
+ "pixel_eqs_str": "a['dy']=0; a['dx']=0;",
+ "baseVals": {
+  "gammaadj": 1.9,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "bmotionvectorson": 0,
+  "wave_a": 7.888676,
+  "wave_scale": 2.978922,
+  "wave_smoothing": 0.9,
+  "modwavealphastart": 1.01,
+  "warpanimspeed": 3.209179,
+  "warpscale": 0.512473,
+  "zoomexp": 0.999997,
+  "zoom": 1.104622,
+  "warp": 2.380965,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0
+ },
+ "warp": "",
+ "comp": ""
+}

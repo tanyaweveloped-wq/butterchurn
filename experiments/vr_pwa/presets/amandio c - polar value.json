@@ -1,0 +1,116 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 40,
+    "textured": 1,
+    "rad": 0.19978,
+    "tex_zoom": 3.20324,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 20,
+    "additive": 1,
+    "num_inst": 1024,
+    "x": 0.38,
+    "y": 0.28,
+    "rad": 0.01,
+    "g": 1,
+    "g2": 0,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['in'] = 0; a['sa'] = 0; a['t'] = 0; a['d'] = 0; a['x1'] = 0; a['y1'] = 0; a['z'] = 0; a['q6'] = 0; ",
+   "frame_eqs_str": "a['in']=a['instance']; a['sa']=div(a['in'],1024); a['t']=((6.28*a['sa'])+a['time']); a['d']=(6*a['gmegabuf'][Math.floor((0.5*a['in']))]); a['x1']=Math.sin(a['t']); a['y1']=Math.cos(a['t']); a['z']=(0.1+a['d']); a['x']=(0.5+div((a['z']*a['x1']),a['q6'])); a['y']=(0.5+(a['z']*a['y1'])); a['r']=(0.05+((5*a['d'])*a['d'])); a['g']=(0.03+(((3*a['d'])*a['d'])*a['d'])); a['r2']=a['r']; a['g2']=a['g']; a['ang']=a['t'];"
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "scaling": 81.9543,
+    "smoothing": 0.8,
+    "a": 0
+   },
+   "init_eqs_str": "a['i'] = 0; a['i1'] = 0; a['c'] = 0; a['q1'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['i']=(a['i']+1); a['i1']=mod(a['i'],512); a['c']=mod((0.5*a['q1']),2); a['gmegabuf'][Math.floor(a['i1'])]=((Math.abs(a['c'])>0.00001)?(a['gmegabuf'][Math.floor(a['i1'])]):(a['value1']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['q6'] = 0; a['bt'] = 0; a['q1'] = 0; a['i']=0; for(var mdparser_idx350=0;mdparser_idx350<10000;mdparser_idx350++){a['gmegabuf'][Math.floor(a['i'])]=0; a['i']=(a['i']+1);}",
+ "frame_eqs_str": "a['wave_a']=0; a['warp']=0; a['decay']=0.5; a['zoom']=1.005; a['q6']=a['aspecty']; a['bt']=(a['bt']+div(a['bass'],a['fps'])); a['q1']=a['bt'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.14,
+  "decay": 1,
+  "echo_zoom": 0.872,
+  "echo_orient": 2,
+  "wave_mode": 7,
+  "wave_thick": 1,
+  "brighten": 1,
+  "wave_a": 99.8,
+  "wave_scale": 0.007,
+  "wave_smoothing": 0.5,
+  "wave_mystery": -0.4,
+  "modwavealphastart": 0.5,
+  "modwavealphaend": 1,
+  "zoom": 1.0099,
+  "cy": 0.86,
+  "dx": 0.00001,
+  "dy": 0.00001,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0,
+  "ob_a": 1,
+  "ib_size": 0.002,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,107 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 5,
+    "additive": 1,
+    "textured": 1,
+    "rad": 0.98608,
+    "ang": 1.25664,
+    "tex_ang": 1.25664,
+    "tex_zoom": 0.16543,
+    "r": 0.05,
+    "g": 0.05,
+    "b": 0.05,
+    "r2": 0.05,
+    "g2": 0.05,
+    "b2": 0.05,
+    "a2": 1,
+    "border_a": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['ang']=(Math.sin(div(a['time'],3))*6.4);"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "rad": 1.13348,
+    "tex_zoom": 0.65842,
+    "g": 1,
+    "b": 1,
+    "border_a": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['ang']=(Math.cos(div(a['time'],3))*6.4); a['sides']=(Math.cos(a['time'])*8);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['q1'] = 0; a['oldq1'] = 0;",
+ "frame_eqs_str": "a['ib_r']=(0.5+(5.499*((0.60*Math.sin(div((0.933*a['time']),3)))+(0.40*Math.sin(div((1.045*a['time']),3)))))); a['ib_g']=(0.5+(5*((0.60*Math.sin(div((0.900*a['time']),3)))+(0.40*Math.sin(div((0.956*a['time']),3)))))); a['ib_b']=(0.5+(5.499*((0.60*Math.sin(div((0.910*a['time']),3)))+(0.40*Math.sin(div((0.920*a['time']),3)))))); a['wave_a']=0; a['decay']=1; a['zoom']=-1; a['rot']=0; a['warp']=0; a['q1']=(a['oldq1']+(0.005*(((a['bass']+a['bass_att'])+(a['bass']*a['bass_att']))-1))); a['oldq1']=(below(a['q1'], 30000)*a['q1']); a['monitor']=a['q1'];",
+ "pixel_eqs_str": "a['rot']=div((Math.sin(div(a['time'],2))*a['x']),div(div(Math.atan((a['time']*2)),div(a['ang'],3)),a['x'])); a['warp']=div((Math.sin((a['time']*9))*a['y']),div(div(Math.atan(div(a['time'],2)),a['rad']),a['y']));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.56,
+  "decay": 0.965,
+  "echo_zoom": 1.007,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wave_a": 100,
+  "wave_scale": 0.15,
+  "wave_smoothing": 0.5,
+  "wave_mystery": -0.4,
+  "modwavealphastart": 0.5,
+  "modwavealphaend": 1,
+  "warpscale": 2.853,
+  "zoom": 1.064,
+  "warp": 0,
+  "sx": 0.9901,
+  "sy": 0.9901,
+  "ob_a": 1,
+  "ib_size": 0.005,
+  "ib_r": 1,
+  "ib_g": 0,
+  "ib_b": 0,
+  "ib_a": 1,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

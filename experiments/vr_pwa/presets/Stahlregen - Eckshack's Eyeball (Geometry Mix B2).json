@@ -1,0 +1,114 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "rad": 0.88378,
+    "tex_zoom": 0.99999,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['r']=(0.75+(0.25*Math.sin((a['time']*0.75)))); a['b']=(0.75+(0.25*Math.sin((a['time']*1.5)))); a['g']=(0.75+(0.25*Math.sin((a['time']*2)))); a['r2']=a['r']; a['b2']=a['b']; a['g2']=a['g']; a['rad']=(a['rad']-(0.015*a['bass_att']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "num_inst": 2,
+    "rad": 0.5427,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 0.8,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['xmod'] = 0; a['ymod'] = 0; ",
+   "frame_eqs_str": "a['xmod']=((0.25*Math.sin((0.542*a['time'])))+(0.125*Math.cos((0.367*a['time'])))); a['ymod']=((0.25*Math.cos((0.542*a['time'])))+(0.125*Math.sin((0.367*a['time'])))); a['x']=((0.5+(a['xmod']*equal(a['instance'], 0)))-(a['xmod']*equal(a['instance'], 1))); a['y']=((0.5+(a['ymod']*equal(a['instance'], 0)))-(a['ymod']*equal(a['instance'], 1))); a['ang']=a['time'];"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "rad": 0.49138,
+    "ang": 4.71239,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['trebc'] = 0; a['bassc'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['trebc']=((0.5*a['trebc'])+(0.5*a['treb'])); a['bassc']=((0.5*a['bassc'])+(0.5*a['bass']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wave_a": 0.327,
+  "wave_scale": 0.238,
+  "wave_smoothing": 0,
+  "warpanimspeed": 100,
+  "warpscale": 0.01,
+  "zoomexp": 0.35951,
+  "zoom": 0.67279,
+  "dx": 0.46,
+  "sx": 0.7644,
+  "sy": 0.85282,
+  "wave_y": 0.66,
+  "ob_size": 0.05,
+  "ob_r": 1,
+  "ob_g": 1,
+  "ob_b": 1,
+  "ob_a": 0.17,
+  "ib_size": 0.095,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "ib_a": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

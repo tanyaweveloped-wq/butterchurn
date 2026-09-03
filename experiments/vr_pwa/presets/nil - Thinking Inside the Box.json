@@ -1,0 +1,86 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['q2'] = 0; a['q1'] = 0;",
+ "frame_eqs_str": "a['ib_r']=Math.sin((a['bass']*Math.cos((a['frame']*1.235)))); a['ib_g']=Math.sin((a['bass']*Math.cos((a['frame']*1.335)))); a['ib_b']=Math.sin((a['bass']*Math.cos((a['frame']*1.435)))); a['dx']=(Math.sin((a['time']*1.234))*0.0125); a['dy']=(Math.cos((a['time']*0.9666))*0.0125); a['q1']=mod(a['frame'],2); a['wave_r']=a['q1']; a['wave_g']=a['q1']; a['wave_b']=a['q1'];",
+ "pixel_eqs_str": "a['q2']=above(a['rad'], 0.333); a['rot']=(a['rot']+((Math.abs(a['q2'])>0.00001)?(0):((Math.sin((a['time']*0.2243))*0.5)))); a['zoom']=(a['zoom']+((Math.abs(a['q2'])>0.00001)?(0):(((a['rad']*Math.sin((a['time']*0.734)))*0.5)))); a['warp']=(a['warp']+((Math.abs(above(a['rad'], 0.6666))>0.00001)?(Math.sin((a['ang']*a['rad']))):(0)));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1,
+  "echo_orient": 3,
+  "wave_mode": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wave_a": 100,
+  "wave_scale": 1.175613,
+  "wave_smoothing": 0.306,
+  "wave_mystery": -0.46,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoomexp": 0.854653,
+  "warp": 0.01,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0,
+  "ob_size": 0.5,
+  "ob_r": 0.19,
+  "ob_g": 0.12,
+  "ib_size": 0.015,
+  "ib_a": 1,
+  "mv_x": 62.719967,
+  "mv_y": 35.039982,
+  "mv_l": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

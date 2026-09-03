@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['bass_effect'] = 0;",
+ "frame_eqs_str": "a['wave_r']=((a['bass']*a['treb'])*0.1); a['wave_g']=((a['mid']*a['treb'])*0.3); a['wave_b']=((a['mid']*a['bass'])*0.6);",
+ "pixel_eqs_str": "a['bass_effect']=Math.max((Math.max(a['bass'], a['bass_att'])-1.2), 0); a['zoom']=((Math.abs(above(a['ang'], 0.05))>0.00001)?(((Math.abs(above(a['ang'], 0.15))>0.00001)?((1+(a['ang']*0.1))):((1+(a['ang']*2))))):((1+(a['ang']*0.1)))); a['zoom']=(a['zoom']+(0.1*a['bass_effect']));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1.000155,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 3,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "darken_center": 1,
+  "darken": 1,
+  "wave_scale": 0.100406,
+  "wave_smoothing": 0,
+  "wave_mystery": -0.5,
+  "warp": 0.01,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,108 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "thickoutline": 1,
+    "rad": 0.80814,
+    "g": 1,
+    "b2": 1,
+    "a2": 0.5,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['q2'] = 0; a['q1'] = 0; a['q3'] = 0; ",
+   "frame_eqs_str": "a['sides']=(4*a['bass_att']); a['r']=a['q2']; a['g']=a['q1']; a['b']=a['q3']; a['r2']=(1-Math.abs(a['q2'])); a['g2']=(1-Math.abs(a['q1'])); a['b2']=(1-Math.abs(a['q3']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "x": 0.6,
+    "rad": 0.134785,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['q3'] = 0; a['q2'] = 0; a['q1'] = 0; ",
+   "frame_eqs_str": "a['x']=(a['x']+(0.18*Math.sin((3.21*a['time'])))); a['y']=(a['y']+(0.12*Math.sin((2.74*a['time'])))); a['sides']=(4*a['treb_att']); a['r']=a['q3']; a['g']=a['q2']; a['b']=a['q1']; a['r2']=(1-Math.abs(a['q3'])); a['g2']=(1-Math.abs(a['q2'])); a['b2']=(1-Math.abs(a['q1'])); a['ang']=(a['ang']+(0.23*Math.tan((2*a['time']))));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "textured": 1,
+    "y": 0.4,
+    "rad": 0.270481,
+    "tex_zoom": 0.999995,
+    "r": 0,
+    "b": 1,
+    "a2": 1
+   },
+   "init_eqs_str": "a['q1'] = 0; a['q3'] = 0; a['q2'] = 0; ",
+   "frame_eqs_str": "a['y']=(a['y']+(0.18*Math.sin((1.2*a['time'])))); a['x']=(a['x']+(0.11*Math.sin((5.67*a['time'])))); a['sides']=(5*a['mid_att']); a['ang']=(a['ang']+(0.45*Math.tan((4.3*a['time'])))); a['r']=(2*a['q1']); a['g']=(2*a['q3']); a['b']=(2*a['q2']); a['r2']=(1-Math.abs((2*a['q1']))); a['g2']=(1-Math.abs((2*a['q3']))); a['b2']=(1-Math.abs((2*a['q2'])));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['gr3'] = 0; a['thresh'] = 0; a['q1'] = 0; a['dy_r'] = 0; a['gr2'] = 0; a['dx_r'] = 0; a['q2'] = 0; a['q3'] = 0; a['gr1'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['wave_r']=((a['wave_r']+(0.25*Math.cos((1.12*a['time']))))+(0.2*((0.3*Math.cos((1.28*a['time'])))+(0.3*Math.sin((2*a['time'])))))); a['wave_g']=((a['wave_g']+(0.25*Math.cos((1.142*a['time']))))+(0.2*((0.3*Math.cos((1.2*a['time'])))+(0.32*Math.sin((1.623*a['time'])))))); a['wave_b']=((a['wave_b']+(0.25*Math.cos((1.13*a['time']))))+(0.2*((0.4*Math.cos((1.9*a['time'])))+(0.34*Math.sin((1.5245*a['time'])))))); a['q1']=a['wave_r']; a['q2']=a['wave_g']; a['q3']=a['wave_b'];",
+ "pixel_eqs_str": "a['thresh']=((above(a['bass_att'], a['thresh'])*2)+((1-above(a['bass_att'], a['thresh']))*(((a['thresh']-1.3)*0.96)+1.3))); a['dx_r']=(((equal(a['thresh'], 2)*0.15)*Math.sin((5*a['time'])))+((1-equal(a['thresh'], 2))*a['dx_r'])); a['dy_r']=(((equal(a['thresh'], 2)*0.15)*Math.sin((6*a['time'])))+((1-equal(a['thresh'], 2))*a['dy_r'])); a['gr1']=Math.abs(Math.sin((0.75*a['time']))); a['gr2']=(((0.1*below(a['gr1'], 0.5))+((1.7*above(a['gr1'], 0.5))*below(a['gr1'], 0.75)))+(4*above(a['gr1'], 0.75))); a['gr3']=((Math.abs(equal(a['thresh'], 2))>0.00001)?(a['gr2']):(a['gr3'])); a['rot']=(a['rot']+(0.19*Math.abs(((a['dx_r']*7)*((((2*a['rad'])-Math.cos((12*a['rad'])))*Math.sin((2-a['rad'])))*Math.abs((1.2*a['dx_r']))))))); a['zoom']=(a['zoom']+(0.1*Math.abs(((8*a['dy_r'])*Math.abs((a['dx_r']*Math.sin(((a['gr3']*Math.sin((3*a['rad'])))*Math.tan((6*a['rad'])))))))))); a['zoom']=(a['zoom']+((a['gr3']*a['dx_r'])*(a['rad']-((a['gr3']*(3.5*Math.cos(Math.sin((3-((a['rad']*a['gr3'])*Math.cos(((2*a['y'])-a['bass_att']))))))))*(0.5-a['rad'])))));",
+ "baseVals": {
+  "rating": 4,
+  "gammaadj": 1.7,
+  "decay": 0.97,
+  "echo_zoom": 1,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_thick": 1,
+  "darken": 1,
+  "wave_a": 100,
+  "wave_scale": 0.653093,
+  "wave_smoothing": 0.5,
+  "modwavealphastart": 0.5,
+  "modwavealphaend": 1,
+  "dx": 0.00001,
+  "dy": 0.00001,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

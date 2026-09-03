@@ -1,0 +1,83 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['beateven'] = 0; a['progress'] = 0; a['meanbass_att'] = 0; a['rozzorrate'] = 0; a['lastbeat'] = 0; a['beatrate'] = 0; a['peakbass_att'] = 0; a['beatcounter'] = 0; a['initframe'] = 0; a['att'] = 0; a['volume'] = 0; a['beat'] = 0; a['beatcount'] = 0; a['basseffect'] = 0;",
+ "frame_eqs_str": "a['volume']=((a['bass']+a['mid'])+a['att']); a['beatrate']=((Math.abs(equal(a['beatrate'], 0))>0.00001)?(1):(((Math.abs(below(a['volume'], 0.01))>0.00001)?(1):(a['beatrate'])))); a['lastbeat']=((Math.abs(equal(a['lastbeat'], 0))>0.00001)?(a['time']):(a['lastbeat'])); a['meanbass_att']=(0.1*((a['meanbass_att']*9)+a['bass_att'])); a['peakbass_att']=((Math.abs(above(a['bass_att'], a['peakbass_att']))>0.00001)?(a['bass_att']):(a['peakbass_att'])); a['beat']=((Math.abs(above(a['volume'], 0.8))>0.00001)?(((Math.abs(below((a['peakbass_att']-a['bass_att']), (0.05*a['peakbass_att'])))>0.00001)?(((Math.abs(above((a['time']-a['lastbeat']), (0.1+(0.5*(a['beatrate']-0.1)))))>0.00001)?(1):(0))):(0))):(0)); a['beatrate']=Math.max(((Math.abs(a['beat'])>0.00001)?(((Math.abs(below((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((0.1*(((a['beatrate']*9)+a['time'])-a['lastbeat']))):(a['beatrate']))):(a['beatrate'])), 0.1); a['peakbass_att']=((Math.abs(equal(a['beat'], 0))>0.00001)?(((Math.abs(above((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((a['peakbass_att']*0.95)):((a['peakbass_att']*0.995)))):(a['bass_att'])); a['lastbeat']=((Math.abs(a['beat'])>0.00001)?(a['time']):(a['lastbeat'])); a['peakbass_att']=Math.max(((Math.abs(a['beat'])>0.00001)?(a['bass_att']):(a['peakbass_att'])), (1.1*a['meanbass_att'])); a['beatcounter']=((Math.abs(above(a['progress'], 0.01))>0.00001)?(((Math.abs(above(a['beat'], 0))>0.00001)?((a['beatcounter']+1)):(a['beatcounter']))):(0)); a['beatcounter']=((Math.abs(above(a['beatcounter'], 101))>0.00001)?(0):(a['beatcounter'])); a['beateven']=mod(a['beatcounter'],2); a['warp']=0; a['basseffect']=Math.max((Math.max(a['bass'], a['bass_att'])-1), 0); a['mv_y']=(4-Math.min((((a['peakbass_att']+a['beatrate'])-2)*0.25), 0.9)); a['mv_r']=(a['basseffect']*4); a['mv_b']=(a['basseffect']*3); a['mv_g']=(a['basseffect']*3.5); a['wave_x']=((Math.abs(a['beat'])>0.00001)?(0.5):(0.2)); a['wave_y']=((Math.abs(a['beat'])>0.00001)?(0.5):(0.2)); a['beatcount']=(a['beatcount']+a['beat']); a['initframe']=((Math.abs(below(a['beatcount'], 1))>0.00001)?(a['frame']):(a['initframe'])); a['rozzorrate']=div((a['frame']-a['initframe']),a['beatcount']); a['monitor']=a['rozzorrate']; a['wave_r']=(a['wave_r']+(0.350*((0.60*Math.sin((0.737*a['time'])))+(0.40*Math.sin((0.970*a['time'])))))); a['wave_g']=(a['wave_g']+(0.350*((0.60*Math.sin((0.844*a['time'])))+(0.40*Math.sin((0.941*a['time'])))))); a['wave_b']=(a['wave_b']+(0.350*((0.60*Math.sin((0.851*a['time'])))+(0.40*Math.sin((1.055*a['time'])))))); a['cx']=(a['cx']+(0.225*((0.60*Math.sin((0.350*a['time'])))+(0.40*Math.sin((0.350*a['time'])))))); a['cy']=(a['cy']+(0.225*((0.60*Math.sin((0.350*a['time'])))+(0.40*Math.sin((0.350*a['time'])))))); a['dx']=-0.00005; a['dy']=-0.00005; a['decay']=(a['decay']-(0.05*equal(mod(a['frame'],16), 0))); a['rot']=(1-a['beatrate']); a['zoom']=(a['beat']-1);",
+ "pixel_eqs_str": "a['zoom']=(a['zoom']+(0.005*Math.tan((a['ang']-a['ang']))));",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1,
+  "decay": 0.999,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "modwavealphabyvolume": 1,
+  "wrap": 0,
+  "brighten": 1,
+  "solarize": 1,
+  "wave_a": 5.45996,
+  "wave_scale": 0.402184,
+  "wave_smoothing": 0.9,
+  "warpscale": 2.138,
+  "zoom": 1.163,
+  "warp": 2.358,
+  "wave_g": 0.6,
+  "wave_b": 0.15,
+  "ob_size": 0,
+  "ob_b": 1,
+  "ib_size": 0,
+  "ib_r": 1,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 1.28,
+  "mv_y": 1.320001,
+  "mv_l": 0.35
+ },
+ "warp": "",
+ "comp": ""
+}

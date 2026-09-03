@@ -1,0 +1,91 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['bass_effect'] = 0; a['wrap_s'] = 0;",
+ "frame_eqs_str": "a['dx']=(a['dx']-0.0005); a['dy']=(a['dy']-0.0035); a['mv_l']=3000; a['mv_r']=(0.5+(0.499*Math.sin((a['time']*1.12)))); a['mv_g']=(0.199+(0.8*Math.sin(a['time']))); a['mv_g']=(0.499+(0.5*Math.sin(a['time']))); a['bass_effect']=Math.max((Math.max(a['bass'], a['bass_att'])-1.3), 0); a['decay']=((Math.abs(above(a['bass_effect'], 0))>0.00001)?(0.96):(0.996)); a['wave_x']=(0.6+(0.3*Math.sin((a['time']*0.724)))); a['warp']=(a['warp']+(2*Math.sin((0.75*a['time'])))); a['wrap_s']=(a['wrap_s']+(0.5*Math.sin((0.1*a['time'])))); a['wave_r']=(a['wave_r']+(0.150*((0.60*Math.sin((0.994*a['time'])))+(0.40*Math.sin((0.941*a['time'])))))); a['wave_g']=(a['wave_g']+(0.150*((0.60*Math.sin((0.990*a['time'])))+(0.40*Math.sin((1.002*a['time'])))))); a['wave_b']=(a['wave_b']+(0.150*((0.60*Math.sin((0.775*a['time'])))+(0.40*Math.sin((1.071*a['time']))))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.000001,
+  "decay": 0.999,
+  "echo_zoom": 0.999609,
+  "echo_alpha": 0.5,
+  "echo_orient": 2,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "darken_center": 1,
+  "wave_a": 4.099998,
+  "wave_scale": 1.254857,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpanimspeed": 2.448629,
+  "warpscale": 67.165291,
+  "fshader": 1,
+  "zoom": 1.030301,
+  "dx": 0.02,
+  "warp": 0.0298,
+  "sy": 1.01,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "wave_x": 1,
+  "ob_size": 0.3,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_x": 8,
+  "mv_y": 1.92,
+  "mv_l": 1,
+  "mv_a": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

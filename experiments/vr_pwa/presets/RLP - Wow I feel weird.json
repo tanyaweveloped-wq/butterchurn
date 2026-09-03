@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 8,
+    "textured": 1,
+    "rad": 0.61775,
+    "tex_zoom": 2.19477,
+    "a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "additive": 1,
+    "r": 0,
+    "g": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "",
+ "pixel_eqs_str": "a['rot']=(a['rot']+((0.16*Math.sin(((a['time']*-3.3)+(a['rad']*11))))*(1.3-a['rad'])));",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 4,
+  "additivewave": 1,
+  "darken": 1,
+  "wave_scale": 7.463,
+  "warpanimspeed": 3.048,
+  "warpscale": 4.275,
+  "zoomexp": 5.02176,
+  "zoom": 0.92343,
+  "rot": 0.04,
+  "warp": 2.0675,
+  "wave_g": 0.67,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,85 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['counter'] = 0; a['du'] = 0; a['meanbass_att'] = 0; a['q6'] = 0; a['q1'] = 0; a['q5'] = 0; a['lastbeat'] = 0; a['mult'] = 0; a['beatrate'] = 0; a['peakbass_att'] = 0; a['ang2'] = 0; a['dv'] = 0; a['countertime'] = 0; a['q4'] = 0; a['oldq5'] = 0; a['volume'] = 0; a['beat'] = 0; a['q2'] = 0; a['dist'] = 0; a['q3'] = 0; a['q7'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.350*((0.60*Math.sin((0.980*a['time'])))+(0.40*Math.sin((1.047*a['time'])))))); a['wave_g']=(a['wave_g']+(0.350*((0.60*Math.sin((0.835*a['time'])))+(0.40*Math.sin((1.081*a['time'])))))); a['wave_b']=(a['wave_b']+(0.350*((0.60*Math.sin((0.814*a['time'])))+(0.40*Math.sin((1.011*a['time'])))))); a['volume']=(0.15*(((a['bass_att']+a['bass'])+a['mid'])+a['mid_att'])); a['beatrate']=((Math.abs(equal(a['beatrate'], 0))>0.00001)?(1):(((Math.abs(below(a['volume'], 0.01))>0.00001)?(1):(a['beatrate'])))); a['lastbeat']=((Math.abs(equal(a['lastbeat'], 0))>0.00001)?(a['time']):(a['lastbeat'])); a['meanbass_att']=(0.1*((a['meanbass_att']*9)+a['bass_att'])); a['peakbass_att']=((Math.abs(above(a['bass_att'], a['peakbass_att']))>0.00001)?(a['bass_att']):(a['peakbass_att'])); a['beat']=((Math.abs(above(a['volume'], 0.8))>0.00001)?(((Math.abs(below((a['peakbass_att']-a['bass_att']), (0.05*a['peakbass_att'])))>0.00001)?(((Math.abs(above((a['time']-a['lastbeat']), (0.1+(0.5*(a['beatrate']-0.1)))))>0.00001)?(1):(0))):(0))):(0)); a['beatrate']=Math.max(((Math.abs(a['beat'])>0.00001)?(((Math.abs(below((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((0.1*(((a['beatrate']*9)+a['time'])-a['lastbeat']))):(a['beatrate']))):(a['beatrate'])), 0.1); a['peakbass_att']=((Math.abs(equal(a['beat'], 0))>0.00001)?(((Math.abs(above((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((a['peakbass_att']*0.95)):((a['peakbass_att']*0.995)))):(a['bass_att'])); a['lastbeat']=((Math.abs(a['beat'])>0.00001)?(a['time']):(a['lastbeat'])); a['countertime']=((Math.abs(a['beat'])>0.00001)?(a['time']):(a['countertime'])); a['counter']=-pow(Math.min(((a['time']-a['countertime'])-1.5), 0), 9); a['q7']=Math.min((a['time']-a['countertime']), 1); a['q5']=(a['oldq5']+(0.04*a['counter'])); a['oldq5']=a['q5']; a['q6']=a['beat']; a['q1']=(0.62*((0.60*Math.sin((0.374*a['q5'])))+(0.40*Math.sin((0.294*a['q5']))))); a['q2']=(0.62*((0.60*Math.sin((0.393*a['q5'])))+(0.40*Math.sin((0.223*a['q5']))))); a['q3']=(0.62*((0.60*Math.sin((0.174*-a['q5'])))+(0.40*Math.sin((0.364*a['q5']))))); a['q4']=(0.62*((0.60*Math.sin((0.234*a['q5'])))+(0.40*Math.sin((0.271*-a['q5']))))); a['ob_r']=(0.4-(0.3*((0.5*Math.sin((a['time']*0.701)))+(0.3*Math.cos((a['time']*0.438)))))); a['ob_g']=(0.5-(0.48*Math.sin((a['time']*3.324)))); a['ob_b']=(0.5-(0.48*Math.cos((a['time']*2.316)))); a['ib_r']=(0.4-(0.3*((0.5*Math.sin((a['time']*0.801)))+(0.3*Math.cos((a['time']*0.338)))))); a['ib_g']=(0.5-(0.48*Math.sin((a['time']*4.8124)))); a['ib_b']=(0.5-(0.48*Math.cos((a['time']*3.316)))); a['wave_a']=0;",
+ "pixel_eqs_str": "a['du']=(((a['x']*2)-1)-a['q1']); a['dv']=(((a['y']*2)-1)-a['q2']); a['dist']=sqrt(((a['du']*a['du'])+(a['dv']*a['dv']))); a['ang2']=Math.atan2(a['du'], a['dv']); a['mult']=div(0.008,(a['dist']+0.4)); a['dx']=(a['mult']*Math.sin((a['ang2']-1.5))); a['dy']=(a['mult']*Math.cos((a['ang2']-1.5))); a['du']=(((a['x']*2)-1)-a['q3']); a['dv']=(((a['y']*2)-1)-a['q4']); a['dist']=sqrt(((a['du']*a['du'])+(a['dv']*a['dv']))); a['ang2']=Math.atan2(a['du'], a['dv']); a['mult']=div(0.015,(a['dist']+0.4)); a['dx']=(a['dx']+(a['mult']*Math.sin((a['ang2']+1.5)))); a['dy']=(a['dy']+(a['mult']*Math.cos((a['ang2']+1.5))));",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 2.98,
+  "decay": 1,
+  "wave_mode": 7,
+  "wave_dots": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "invert": 1,
+  "wave_a": 1.169958,
+  "wave_scale": 0.634243,
+  "wave_smoothing": 0.1,
+  "warpscale": 1.331,
+  "zoom": 0.999972,
+  "warp": 0.000156,
+  "sx": 0.999666,
+  "sy": 0.9999,
+  "wave_r": 0.35,
+  "wave_g": 0.35,
+  "wave_b": 0.35,
+  "wave_y": 0.38,
+  "ob_g": 1,
+  "ob_a": 1,
+  "ib_a": 0.1,
+  "mv_x": 64,
+  "mv_y": 2.4,
+  "mv_dy": -0.1,
+  "mv_l": 5,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

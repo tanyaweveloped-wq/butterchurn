@@ -1,0 +1,78 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['trebtemp'] = 0; a['x'] = 0; a['bass_thresh'] = 0; a['treb_thresh'] = 0; a['midbeat'] = 0; a['trebb'] = 0; a['trassave'] = 0; a['basst'] = 0; a['mtb'] = 0; a['ang'] = 0; a['y'] = 0; a['newdy'] = 0; a['newdx'] = 0; a['midtb'] = 0; a['basstemp'] = 0; a['trasstemp'] = 0; a['mv_x']=64; a['mv_y']=89;",
+ "frame_eqs_str": "a['wave_a']=0; a['ob_r']=(2*(a['time']*0.7)); a['ob_b']=(2*(a['time']*0.6)); a['ob_g']=(2*(a['time']*0.9)); a['basstemp']=((a['bass']+a['bass_att'])+a['bass_thresh']); a['trebtemp']=((a['treb']+a['treb_att'])+a['treb_thresh']); a['trasstemp']=Math.max(a['basstemp'], a['trebtemp']); a['trassave']=div(a['trasstemp'],3); a['basst']=Math.max((a['bass']+a['bass_att']), (a['treb']+a['treb_att'])); a['trebb']=Math.min((a['basst']+a['bass_thresh']), (a['basst']+a['treb_thresh'])); a['midbeat']=div(a['trebb'],3); a['midtb']=Math.max((a['midbeat']+a['mid']), (a['midbeat']+a['mid_att'])); a['mtb']=div(a['midtb'],1.5); a['zoom']=((-a['zoom']*a['zoom'])+div(a['mtb'],15)); a['dx']=(a['newdx']-(Math.sin((a['x']-a['y']))*a['ang'])); a['dy']=(a['newdy']-(Math.sin((a['y']-a['x']))*-a['ang'])); a['rot']=(a['mtb']-(a['trassave']*0.000001)); a['newdx']=((a['dx']-a['dy'])*(a['trassave']*0.5)); a['newdy']=((a['dy']-a['dx'])*(a['trassave']*0.5)); a['decay']=0.99;",
+ "pixel_eqs_str": "a['basstemp']=((a['bass']+a['bass_att'])+a['bass_thresh']); a['trebtemp']=((a['treb']+a['treb_att'])+a['treb_thresh']); a['trasstemp']=Math.max(a['basstemp'], a['trebtemp']); a['trassave']=div(a['trasstemp'],3); a['newdx']=((a['dx']-a['dy'])*(a['trassave']*0.5)); a['newdy']=((a['dy']-a['dx'])*(a['trassave']*0.5));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.925,
+  "echo_zoom": 1.0065,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wave_a": 4.099998,
+  "wave_scale": 1.285751,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 0.999514,
+  "warp": 0.01,
+  "ob_size": 0.05,
+  "ob_r": 0.01,
+  "ob_a": 1,
+  "ib_size": 0.26,
+  "mv_x": 64,
+  "mv_y": 1.248,
+  "mv_l": 5,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

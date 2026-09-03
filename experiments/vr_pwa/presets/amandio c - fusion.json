@@ -1,0 +1,115 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "rad": 5.3898,
+    "ang": 0.1885,
+    "tex_ang": 0.81681,
+    "tex_zoom": 0.19112,
+    "g": 0.97,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['tex_ang']=(1.05+(0.25*Math.sin((0.05*a['time']))));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 20,
+    "textured": 1,
+    "rad": 0.16397,
+    "tex_zoom": 1.57572,
+    "g": 1,
+    "b": 1,
+    "a": 0,
+    "r2": 1,
+    "b2": 1,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 16,
+    "num_inst": 130,
+    "x": 0.503,
+    "rad": 0.0376,
+    "tex_zoom": 1.11234,
+    "g": 0.47,
+    "b": 1,
+    "g2": 0,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['sample'] = 0; ",
+   "frame_eqs_str": "a['sample']=div(a['instance'],a['num_inst']); a['x']=(0.1+(0.8*a['sample'])); a['y']=(0.5+(0.4*Math.cos((20*a['sample'])))); a['x']=(a['x']+(0.02*Math.sin(((16*a['sample'])*a['time'])))); a['r']=(0.6+(0.4*Math.sin((a['sample']*112)))); a['b']=(0.6+(0.4*Math.sin((a['sample']*25)))); a['g']=(0.6+(0.5*Math.sin((85*a['sample']))));"
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['zoom']=1; a['wave_a']=0; a['warp']=0; a['decay']=0.9;",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.5,
+  "echo_zoom": 1,
+  "echo_orient": 1,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wave_a": 0.001,
+  "wave_scale": 1.286,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 0.9995,
+  "warp": 0.01,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

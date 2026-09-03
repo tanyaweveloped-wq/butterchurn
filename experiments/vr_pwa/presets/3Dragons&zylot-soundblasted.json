@@ -1,0 +1,72 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['wave_mystery']=(0.3*Math.sin(a['time'])); a['wave_r']=(a['wave_r']+(0.25*Math.sin((a['time']*0.666)))); a['wave_g']=(a['wave_g']-a['wave_mystery']);",
+ "pixel_eqs_str": "a['rot']=(a['rot']+(0.1*Math.sin(((pow(a['x'], 2)*50)+(a['time']*5))))); a['dy']=a['rot'];",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 0.1,
+  "decay": 0.91,
+  "echo_zoom": 1.010137,
+  "echo_alpha": 0.5,
+  "echo_orient": 2,
+  "wave_mode": 3,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "solarize": 1,
+  "wave_scale": 0.094479,
+  "zoom": 1.11,
+  "dx": 0.015,
+  "warp": 2.143582,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

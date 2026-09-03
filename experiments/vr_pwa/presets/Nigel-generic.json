@@ -1,0 +1,83 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_b']=(a['treb']-1); a['wave_g']=(a['mid']-1); a['wave_r']=(a['bass']-1); a['rot']=((a['bass_att']-1)*(0.2*Math.sin(a['time']))); a['warp']=Math.sin(a['bass']);",
+ "pixel_eqs_str": "a['zoom']=(1+((0.2*a['bass'])*(a['bass_att']+Math.sin((a['ang']*Math.sin((a['time']+a['ang'])))))));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1.006596,
+  "echo_orient": 3,
+  "wave_mode": 6,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 100,
+  "wave_scale": 1.0001,
+  "wave_smoothing": 0,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "fshader": 1,
+  "zoom": 1.000495,
+  "dx": -0.001,
+  "warp": 0.01,
+  "sx": 0.990099,
+  "sy": 1.01,
+  "ob_size": 0.0015,
+  "ib_size": 0.0055,
+  "ib_r": 0.3,
+  "ib_g": 0.3,
+  "ib_b": 0.3,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

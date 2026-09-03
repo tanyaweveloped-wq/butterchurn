@@ -1,0 +1,85 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['transx'] = 0;",
+ "frame_eqs_str": "a['rot']=(0.03*(Math.cos(a['bass'])*2)); a['transx']=0.2; a['zoom']=0.98; a['ob_b']=(a['ob_b']+(0.3*Math.cos((a['time']+1.13)))); a['ob_g']=(a['ob_g']+(0.3*Math.cos((a['time']+1.23)))); a['ob_r']=(a['ob_r']+(0.3*Math.cos((a['time']+1.33)))); a['warp']=((0.345*a['bass'])-0.1);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 4.57,
+  "decay": 0.95,
+  "echo_alpha": 0.3,
+  "echo_orient": 2,
+  "wave_mode": 1,
+  "additivewave": 1,
+  "wave_dots": 1,
+  "wave_thick": 1,
+  "wave_a": 0.901,
+  "wave_scale": 1.208,
+  "wave_smoothing": 0.858,
+  "wave_mystery": -0.68,
+  "modwavealphastart": 1.56,
+  "modwavealphaend": 1.23,
+  "fshader": 0.06,
+  "warp": 0.24631,
+  "wave_r": 0.07,
+  "wave_g": 0,
+  "wave_b": 0,
+  "ob_size": 0.005,
+  "ob_r": 0.02,
+  "ob_b": 0.43,
+  "ob_a": 0.61,
+  "ib_size": 0.19,
+  "ib_g": 0.41,
+  "mv_x": 0,
+  "mv_y": 5.28,
+  "mv_dx": 0.44,
+  "mv_r": 0,
+  "mv_g": 0.43,
+  "mv_a": 0.19
+ },
+ "warp": "",
+ "comp": ""
+}

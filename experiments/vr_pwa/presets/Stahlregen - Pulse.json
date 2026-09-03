@@ -1,0 +1,68 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 32,
+    "r": 0,
+    "g2": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['box'] = 0; a['q1'] = 0; a['box2'] = 0; a['dbass'] = 0; a['basst'] = 0;",
+ "frame_eqs_str": "a['wave_r']=0; a['wave_g']=(0.85+(0.15*Math.sin((2*a['time'])))); a['dbass']=((0.5*a['dbass'])+(0.5*a['bass'])); a['basst']=(a['basst']+(0.1*a['dbass'])); a['q1']=((0.15*a['time'])+(0.85*a['basst'])); a['warp']=0;",
+ "pixel_eqs_str": "a['box']=(above(a['rad'], (0.3+(0.3*Math.tan((4*a['q1'])))))*below(a['rad'], (1+(0.3*Math.tan((4*a['q1'])))))); a['box2']=(above(a['rad'], (0.3+(0.3*Math.tan(((4*a['q1'])+1.57)))))*below(a['rad'], (1+(0.3*Math.tan(((4*a['q1'])+1.57)))))); a['sx']=((1+(0.05*a['box']))+(0.05*a['box2'])); a['sy']=((1+(0.05*a['box']))+(0.05*a['box2']));",
+ "baseVals": {
+  "rating": 3,
+  "additivewave": 1,
+  "darken_center": 1,
+  "wave_scale": 0.672,
+  "wave_mystery": -0.3,
+  "warpscale": 0.011,
+  "zoomexp": 0.55045,
+  "zoom": 1.01,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

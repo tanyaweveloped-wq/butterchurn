@@ -1,0 +1,100 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "additive": 1,
+    "rad": 0.298653,
+    "tex_ang": 2.513274,
+    "tex_zoom": 1.00183,
+    "g": 1,
+    "b": 0.3,
+    "a": 0.5,
+    "r2": 1,
+    "b2": 0.2,
+    "a2": 1,
+    "border_g": 0,
+    "border_a": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['x']=(a['x']+(0.1*Math.sin(a['time']))); a['y']=(a['y']+(0.1*Math.sin(a['time'])));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['rot']=(a['rot']+(0.01*Math.sin(a['time'])));",
+ "pixel_eqs_str": "a['cx']=(a['cx']+(0.1*Math.sin((a['time']*1.57)))); a['cy']=(a['cy']+(0.1*Math.sin((a['time']*1.57)))); a['dx']=(a['dx']+(0.1*Math.sin((a['time']*1.57)))); a['dy']=(a['dy']+(0.1*Math.sin((a['time']*1.57))));",
+ "baseVals": {
+  "rating": 5,
+  "gammaadj": 1.509999,
+  "echo_zoom": 1.498684,
+  "echo_alpha": 0.07,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "wave_brighten": 0,
+  "wave_a": 0.450292,
+  "wave_scale": 0.995658,
+  "wave_smoothing": 0.9,
+  "wave_mystery": 0.5,
+  "warpanimspeed": 2.987793,
+  "warpscale": 0.043608,
+  "zoomexp": 12.396611,
+  "fshader": 0.5,
+  "zoom": 0.985356,
+  "rot": -0.0999,
+  "warp": 2.821389,
+  "wave_b": 0,
+  "wave_x": 0.25,
+  "wave_y": 0.6,
+  "ib_size": 0.005,
+  "ib_r": 0,
+  "ib_g": 1,
+  "ib_b": 0.1,
+  "ib_a": 1,
+  "mv_x": 3.2,
+  "mv_y": 4.8,
+  "mv_l": 1,
+  "mv_r": 0,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

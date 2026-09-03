@@ -1,0 +1,74 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "r": 0.7,
+    "g": 0.7,
+    "a": 0.07
+   },
+   "init_eqs_str": "a['my_z'] = 0; a['d'] = 0; a['y3'] = 0; a['z2'] = 0; a['y1'] = 0; a['w'] = 0; a['w2'] = 0; a['x1'] = 0; a['q22'] = 0; a['q21'] = 0; a['q6'] = 0; a['zoom'] = 0; a['p'] = 0; a['q5'] = 0; a['v'] = 0; a['z3'] = 0; a['w3'] = 0; a['my_x'] = 0; a['x3'] = 0; a['my_y'] = 0; a['w1'] = 0; a['x2'] = 0; a['l'] = 0; a['u'] = 0; a['y2'] = 0; a['z1'] = 0; a['q20'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['u']=(-3.14+(6.28*a['sample'])); a['v']=(-2+((4+(5*a['q20']))*a['sample'])); a['my_x']=(pow(Math.cos(a['v']), 2)*pow(Math.cos(a['u']), 3)); a['my_y']=(pow(Math.sin((a['v']-1)), 1.5)*pow(Math.cos(a['u']), 3)); a['my_z']=(-0.5+pow(Math.sin(a['u']), 2)); a['d']=5; a['zoom']=6; a['w3']=(3*a['q22']); a['w1']=1; a['w2']=(1.6+(0.1*Math.sin(a['q20']))); a['r']=(0.7+((0.3*above(a['sample'], 0.68))*below(a['sample'], 0.72))); a['x1']=((Math.cos(a['w1'])*a['my_x'])+(Math.sin(a['w1'])*a['my_y'])); a['y1']=((-Math.sin(a['w1'])*a['my_x'])+(Math.cos(a['w1'])*a['my_y'])); a['z1']=a['my_z']; a['x2']=((Math.cos(a['w2'])*a['x1'])+(Math.sin(a['w2'])*a['z1'])); a['z2']=((-Math.sin(a['w2'])*a['x1'])+(Math.cos(a['w2'])*a['z1'])); a['y2']=a['y1']; a['y3']=((Math.cos(a['w3'])*a['y2'])+(Math.sin(a['w3'])*a['z2'])); a['z3']=((-Math.sin(a['w3'])*a['y2'])+(Math.cos(a['w3'])*a['z2'])); a['x3']=a['x2']; a['l']=sqrt(((a['x3']*a['x3'])+(a['y3']*a['y3']))); a['w']=Math.atan2(a['x3'], a['y3']); a['d']=sqrt((((a['x3']*a['x3'])+(a['y3']*a['y3']))+((a['z3']+a['d'])*(a['z3']+a['d'])))); a['p']=Math.tan((Math.asin(1)+Math.atan2((a['d']+a['z3']), a['l']))); a['my_x']=((a['zoom']*Math.sin(a['w']))*a['p']); a['my_y']=((a['zoom']*Math.cos(a['w']))*a['p']); a['y']=(0.5-div((1*a['my_x']),a['q6'])); a['x']=(0.5+div((0.5*a['my_y']),a['q5'])); a['y']=(0.5+div((a['y']-0.5),a['q6'])); a['x']=(0.5+div((a['x']-0.5),a['q5'])); a['a']=div((((0.1*a['a'])*a['d'])*a['q21']),12);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['t1'] = 0; a['q22'] = 0; a['q21'] = 0; a['q6'] = 0; a['q5'] = 0; a['t2'] = 0; a['speed'] = 0; a['t0'] = 0; a['q20'] = 0; a['t0']=a['time'];",
+ "frame_eqs_str": "a['warp']=0; a['wave_a']=0; a['zoom']=above((a['time']-a['t0']), 0.2); a['q5']=a['aspectx']; a['q6']=a['aspecty']; a['speed']=10; a['t2']=(a['t2']+div(1,a['fps'])); a['decay']=(1-a['t1']); a['t1']=(a['t1']+div((0.5*equal(mod(((0.1*a['t2'])*a['speed']),20), 0)),a['fps'])); a['t1']=(a['t1']*above(0.2, mod(((0.1*a['t2'])*a['speed']),20))); a['q20']=mod((0.05*(((0.1*a['t2'])*a['speed'])+10)),40); a['q21']=a['speed']; a['q22']=((0.1*a['t2'])*a['speed']);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1.007,
+  "echo_orient": 3,
+  "wave_mode": 1,
+  "wrap": 0,
+  "brighten": 1,
+  "darken": 1,
+  "wave_scale": 0.01,
+  "warp": 0.01,
+  "ob_size": 0.005,
+  "ob_a": 1,
+  "ib_size": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

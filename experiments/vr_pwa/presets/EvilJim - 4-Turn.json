@@ -1,0 +1,70 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['decay']=0.75; a['wave_r']=Math.sin(a['bass_att']); a['wave_g']=Math.cos(a['treb']); a['wave_b']=Math.tan((a['bass']*a['mid_att'])); a['wave_x']=((Math.abs(above(div(a['bass_att'],a['bass']), 1))>0.00001)?((a['wave_x']+0.2)):((a['wave_x']-0.2))); a['wave_y']=((Math.abs(above(div(a['mid_att'],a['mid']), 1))>0.00001)?((a['wave_y']+0.2)):((a['wave_y']-0.2))); a['rot']=((Math.abs(above(div(a['treb_att'],a['treb']), 1))>0.00001)?((div(a['treb_att'],a['treb'])*0.02)):((div(a['treb_att'],a['treb'])*-0.02)));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 1,
+  "gammaadj": 1.7,
+  "decay": 0.9,
+  "wave_mode": 3,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 0.999744,
+  "wave_scale": 0.499803,
+  "wave_smoothing": 0,
+  "warp": 0.01,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.400*((0.60*Math.sin((2.933*a['time'])))+(0.40*Math.sin((1.045*a['time'])))))); a['wave_g']=(a['wave_g']+(0.400*((0.60*Math.sin((3.900*a['time'])))+(0.40*Math.sin((0.956*a['time'])))))); a['wave_b']=(a['wave_b']+(0.400*((0.60*Math.sin((1.910*a['time'])))+(0.40*Math.sin((0.920*a['time'])))))); a['zoom']=(a['zoom']+(0.013*((0.60*Math.sin((0.339*a['time'])))+(0.40*Math.sin((0.276*a['time'])))))); a['rot']=(a['rot']+(0.040*((0.60*Math.sin((0.381*a['time'])))+(0.40*Math.sin((0.579*a['time']))))));",
+ "pixel_eqs_str": "a['zoom']=((Math.abs(above(a['bass_att'], 1))>0.00001)?(((a['zoom']+(((a['x']*2)-1)*(0.08+(0.15*Math.sin((a['time']*0.321))))))+(((a['y']*2)-1)*(0.08+(0.25*Math.cos((a['time']*0.321))))))):(1)); a['rot']=((Math.abs(below(a['bass'], 1))>0.00001)?((a['rot']-((Math.sin((a['time']*0.88))*0.3)*a['rad']))):(a['rot'])); a['sx']=((Math.abs(above(a['treb'], 0.7))>0.00001)?((a['sx']+((a['zoom']-1)*0.8))):(a['sx'])); a['sy']=((Math.abs(above(a['treb'], 0.7))>0.00001)?((a['sy']+((a['zoom']-1)*0.8))):(a['sy']));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.998,
+  "decay": 0.978,
+  "echo_zoom": 1.316837,
+  "echo_alpha": 0.39,
+  "echo_orient": 1,
+  "wave_mode": 2,
+  "bmotionvectorson": 0,
+  "wave_scale": 2.417196,
+  "wave_smoothing": 0.6,
+  "warpscale": 2.582783,
+  "zoomexp": 17.914183,
+  "fshader": 0.3,
+  "zoom": 0.898417,
+  "warp": 2.155456,
+  "wave_r": 0.6,
+  "wave_g": 0.6,
+  "wave_b": 0.6
+ },
+ "warp": "",
+ "comp": ""
+}

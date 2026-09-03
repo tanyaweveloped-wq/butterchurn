@@ -1,0 +1,93 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['progress'] = 0;",
+ "frame_eqs_str": "a['cx']=(a['cx']+(0.2*Math.sin(a['time']))); a['rot']=(a['rot']+(0.03*Math.sin(a['time']))); a['wave_r']=((Math.abs(above(a['progress'], 0.4))>0.00001)?(((Math.abs(below(a['progress'], 0.6))>0.00001)?(2):(0))):(0)); a['wave_g']=((Math.abs(above(a['progress'], 0.4))>0.00001)?(((Math.abs(below(a['progress'], 0.6))>0.00001)?(-2):(0))):(0)); a['wave_b']=((Math.abs(above(a['progress'], 0.4))>0.00001)?(((Math.abs(below(a['progress'], 0.6))>0.00001)?(-2):(0.5))):(0.5)); a['cx']=(a['cx']+(0.25*Math.cos((5*a['time'])))); a['cy']=(a['cy']+(0.25*Math.sin((5*a['time']))));",
+ "pixel_eqs_str": "a['rot']=(a['rot']+(div(div(div(div(((a['rad']*Math.sin(a['time']))*a['rad']),a['bass']),a['treb']),a['mid']),20)*Math.sin(a['time']))); a['zoom']=(a['zoom']+div((0.01*a['rad']),Math.cos(a['bass']))); a['warp']=((a['warp']+(0.1*a['rad']))-div((a['rad']*Math.sin(a['time'])),a['treb'])); a['zoomexp']=(a['zoomexp']+((0.2*(a['treb']-a['bass']))*(1-a['rad'])));",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 7.299999,
+  "decay": 0.99,
+  "echo_zoom": 1,
+  "echo_orient": 1,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "red_blue": 1,
+  "brighten": 1,
+  "solarize": 1,
+  "wave_a": 0.077377,
+  "wave_scale": 100,
+  "wave_smoothing": 0.9,
+  "wave_mystery": -0.5,
+  "modwavealphastart": 0.5,
+  "modwavealphaend": 1,
+  "warpanimspeed": 100,
+  "zoomexp": 1.9991,
+  "fshader": 1,
+  "dx": 0.00001,
+  "dy": 0.00401,
+  "warp": 0.01,
+  "ob_size": 0.005,
+  "ob_r": 1,
+  "ob_a": 1,
+  "ib_r": 1,
+  "ib_g": 1,
+  "ib_b": 0,
+  "ib_a": 1,
+  "mv_x": 12.799999,
+  "mv_y": 14.400005,
+  "mv_l": 5,
+  "mv_r": 0,
+  "mv_g": 0.6,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,78 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['tt'] = 0; a['progress'] = 0;",
+ "frame_eqs_str": "a['tt']=div(a['time'],3); a['wave_r']=((div(Math.sin((a['tt']*4)),3)+0.2)+div(a['progress'],5)); a['wave_b']=(div(Math.cos(div((2*a['tt']),3)),2)+0.5); a['wave_g']=(div(Math.atan(div((2*a['tt']),5)),3)+0.6);",
+ "pixel_eqs_str": "a['zoom']=(Math.max(Math.tan(a['rad']), Math.sin(a['rad']))+0.9); a['rot']=(Math.min(Math.cos(a['rad']), Math.sin(a['rad']))-0.1); a['zoomexp']=(Math.max(Math.cos(a['x']), Math.sin((a['y']*a['x'])))+0.5);",
+ "baseVals": {
+  "rating": 3,
+  "decay": 0.915,
+  "echo_zoom": 1.006596,
+  "echo_orient": 3,
+  "wave_thick": 1,
+  "wave_a": 4.099998,
+  "wave_scale": 0.3895,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 1.0705,
+  "rot": 0.0999,
+  "dx": 0.005,
+  "warp": 0.198054,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

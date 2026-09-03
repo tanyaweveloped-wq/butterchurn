@@ -1,0 +1,117 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "thickoutline": 1,
+    "rad": 0.298742,
+    "tex_zoom": 1.205898,
+    "g": 1,
+    "r2": 1,
+    "g2": 0.1,
+    "a2": 1,
+    "border_g": 0.6,
+    "border_a": 1
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['ang']=(4.2*Math.sin(a['time'])); a['sides']=(3+(2.5*((a['bass']+a['mid'])+a['treble'])));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "scaling": 0.311602,
+    "smoothing": 0,
+    "r": 0,
+    "g": 0,
+    "a": 0.5
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "scaling": 0.608039,
+    "smoothing": 1,
+    "g": 0,
+    "b": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['treble'] = 0;",
+ "frame_eqs_str": "a['rot']=(0.1*Math.sin((4*((a['bass']+a['mid'])+a['treble'])))); a['cx']=(0.5+(0.1*Math.sin(a['time']))); a['cx']=(0.5+(0.2*Math.sin(a['time'])));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 5,
+  "gammaadj": 1.630001,
+  "decay": 0.975,
+  "echo_zoom": 0.470291,
+  "echo_alpha": 0.25,
+  "echo_orient": 3,
+  "additivewave": 1,
+  "brighten": 1,
+  "wave_a": 0.498314,
+  "wave_scale": 1.0019,
+  "wave_smoothing": 0.9,
+  "modwavealphastart": 1,
+  "modwavealphaend": 1,
+  "warpscale": 1.059575,
+  "zoomexp": 0.183892,
+  "fshader": 0.5,
+  "zoom": 1.205894,
+  "warp": 1.151578,
+  "wave_b": 0,
+  "ob_size": 0,
+  "ob_r": 0.2,
+  "ob_g": 0.2,
+  "ob_b": 0.2,
+  "ob_a": 0.4999,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0.5,
+  "ib_b": 0.5,
+  "ib_a": 0.1499,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 1,
+  "mv_r": 0,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

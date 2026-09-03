@@ -1,0 +1,80 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 16,
+    "additive": 1,
+    "thickoutline": 1,
+    "rad": 0.879999,
+    "a": 0.06,
+    "border_r": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['q1'] = 0; a['q2'] = 0; ",
+   "frame_eqs_str": "a['ang']=(a['time']*1.4); a['x']=a['q1']; a['y']=a['q2']; a['r']=(0.5+(0.5*Math.sin(((a['time']*0.713)+1)))); a['g']=(0.5+(0.5*Math.sin(((a['time']*0.563)+2)))); a['b']=(0.5+(0.5*Math.sin(((a['time']*0.654)+5)))); a['r2']=(0.5+(0.5*Math.sin(((a['time']*0.885)+4)))); a['g2']=(0.5+(0.5*Math.sin(((a['time']*0.556)+1)))); a['b2']=(0.5+(0.5*Math.sin(((a['time']*0.638)+3))));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['q1'] = 0; a['q2'] = 0;",
+ "frame_eqs_str": "a['q1']=(0.5+(0.32*Math.cos((a['time']*0.4)))); a['q2']=(0.5+(0.22*Math.sin((a['time']*0.4)))); a['wave_y']=a['q2'];",
+ "pixel_eqs_str": "a['dx']=((a['x']-a['q1'])*0.02); a['dy']=((a['y']-a['q2'])*0.02);",
+ "baseVals": {
+  "rating": 1,
+  "gammaadj": 1.5,
+  "wave_mode": 4,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wave_a": 32.544682,
+  "wave_scale": 0.503666,
+  "wave_smoothing": 0.558,
+  "modwavealphastart": 0.87,
+  "modwavealphaend": 1.2899,
+  "warpscale": 2.853,
+  "zoom": 1.000012,
+  "warp": 0,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

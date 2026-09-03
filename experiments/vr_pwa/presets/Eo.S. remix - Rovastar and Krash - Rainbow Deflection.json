@@ -1,0 +1,86 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['dx']=-0.0005; a['dy']=-0.0005; a['wave_x']=div(Math.floor(randint(100)),100); a['wave_r']=(1+Math.sin((-a['wave_x']*3.1415))); a['wave_g']=Math.abs(Math.sin(((2*a['wave_x'])*3.1415))); a['wave_b']=Math.sin((a['wave_x']*3.1415));",
+ "pixel_eqs_str": "a['rot']=((a['x']-0.5)*(Math.sin(a['time'])*0.09)); a['zoom']=(1.00-(Math.cos(a['time'])*0.09));",
+ "baseVals": {
+  "rating": 3,
+  "decay": 0.975,
+  "echo_zoom": 1,
+  "echo_alpha": 0.5,
+  "echo_orient": 2,
+  "wave_mode": 3,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 1,
+  "wave_scale": 0.054279,
+  "modwavealphastart": 0.85,
+  "modwavealphaend": 1.95,
+  "cx": -0.19,
+  "cy": -0.1,
+  "wave_r": 0.4,
+  "wave_g": 0.4,
+  "wave_b": 0.4,
+  "ob_size": 0.005,
+  "ob_a": 1,
+  "ib_size": 0.005,
+  "ib_r": 0.24,
+  "ib_g": 0.54,
+  "ib_b": 1,
+  "ib_a": 0.629999,
+  "mv_x": 24.799999,
+  "mv_y": 18.599998,
+  "mv_g": 0.8,
+  "mv_b": 0.6,
+  "mv_a": 0.06
+ },
+ "warp": "",
+ "comp": ""
+}

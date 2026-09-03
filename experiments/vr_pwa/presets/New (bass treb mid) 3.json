@@ -1,0 +1,77 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['new_mid'] = 0; a['temp_bass'] = 0; a['new_bass_thresh'] = 0; a['q6'] = 0; a['q1'] = 0; a['q5'] = 0; a['bass_thresh'] = 0; a['treb_thresh'] = 0; a['vol_att'] = 0; a['temp_treb'] = 0; a['mid_thresh'] = 0; a['new_treb'] = 0; a['q4'] = 0; a['old_mid'] = 0; a['old_treb'] = 0; a['new_treb_thresh'] = 0; a['temp_mid'] = 0; a['vol'] = 0; a['old_vol'] = 0; a['old_bass'] = 0; a['new_bass'] = 0; a['q2'] = 0; a['new_mid_thresh'] = 0; a['q3'] = 0;",
+ "frame_eqs_str": "a['old_bass']=(a['bass']-1); a['old_treb']=(a['treb']-1); a['old_mid']=(a['mid']-1); a['old_vol']=(a['vol']-1); a['vol_att']=((a['bass_att']+a['treb_att'])+a['mid_att']); a['bass_thresh']=((above(a['bass_att'], a['bass_thresh'])*2)+((1-above(a['bass_att'], a['bass_thresh']))*((a['bass_thresh']-1.3)+1.3))); a['treb_thresh']=((above(a['treb_att'], a['treb_thresh'])*2)+((1-above(a['treb_att'], a['treb_thresh']))*((a['treb_thresh']-1.3)+1.3))); a['mid_thresh']=((above(a['mid_att'], a['mid_thresh'])*2)+((1-above(a['mid_att'], a['mid_thresh']))*((a['mid_thresh']-1.3)+1.3))); a['temp_bass']=(a['old_bass']+((Math.abs(above(a['old_bass'], a['new_bass']))>0.00001)?(bnot(a['bass'])):(bnot(a['temp_bass'])))); a['temp_treb']=(a['old_treb']+((Math.abs(above(a['old_treb'], a['new_treb']))>0.00001)?(bnot(a['treb'])):(bnot(a['temp_treb'])))); a['temp_mid']=(a['old_mid']+((Math.abs(above(a['old_mid'], a['new_mid']))>0.00001)?(bnot(a['mid'])):(bnot(a['temp_mid'])))); a['new_bass_thresh']=(((above(a['bass_att'], a['new_bass_thresh'])*2)+((1-above(a['bass_att'], a['new_bass_thresh']))*((a['new_bass_thresh']-1.3)+1.3)))+above(a['bass'], a['bass_att'])); a['new_treb_thresh']=(((above(a['treb_att'], a['new_treb_thresh'])*2)+((1-above(a['treb_att'], a['new_treb_thresh']))*((a['new_treb_thresh']-1.3)+1.3)))+above(a['treb'], a['treb_att'])); a['new_mid_thresh']=(((above(a['mid_att'], a['new_mid_thresh'])*2)+((1-above(a['mid_att'], a['new_mid_thresh']))*((a['new_mid_thresh']-1.3)+1.3)))+above(a['mid'], a['mid_att'])); a['new_bass']=((a['temp_bass']+a['bass_thresh'])+a['bass_att']); a['new_treb']=((a['temp_treb']+a['treb_thresh'])+a['treb_att']); a['new_mid']=((a['temp_mid']+a['mid_thresh'])+a['mid_att']); a['q1']=a['new_bass']; a['q2']=a['new_treb']; a['q3']=a['new_mid']; a['q4']=a['new_bass_thresh']; a['q5']=a['new_treb_thresh']; a['q6']=a['new_mid_thresh'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.925,
+  "echo_zoom": 1.006596,
+  "echo_orient": 3,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wave_a": 4.099998,
+  "wave_scale": 0.325445,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 0.999514,
+  "rot": 0.02,
+  "warp": 0.01,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

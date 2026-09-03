@@ -1,0 +1,72 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['decay']=((Math.abs(above(div(a['bass_att'],a['bass']), 0.99))>0.00001)?(1):(0.5)); a['wave_r']=Math.sin(a['bass_att']); a['wave_g']=Math.cos(a['treb']); a['wave_b']=Math.tan((a['bass']-a['mid_att'])); a['wave_x']=div(randint(100),100); a['wave_y']=div(randint(100),100);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.7,
+  "decay": 0.9,
+  "wave_mode": 3,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "darken": 1,
+  "wave_a": 0.999744,
+  "wave_scale": 0.249554,
+  "wave_smoothing": 0,
+  "modwavealphaend": 2,
+  "warp": 0.01,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

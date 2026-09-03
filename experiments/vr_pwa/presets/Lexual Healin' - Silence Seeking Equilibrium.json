@@ -1,0 +1,126 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "y": 0.26,
+    "rad": 0.682376,
+    "ang": 3.141594,
+    "tex_zoom": 2.353085,
+    "g": 1,
+    "b": 1,
+    "a": 0.330001,
+    "r2": 1,
+    "b2": 0.66
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "y": 0.74,
+    "rad": 0.682377,
+    "g": 1,
+    "b": 1,
+    "a": 0.420001,
+    "r2": 1,
+    "b2": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "x": 0.68,
+    "rad": 0.682377,
+    "g": 1,
+    "b": 1,
+    "a": 0.410001,
+    "r2": 1,
+    "b2": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "x": 0.32,
+    "rad": 0.682377,
+    "g": 1,
+    "b": 1,
+    "a": 0.430001,
+    "r2": 1,
+    "b2": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "additive": 1,
+    "scaling": 1.160967,
+    "smoothing": 0,
+    "a": 0.120001
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['zoom']=((a['zoom']-0.205)+(0.04*Math.sin(a['bass'])));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "decay": 1,
+  "wave_mode": 3,
+  "brighten": 1,
+  "invert": 1,
+  "warpanimspeed": 0.980296,
+  "zoomexp": 0.99,
+  "cy": 0.56,
+  "warp": 0.01,
+  "sx": 0.9802,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0,
+  "wave_x": 0,
+  "wave_y": 0,
+  "mv_x": 10.079999,
+  "mv_l": 1.1,
+  "mv_a": 0.03
+ },
+ "warp": "",
+ "comp": ""
+}

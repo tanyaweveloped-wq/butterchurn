@@ -1,0 +1,130 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "rad": 0.061412,
+    "g": 1,
+    "r2": 1,
+    "b2": 0.7,
+    "a2": 1,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 20,
+    "rad": 0.040435,
+    "r": 0,
+    "g": 1,
+    "g2": 0.54,
+    "b2": 1,
+    "a2": 1,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['x']=(0.5+(Math.sin((a['time']*0.05))*0.3)); a['y']=(0.5+(Math.cos((a['time']*0.05))*0.3));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 20,
+    "rad": 0.01995,
+    "g2": 0,
+    "a2": 1,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['x']=((0.5+(Math.sin((a['time']*0.05))*0.3))+(Math.sin((a['time']*5.34))*0.05)); a['y']=((0.5+(Math.cos((a['time']*0.05))*0.3))+(Math.cos((a['time']*5.34))*0.05));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 20,
+    "additive": 1,
+    "thickoutline": 1,
+    "rad": 0.01,
+    "r": 0,
+    "g2": 0,
+    "a2": 1,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['x']=div(Math.floor(randint(1000)),1000); a['y']=div(Math.floor(randint(1000)),1000); a['r']=div(Math.floor(randint(1000)),1000); a['g']=div(Math.floor(randint(1000)),1000); a['b']=div(Math.floor(randint(1000)),1000); a['r2']=a['r']; a['g2']=a['g']; a['b2']=a['b'];"
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(Math.floor(randint(101))*0.01); a['wave_g']=(Math.floor(randint(101))*0.01); a['wave_b']=(Math.floor(randint(101))*0.01);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.9,
+  "echo_zoom": 1,
+  "echo_orient": 3,
+  "wave_mode": 2,
+  "wave_dots": 1,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 1.400009,
+  "wave_scale": 24.99716,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0,
+  "modwavealphaend": 0.360001,
+  "warpanimspeed": 0.01,
+  "warpscale": 0.01,
+  "warp": 0.01,
+  "wave_g": 0,
+  "wave_b": 0,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

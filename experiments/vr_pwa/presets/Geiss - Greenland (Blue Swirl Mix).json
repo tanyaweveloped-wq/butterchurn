@@ -1,0 +1,119 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "thickoutline": 1,
+    "x": 1,
+    "y": 1,
+    "rad": 0.516447,
+    "r": 0,
+    "b": 1,
+    "g2": 0,
+    "border_r": 0,
+    "border_g": 0.000001,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "thickoutline": 1,
+    "x": 0,
+    "y": 0,
+    "rad": 0.516447,
+    "r": 0,
+    "b": 1,
+    "g2": 0,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "thickoutline": 1,
+    "textured": 1,
+    "y": 0.52,
+    "rad": 0.570479,
+    "r": 0,
+    "b": 1,
+    "g2": 0,
+    "border_r": 0,
+    "border_g": 0.250001,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "scaling": 2.814637,
+    "smoothing": 0.75
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.250*((0.60*Math.sin((2.137*a['time'])))+(0.40*Math.sin((1.770*a['time'])))))); a['wave_g']=(a['wave_g']+(0.300*((0.60*Math.sin((1.944*a['time'])))+(0.40*Math.sin((1.541*a['time'])))))); a['wave_b']=(a['wave_b']+(0.250*((0.60*Math.sin((1.251*a['time'])))+(0.40*Math.sin((1.655*a['time'])))))); a['rot']=(a['rot']+(0.01*((0.60*Math.sin((0.337*a['time'])))+(0.40*Math.sin((0.270*a['time'])))))); a['decay']=(a['decay']-(0.03*equal(mod(a['frame'],4), 0)));",
+ "pixel_eqs_str": "a['warp']=((a['warp']*((a['x']*2)-1))*((a['y']*2)-1));",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1.9,
+  "decay": 0.9899,
+  "echo_zoom": 1.061,
+  "wave_a": 0.650375,
+  "wave_scale": 0.589074,
+  "wave_smoothing": 0.5,
+  "warpscale": 3.138,
+  "zoomexp": 2.7,
+  "zoom": 0.952111,
+  "rot": 0.1,
+  "dy": 0.001,
+  "warp": 0.319549,
+  "wave_r": 0,
+  "wave_g": 0.5,
+  "wave_y": 0.54,
+  "ob_b": 1,
+  "ib_size": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

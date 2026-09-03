@@ -1,0 +1,73 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['curvage'] = 0; a['q2'] = 0; a['q1'] = 0; a['rad'] = 0; a['flip'] = 0;",
+ "frame_eqs_str": "a['warp']=(a['warp']*Math.sin(a['rad'])); a['flip']=((Math.abs(above(Math.sin((a['time']*a['mid'])), 0))>0.00001)?(-a['flip']):(1)); a['wave_r']=(a['wave_r']+((0.33*Math.sin(a['time']))*a['flip'])); a['wave_g']=(a['wave_g']+((0.33*Math.sin((a['time']*0.888)))*a['flip'])); a['wave_b']=(a['wave_g']+((0.33*Math.sin((a['time']*0.999)))*a['flip'])); a['wave_mystery']=((Math.abs(above((((a['mid']+a['bass'])+(3*a['treb_att']))*0.21), 1.4))>0.00001)?((0.5*a['flip'])):(0)); a['rot']=((Math.abs(above((((a['mid']+(3*a['bass_att']))+a['treb'])*0.21), 1.4))>0.00001)?((a['flip']*0.1)):(0)); a['zoom']=((Math.abs(above(((((3*a['mid_att'])+a['bass'])+a['treb'])*0.21), 1.4))>0.00001)?((a['zoom']+(a['flip']*0.03))):(a['zoom'])); a['q1']=a['flip']; a['q2']=Math.abs(a['wave_mystery']);",
+ "pixel_eqs_str": "a['curvage']=((equal(a['rot'], 0)*Math.cos((((((a['x']*10)*Math.sin((a['time']*0.8)))-((a['x']*10)*Math.sin((a['time']*0.5))))+((a['y']*10)*Math.sin((a['time']*0.65))))-((a['rad']*10)*Math.sin((a['time']*0.35))))))*0.023); a['rot']=((Math.abs(equal(a['zoom'], 1))>0.00001)?(a['rot']):(((Math.abs(above(Math.sin(Math.abs(a['ang'])), 0.628))>0.00001)?(0):((a['rad']+(a['ang']*2)))))); a['zoom']=((Math.abs(equal(a['q2'], 0.5))>0.00001)?(((Math.abs(equal((mod((a['x']*10),2)+mod((a['y']*10),2)), 0))>0.00001)?((a['zoom']+(0.05*a['q1']))):(a['zoom']))):((a['zoom']+a['curvage'])));",
+ "baseVals": {
+  "rating": 3,
+  "echo_zoom": 0.967316,
+  "echo_alpha": 0.09,
+  "wave_mode": 1,
+  "wave_a": 0.7611,
+  "wave_scale": 1.072127,
+  "wave_smoothing": 0,
+  "warpscale": 2.006762,
+  "zoomexp": 0.999898,
+  "zoom": 0.999998,
+  "rot": 1,
+  "warp": 2.987793,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

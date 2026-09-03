@@ -1,0 +1,76 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['blue'] = 0; a['xpos'] = 0; a['red_aim'] = 0; a['last_time'] = 0; a['q1'] = 0; a['bass_thresh'] = 0; a['bass_on'] = 0; a['treb_thresh'] = 0; a['frame_per_sec'] = 0; a['treb_on'] = 0; a['green'] = 0; a['ypos'] = 0; a['red'] = 0; a['q2'] = 0; a['q3'] = 0; a['blue_aim'] = 0; a['swapcolour'] = 0; a['green_aim'] = 0;",
+ "frame_eqs_str": "a['dx']=-0.0005; a['dy']=-0.0005; a['q1']=div(((a['bass_att']+a['mid_att'])+a['treb_att']),3); a['q2']=(a['time']+(5*((a['bass']+a['mid'])+a['treb']))); a['bass_thresh']=((above(a['bass_att'], a['bass_thresh'])*2)+((1-above(a['bass_att'], a['bass_thresh']))*(((a['bass_thresh']-1.4)*0.95)+1.4))); a['treb_thresh']=((above(a['treb_att'], a['treb_thresh'])*2)+((1-above(a['treb_att'], a['treb_thresh']))*(((a['treb_thresh']-1.4)*0.95)+1.4))); a['bass_on']=above(a['bass_thresh'], 1.9); a['treb_on']=above(a['treb_thresh'], 1.9); a['swapcolour']=(a['bass_on']-a['treb_on']); a['red_aim']=((Math.abs(equal(a['swapcolour'], 1))>0.00001)?(0.7):(((Math.abs(equal(a['swapcolour'], 0))>0.00001)?(0.9):(1)))); a['green_aim']=((Math.abs(equal(a['swapcolour'], 1))>0.00001)?(0.6):(((Math.abs(equal(a['swapcolour'], 0))>0.00001)?(0.3):(0.6)))); a['blue_aim']=((Math.abs(equal(a['swapcolour'], 1))>0.00001)?(0.8):(((Math.abs(equal(a['swapcolour'], 0))>0.00001)?(0.2):(0)))); a['red']=(a['red']+((a['red_aim']-a['red'])*0.5)); a['green']=(a['green']+((a['green_aim']-a['green'])*0.5)); a['blue']=(a['blue']+((a['blue_aim']-a['blue'])*0.5)); a['wave_r']=a['red']; a['wave_g']=a['green']; a['wave_b']=a['blue']; a['xpos']=((Math.abs(equal(a['bass_thresh'], 2))>0.00001)?((0.01*randint(100))):(a['xpos'])); a['ypos']=((Math.abs(equal(a['treb_thresh'], 2))>0.00001)?((0.01*randint(100))):(a['ypos'])); a['wave_x']=a['xpos']; a['wave_y']=a['ypos']; a['frame_per_sec']=(0.01*((a['frame_per_sec']*99)+div(1,(a['time']-a['last_time'])))); a['last_time']=a['time']; a['q3']=div(50,a['frame_per_sec']); a['decay']=(a['decay']+((1-a['q3'])*(1-a['decay'])));",
+ "pixel_eqs_str": "a['dy']=((-0.01*(a['q1']-1))*Math.log((2-Math.abs((((a['y']+0.5)*2)-1.8))))); a['dy']=((below(a['dy'], 0.02)*a['dy'])-0.01); a['dy']=(a['dy']+(0.005*(Math.sin((((a['x']*a['q2'])*0.483)+((a['y']*a['q2'])*1.238)))+Math.sin((((a['x']*a['q2'])*1.612)+((a['y']*a['q2'])*0.648)))))); a['dy']=(a['dy']*a['q3']);",
+ "baseVals": {
+  "rating": 3,
+  "echo_zoom": 1,
+  "wave_mode": 1,
+  "wave_brighten": 0,
+  "wave_a": 1,
+  "wave_scale": 0.408374,
+  "wave_mystery": -0.9999,
+  "warpanimspeed": 53.523884,
+  "warpscale": 0.408391,
+  "zoomexp": 11.201996,
+  "wave_r": 0.6999,
+  "wave_g": 0.6,
+  "wave_b": 0.8,
+  "ob_a": 0.1,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

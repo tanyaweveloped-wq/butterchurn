@@ -1,0 +1,94 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['lifesign'] = 0; a['beateven'] = 0; a['darkness'] = 0; a['meanbass_att'] = 0; a['lastbeat'] = 0; a['beatrate'] = 0; a['peakbass_att'] = 0; a['beatcounter'] = 0; a['volume'] = 0; a['beat'] = 0; a['beatcounter']=0;",
+ "frame_eqs_str": "a['wave_r']=(((0.7+(0.3*Math.sin((a['time']*1.125))))+(0.1*Math.sin((a['time']*0.145))))+(0.1*Math.tan(a['frame']))); a['wave_y']=(a['wave_y']+(0.1*Math.sin((20*a['time'])))); a['sx']=1.0006; a['volume']=(0.15*(((a['bass_att']+a['bass'])+a['mid'])+a['mid_att'])); a['beatrate']=((Math.abs(equal(a['beatrate'], 0))>0.00001)?(1):(((Math.abs(below(a['volume'], 0.01))>0.00001)?(1):(a['beatrate'])))); a['lastbeat']=((Math.abs(equal(a['lastbeat'], 0))>0.00001)?(a['time']):(a['lastbeat'])); a['meanbass_att']=(0.1*((a['meanbass_att']*9)+a['bass_att'])); a['peakbass_att']=((Math.abs(above(a['bass_att'], a['peakbass_att']))>0.00001)?(a['bass_att']):(a['peakbass_att'])); a['beat']=((Math.abs(above(a['volume'], 0.8))>0.00001)?(((Math.abs(below((a['peakbass_att']-a['bass_att']), (0.05*a['peakbass_att'])))>0.00001)?(((Math.abs(above((a['time']-a['lastbeat']), (0.1+(0.5*(a['beatrate']-0.1)))))>0.00001)?(1):(0))):(0))):(0)); a['beatrate']=Math.max(((Math.abs(a['beat'])>0.00001)?(((Math.abs(below((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((0.1*(((a['beatrate']*9)+a['time'])-a['lastbeat']))):(a['beatrate']))):(a['beatrate'])), 0.1); a['peakbass_att']=((Math.abs(equal(a['beat'], 0))>0.00001)?(((Math.abs(above((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((a['peakbass_att']*0.95)):((a['peakbass_att']*0.995)))):(a['bass_att'])); a['lastbeat']=((Math.abs(a['beat'])>0.00001)?(a['time']):(a['lastbeat'])); a['peakbass_att']=Math.max(((Math.abs(a['beat'])>0.00001)?(a['bass_att']):(a['peakbass_att'])), (1.1*a['meanbass_att'])); a['beatcounter']=((Math.abs(above(a['beat'], 0))>0.00001)?((a['beatcounter']+1)):(a['beatcounter'])); a['beatcounter']=((Math.abs(above(a['beatcounter'], 7))>0.00001)?(0):(a['beatcounter'])); a['beateven']=mod(a['beatcounter'],2); a['monitor']=a['beatcounter']; a['wave_b']=((Math.abs(a['lifesign'])>0.00001)?(((1-(0.05*a['beatcounter']))+(0.2*Math.sin((a['time']*0.142))))):(a['wave_b'])); a['wave_g']=((Math.abs(a['lifesign'])>0.00001)?(((1-(0.05*a['beatcounter']))+(0.2*Math.sin((a['time']*0.265))))):(a['wave_g'])); a['darkness']=((Math.abs(above(a['beatcounter'], 0))>0.00001)?(((Math.abs(below(a['beatcounter'], 5))>0.00001)?(1):(0))):(0)); a['ib_b']=(0.3+(0.13*(Math.sin((0.87*a['time']))-(1.15*Math.sin((a['time']*0.365)))))); a['ib_r']=(0.3+(0.13*(Math.sin((0.97*a['time']))-(0.8*Math.sin((a['time']*0.365)))))); a['ib_g']=(0.3+(0.13*(Math.sin((0.831*a['time']))-(1.1*Math.sin((a['time']*0.665)))))); a['ib_r']=((Math.abs(a['darkness'])>0.00001)?(0.6):(a['ib_r'])); a['ib_b']=((Math.abs(a['darkness'])>0.00001)?(0.6):(a['ib_b'])); a['ib_g']=((Math.abs(a['darkness'])>0.00001)?(0.6):(a['ib_g'])); a['ib_a']=((Math.abs(a['darkness'])>0.00001)?((0.3-(0.05*a['beatcounter']))):(a['ib_a'])); a['lifesign']=a['beat']; a['wave_mode']=((Math.abs(a['lifesign'])>0.00001)?(0):(a['wave_mode'])); a['wave_mystery']=((Math.abs(a['lifesign'])>0.00001)?(-0.5):(a['wave_mystery'])); a['wave_y']=((Math.abs(a['lifesign'])>0.00001)?(0.9):(a['wave_y'])); a['wave_x']=((Math.abs(a['lifesign'])>0.00001)?((0.5-(0.45*Math.sin(((a['bass']*a['treb'])*50))))):(a['wave_x'])); a['wave_r']=((Math.abs(a['lifesign'])>0.00001)?(0.6):(a['wave_r']));",
+ "pixel_eqs_str": "a['dy']=(0.0003+(0.009*(a['y']+(0.05*(a['bass']+a['bass_att']))))); a['dx']=(0.0003*Math.sin(((a['rad']-a['time'])+(0.5*a['ang']))));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 2.050001,
+  "decay": 1,
+  "echo_zoom": 1.028415,
+  "echo_orient": 3,
+  "wave_mode": 6,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 12.373992,
+  "wave_scale": 0.659624,
+  "wave_smoothing": 0.9,
+  "wave_mystery": 0.32,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.2,
+  "warpscale": 1.331,
+  "zoomexp": 1.021966,
+  "zoom": 0.979815,
+  "rot": 0.02,
+  "warp": 0.01,
+  "sx": 1.186471,
+  "wave_g": 0,
+  "wave_b": 0,
+  "wave_x": 0.92,
+  "ob_size": 0.005,
+  "ob_a": 0.06,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 0,
+  "mv_r": 0,
+  "mv_g": 0,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,142 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 73,
+    "textured": 1,
+    "rad": 1.959247,
+    "ang": 6.031858,
+    "tex_ang": 5.78053,
+    "tex_zoom": 0.999998,
+    "g": 1,
+    "b": 1,
+    "a": 0.09,
+    "r2": 1,
+    "b2": 1,
+    "a2": 0.1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['flag1'] = 0; a['q1'] = 0; a['flag'] = 0; a['q5'] = 0; a['q6'] = 0; a['q7'] = 0; ",
+   "frame_eqs_str": "a['flag1']=Math.floor(Math.abs((a['flag1']-a['q1']))); a['flag']=Math.floor(Math.abs((a['flag']-(a['q1']*a['flag1'])))); a['ang']=((a['ang']+((Math.abs(a['flag'])>0.00001)?(0):(-0.4)))+((Math.abs(Math.sin(a['bass']))*0.4)*((Math.abs(a['flag'])>0.00001)?(1):(-1)))); a['x']=(a['x']+(Math.sin((a['time']*0.7))*0.06)); a['y']=(a['y']+(Math.sin((a['time']*0.5))*0.06)); a['a']=((Math.abs(equal(((a['q5']+a['q6'])+a['q7']), 0))>0.00001)?(0):(a['a'])); a['a2']=a['a'];"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "x": 0.84,
+    "y": 0.22,
+    "rad": 0.600092,
+    "tex_zoom": 0.734577,
+    "g": 1,
+    "b": 1,
+    "a": 0.89,
+    "b2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['flag'] = 0; a['q2'] = 0; a['q3'] = 0; ",
+   "frame_eqs_str": "a['flag']=Math.abs((a['flag']-1)); a['y']=((Math.abs(a['flag'])>0.00001)?(0.8):(0.2)); a['ang']=((Math.abs(a['flag'])>0.00001)?(-a['q2']):(a['q3']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "textured": 1,
+    "x": 0.181,
+    "y": 0.8,
+    "rad": 0.599578,
+    "tex_zoom": 0.734577,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['flag'] = 0; a['q3'] = 0; a['q2'] = 0; ",
+   "frame_eqs_str": "a['flag']=Math.abs((a['flag']-1)); a['y']=((Math.abs(a['flag'])>0.00001)?(0.2):(0.8)); a['ang']=((Math.abs(a['flag'])>0.00001)?(-a['q3']):(a['q2']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 6,
+    "x": 0.56,
+    "y": 0.15,
+    "rad": 0.230671,
+    "ang": 5.403541,
+    "tex_zoom": 0.01,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 0.13,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['q7'] = 0; a['q6'] = 0; a['q5'] = 0; a['mbass'] = 0; a['xmov'] = 0; a['ymov'] = 0; a['xmovn'] = 0; ",
+   "frame_eqs_str": "a['g']=Math.min(1, Math.max(0, (0.2*a['q7']))); a['r']=Math.min(1, Math.max(0, (0.2*a['q6']))); a['b']=Math.min(1, Math.max(0, (0.2*a['q5']))); a['g2']=Math.min(0.8, Math.max(0, (0.1*a['q7']))); a['r2']=Math.min(0.8, Math.max(0, (0.1*a['q6']))); a['b2']=Math.min(0.8, Math.max(0, (0.1*a['q5']))); a['ang']=a['time']; a['a']=((Math.abs(equal(((a['q5']+a['q6'])+a['q7']), 0))>0.00001)?(0):(a['a'])); a['a2']=((Math.abs(equal(((a['q5']+a['q6'])+a['q7']), 0))>0.00001)?(0):(a['a2'])); a['mbass']=(a['bass']*5); a['xmov']=((((0.1*Math.floor(randint(10)))*a['mbass'])*0.015)*(1-(2*above(Math.floor(randint(10)), 5)))); a['ymov']=(pow((pow((a['mbass']*0.015), 2)-pow(a['xmovn'], 2)), div(1,2))*(1-(2*above(Math.floor(randint(10)), 5)))); a['x']=(0.5+a['xmov']); a['y']=(0.5+a['ymov']);"
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['temp'] = 0; a['trebdiff'] = 0; a['meanbass_att'] = 0; a['q6'] = 0; a['oldq2'] = 0; a['q1'] = 0; a['q5'] = 0; a['meanbass'] = 0; a['lastbeat'] = 0; a['beatrate'] = 0; a['peakbass_att'] = 0; a['runmeanbass'] = 0; a['y'] = 0; a['meantreb'] = 0; a['oldq3'] = 0; a['volume'] = 0; a['beat'] = 0; a['oldy'] = 0; a['q2'] = 0; a['q3'] = 0; a['meanmid'] = 0; a['middiff'] = 0; a['q7'] = 0; a['bassdiff'] = 0; a['oldy']=0.4;",
+ "frame_eqs_str": "a['meanbass']=(0.01*((a['meanbass']*99)+a['bass'])); a['meantreb']=(0.01*((a['meantreb']*99)+a['treb'])); a['meanmid']=(0.01*((a['meanmid']*99)+a['mid'])); a['bassdiff']=((a['bass']-a['meanbass'])*15); a['trebdiff']=((a['treb']-a['meantreb'])*15); a['middiff']=((a['mid']-a['meanmid'])*15); a['bassdiff']=(above(a['bassdiff'], 0)*a['bassdiff']); a['trebdiff']=(above(a['trebdiff'], 0)*a['trebdiff']); a['middiff']=(above(a['middiff'], 0)*a['middiff']); a['q5']=a['bassdiff']; a['q6']=a['middiff']; a['q7']=a['trebdiff']; a['volume']=((0.3*a['bass'])+a['mid']); a['beatrate']=(equal(a['beatrate'], 0)+((1-equal(a['beatrate'], 0))*(below(a['volume'], 0.01)+((1-below(a['volume'], 0.01))*a['beatrate'])))); a['lastbeat']=(a['lastbeat']+(equal(a['lastbeat'], 0)*a['time'])); a['meanbass_att']=(0.1*((a['meanbass_att']*9)+a['bass_att'])); a['runmeanbass']=div(((a['runmeanbass']*2)+a['bass_att']),3); a['peakbass_att']=Math.max(a['bass_att'], a['peakbass_att']); a['beat']=(((above(a['volume'], 0.8)*above(a['bass_att'], (a['runmeanbass']*1.1)))*below((a['peakbass_att']-a['bass_att']), (0.05*a['peakbass_att'])))*above((a['time']-a['lastbeat']), (0.1+(0.5*(a['beatrate']-0.1))))); a['beatrate']=Math.max(((Math.abs(a['beat'])>0.00001)?(((Math.abs(below((a['time']-a['lastbeat']), (2*a['beatrate'])))>0.00001)?((0.1*(((a['beatrate']*9)+a['time'])-a['lastbeat']))):(a['beatrate']))):(a['beatrate'])), 0.1); a['peakbass_att']=((a['beat']*a['bass_att'])+(((1-a['beat'])*a['peakbass_att'])*((above((a['time']-a['lastbeat']), (2*a['beatrate']))*0.95)+((1-above((a['time']-a['lastbeat']), (2*a['beatrate'])))*0.995)))); a['lastbeat']=((a['beat']*a['time'])+((1-a['beat'])*a['lastbeat'])); a['peakbass_att']=Math.max(a['peakbass_att'], (1.1*a['meanbass_att'])); a['q1']=a['beat']; a['q2']=(a['oldq2']+(a['bass']*0.02)); a['oldq2']=a['q2']; a['q3']=(a['oldq3']+(a['treb']*0.02)); a['oldq3']=a['q3']; a['temp']=a['y']; a['y']=((Math.abs(a['beat'])>0.00001)?(a['oldy']):(a['y'])); a['oldy']=((Math.abs(a['beat'])>0.00001)?(a['temp']):(a['oldy'])); a['monitor']=a['q2'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.9985,
+  "echo_zoom": 1.168096,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_dots": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 0.001,
+  "wave_scale": 0.118879,
+  "wave_smoothing": 0,
+  "wave_mystery": -0.0001,
+  "modwavealphastart": 0.24,
+  "modwavealphaend": 1.300001,
+  "warpscale": 1.331,
+  "zoomexp": 0.999998,
+  "zoom": 1.000509,
+  "warp": 0.000022,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0,
+  "ob_r": 0.34,
+  "ob_g": 0.34,
+  "ob_b": 0.34,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_r": 0.34,
+  "ib_g": 0.34,
+  "ib_b": 0.34,
+  "ib_a": 1,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

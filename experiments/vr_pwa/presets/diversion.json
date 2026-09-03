@@ -1,0 +1,71 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.350*((0.60*Math.sin((0.823*a['time'])))+(0.40*Math.sin((0.916*a['time'])))))); a['wave_g']=(a['wave_g']+(0.250*((0.60*Math.sin((0.900*a['time'])))+(0.40*Math.sin((1.023*a['time'])))))); a['wave_b']=(a['wave_b']+(0.300*((0.60*Math.sin((0.808*a['time'])))+(0.40*Math.sin((0.949*a['time'])))))); a['rot']=(a['rot']+(0.010*((0.60*Math.sin((0.038*a['time'])))+(0.40*Math.sin((0.054*a['time'])))))); a['dx']=((a['dx']+(0.002*((0.60*Math.sin((0.434*a['time'])))+(0.40*Math.sin((0.277*a['time']))))))+(0.02*Math.sin(a['time']))); a['dy']=(a['dy']+(0.002*((0.60*Math.sin((0.384*a['time'])))+(0.40*Math.sin((0.477*a['time'])))))); a['zoom']=(a['zoom']+(0.033*((0.60*Math.sin((0.339*a['time'])))+(0.40*Math.sin((0.276*a['time']))))));",
+ "pixel_eqs_str": "a['rot']=(a['rot']+(0.01*Math.sin(a['time']))); a['cx']=((a['cx']+(0.250*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.194*a['time']))))))+(0.6*a['bass'])); a['cy']=(a['cy']+(0.250*((0.60*Math.sin((0.274*a['time'])))+(0.40*Math.sin((0.394*a['time']))))));",
+ "baseVals": {
+  "decay": 0.9,
+  "wave_mode": 2,
+  "additivewave": 1,
+  "bmotionvectorson": 0,
+  "wave_a": 6.14,
+  "wave_scale": 1.694,
+  "wave_smoothing": 0.9,
+  "warpscale": 1.772,
+  "zoomexp": 0.09,
+  "zoom": 0.971,
+  "warp": 2.044,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65
+ },
+ "warp": "",
+ "comp": ""
+}

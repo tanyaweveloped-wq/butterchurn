@@ -1,0 +1,107 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1.7,
+  "decay": 0.979,
+  "echo_zoom": 1.011911,
+  "echo_alpha": 0.011297,
+  "echo_orient": 3,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "wave_a": 4.085551,
+  "wave_scale": 4.118385,
+  "wave_smoothing": 0.81,
+  "wave_mystery": 0.809002,
+  "modwavealphastart": 0.707946,
+  "modwavealphaend": 1.298106,
+  "warpanimspeed": 0.997554,
+  "warpscale": 1.337923,
+  "zoomexp": 1.6913,
+  "fshader": 0.009412,
+  "zoom": 1.0567,
+  "rot": 0.0188,
+  "cx": -0.013,
+  "cy": 0.4958,
+  "dx": 0.002131,
+  "dy": -0.0037,
+  "warp": 0.178313,
+  "sx": 0.9927,
+  "sy": 1.0188,
+  "wave_r": 0.435777,
+  "wave_g": 0.216881,
+  "wave_b": 0.031711,
+  "wave_x": 0.500295,
+  "wave_y": 0.502823,
+  "ob_size": 0,
+  "ob_r": 0.72217,
+  "ob_g": 0.63834,
+  "ob_b": 0.300415,
+  "ib_size": 0,
+  "ib_r": 0.423335,
+  "ib_g": 0.955441,
+  "ib_b": 0.774831,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_dx": -0.617033,
+  "mv_dy": -0.391616,
+  "mv_l": 2.219923,
+  "mv_r": 0.778354,
+  "mv_g": 0.351503,
+  "mv_b": 0.390785,
+  "mv_a": 0,
+  "per_pixel_1": null
+ },
+ "warp": "",
+ "comp": ""
+}

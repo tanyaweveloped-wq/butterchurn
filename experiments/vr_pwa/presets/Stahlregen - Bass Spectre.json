@@ -1,0 +1,68 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['basst'] = 0;",
+ "frame_eqs_str": "a['basst']=(a['basst']+div(a['bass'],a['fps'])); a['monitor']=a['basst']; a['warp']=(a['bass_att']-1); a['wave_mystery']=((0.25*a['time'])+(0.25*a['basst'])); a['sx']=(1.0085-(0.0085*Math.sin(((2*a['time'])+(2*a['basst']))))); a['sy']=(1.0085-(0.0085*Math.cos(((2*a['time'])+(2*a['basst']))))); a['wave_g']=(1-above(a['bass_att'], 1.5)); a['wave_b']=(1-above(a['bass_att'], 1.5));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "echo_zoom": 1.607,
+  "echo_alpha": 0.3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "wave_scale": 2.625,
+  "modwavealphastart": 0.8,
+  "modwavealphaend": 2,
+  "warpanimspeed": 26.672,
+  "warpscale": 2.007,
+  "fshader": 1,
+  "wave_y": 0.65,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

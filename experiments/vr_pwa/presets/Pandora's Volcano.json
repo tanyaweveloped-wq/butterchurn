@@ -1,0 +1,84 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['progress'] = 0; a['tt'] = 0;",
+ "frame_eqs_str": "a['tt']=div(a['time'],2); a['wave_r']=1; a['wave_b']=(0.4+div(Math.sin(a['tt']),3)); a['wave_g']=(0.5-div(Math.cos((2*a['tt'])),4));",
+ "pixel_eqs_str": "a['sy']=(1.1+div(a['progress'],10)); a['sx']=(Math.tan(pow(a['y'], 2))-Math.log(a['y'])); a['zoom']=((1.0+div(Math.sin(a['rad']),5))+div(a['progress'],10));",
+ "baseVals": {
+  "rating": 3,
+  "decay": 0.925,
+  "echo_zoom": 1.006596,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "wave_a": 4.099998,
+  "wave_scale": 0.627609,
+  "wave_smoothing": 0.108,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 1.0705,
+  "dx": 0.005,
+  "warp": 0.198054,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "wave_y": 0.04,
+  "ob_size": 0,
+  "ob_r": 0.01,
+  "ob_a": 0.0599,
+  "ib_size": 0
+ },
+ "warp": "",
+ "comp": ""
+}

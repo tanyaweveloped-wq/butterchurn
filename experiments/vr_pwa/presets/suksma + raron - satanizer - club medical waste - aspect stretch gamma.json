@@ -1,0 +1,105 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "thick": 1,
+    "additive": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['freqlvl'] = 0; a['myaltfreq'] = 0; a['myamp'] = 0; a['fade'] = 0; a['pi23'] = 0; a['myfreq'] = 0; a['q31'] = 0; a['pi'] = 0; a['q32'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['freqlvl']=(div((-10.4*pow(a['value1'], 1.81)),pow(a['value1'], 1.8))+10.2); a['myamp']=((Math.abs(below(a['freqlvl'], 0.5))>0.00001)?(a['freqlvl']):(0.49)); a['myfreq']=((log10((log10(a['sample'])+3))*1.8)+0.15); a['myaltfreq']=(((a['time']*0.2)+(a['myfreq']*4))-0.8); a['pi']=3.14159265359; a['pi23']=((2*a['pi'])*0.33333333333); a['fade']=((a['value1']*15)*(1.5-a['myfreq'])); a['r']=(((Math.sin(a['myaltfreq'])+1)*0.5)*a['fade']); a['g']=(((Math.sin((a['myaltfreq']-(1*a['pi23'])))+1)*0.5)*a['fade']); a['b']=(((Math.sin((a['myaltfreq']-(2*a['pi23'])))+1)*0.5)*a['fade']); a['x']=a['myamp']; a['y']=a['myfreq']; a['y']=(((a['y']-0.5)*div(a['q32'],a['q31']))+0.5);"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "thick": 1,
+    "additive": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['freqlvl'] = 0; a['myaltfreq'] = 0; a['myamp'] = 0; a['fade'] = 0; a['pi23'] = 0; a['myfreq'] = 0; a['q31'] = 0; a['pi'] = 0; a['q32'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['freqlvl']=(div((10.4*pow(a['value2'], 1.01)),a['value2'])-9.2); a['myamp']=((Math.abs(above(a['freqlvl'], 0.5))>0.00001)?(a['freqlvl']):(0.51)); a['myfreq']=((log10((log10(a['sample'])+3))*1.8)+0.15); a['myaltfreq']=(((a['time']*0.2)+(a['myfreq']*4))-0.8); a['pi']=3.14159265358; a['pi23']=((2*a['pi'])*0.33333333333); a['fade']=((a['value2']*15)*(1.5-a['myfreq'])); a['r']=(((Math.sin(a['myaltfreq'])+1)*0.5)*a['fade']); a['g']=(((Math.sin((a['myaltfreq']-(1*a['pi23'])))+1)*0.5)*a['fade']); a['b']=(((Math.sin((a['myaltfreq']-(2*a['pi23'])))+1)*0.5)*a['fade']); a['x']=a['myamp']; a['y']=a['myfreq']; a['y']=(((a['y']-0.5)*div(a['q32'],a['q31']))+0.5);"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "thick": 1,
+    "additive": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['freqlvl'] = 0; a['myfreq'] = 0; a['myaltfreq'] = 0; a['pi'] = 0; a['pi23'] = 0; a['fade'] = 0; a['q32'] = 0; a['q31'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['freqlvl']=(div((-10.4*pow(a['value1'], 1.81)),pow(a['value1'], 1.8))+10.2); a['myfreq']=((log10((log10(a['sample'])+3))*1.8)+0.15); a['myaltfreq']=(((a['time']*0.2)+(a['myfreq']*4))-0.8); a['pi']=3.14159265358; a['pi23']=((2*a['pi'])*0.33333333333); a['fade']=((a['value1']*15)*(1.5-a['myfreq'])); a['r']=(((Math.sin(a['myaltfreq'])+1)*0.5)*a['fade']); a['g']=(((Math.sin((a['myaltfreq']-(1*a['pi23'])))+1)*0.5)*a['fade']); a['b']=(((Math.sin((a['myaltfreq']-(2*a['pi23'])))+1)*0.5)*a['fade']); a['x']=(div((10.4*pow(a['value1'], 1.81)),pow(a['value1'], 1.8))-9.7); a['y']=a['myfreq']; a['y']=(((a['y']-0.5)*div(a['q32'],a['q31']))+0.5);"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "thick": 1,
+    "additive": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['freqlvl'] = 0; a['myfreq'] = 0; a['myaltfreq'] = 0; a['pi'] = 0; a['pi23'] = 0; a['fade'] = 0; a['q32'] = 0; a['q31'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['freqlvl']=(div((10.4*pow(a['value2'], 1.81)),pow(a['value2'], 1.8))-9.2); a['myfreq']=((log10((log10(a['sample'])+3))*1.8)+0.15); a['myaltfreq']=(((a['time']*0.2)+(a['myfreq']*4))-0.8); a['pi']=3.14159265358; a['pi23']=((2*a['pi'])*0.33333333333); a['fade']=((a['value2']*15)*(1.5-a['myfreq'])); a['r']=(((Math.sin(a['myaltfreq'])+1)*0.5)*a['fade']); a['g']=(((Math.sin((a['myaltfreq']-(1*a['pi23'])))+1)*0.5)*a['fade']); a['b']=(((Math.sin((a['myaltfreq']-(2*a['pi23'])))+1)*0.5)*a['fade']); a['x']=(div((-10.4*pow(a['value2'], 1.81)),pow(a['value2'], 1.8))+10.7); a['y']=a['myfreq']; a['y']=(((a['y']-0.5)*div(a['q32'],a['q31']))+0.5);"
+  }
+ ],
+ "init_eqs_str": "a['q31'] = 0; a['q32'] = 0;",
+ "frame_eqs_str": "a['q31']=a['pixelsx']; a['q32']=a['pixelsy'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0,
+  "echo_zoom": 1,
+  "echo_orient": 3,
+  "wave_mode": 1,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 0,
+  "wave_scale": 0.2,
+  "wave_smoothing": 0,
+  "modwavealphastart": 1,
+  "modwavealphaend": 1,
+  "warp": 0,
+  "wave_g": 0,
+  "wave_b": 0.65,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_x": 1,
+  "mv_y": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

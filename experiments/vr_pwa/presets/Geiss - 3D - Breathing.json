@@ -1,0 +1,74 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['decay']=(a['decay']-(0.01*equal(mod(a['frame'],80), 0)));",
+ "pixel_eqs_str": "a['zoom']=(a['zoom']+(0.05*Math.sin(((a['rad']*7)-(a['time']*2.4)))));",
+ "baseVals": {
+  "gammaadj": 2.7,
+  "decay": 0.99,
+  "wave_mode": 1,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "red_blue": 1,
+  "wave_a": 6.099997,
+  "wave_scale": 3.463341,
+  "wave_smoothing": 0.8,
+  "wave_mystery": -0.2,
+  "warpanimspeed": 0.424097,
+  "warpscale": 3.452268,
+  "zoom": 1.004,
+  "warp": 0.000489,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65
+ },
+ "warp": "",
+ "comp": ""
+}

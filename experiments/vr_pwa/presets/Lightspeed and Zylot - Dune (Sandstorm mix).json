@@ -1,0 +1,84 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_b']=Math.sin(a['bass']); a['wave_r']=10; a['wave_g']=10; a['warp']=div(Math.cos(Math.sin(Math.abs(((a['bass']-a['treb'])*a['mid'])))),4);",
+ "pixel_eqs_str": "a['rot']=div(div(div((Math.sin(a['x'])+Math.cos(a['y'])),100),(Math.sin(a['x'])+Math.cos(a['y']))),100); a['zoom']=Math.cos((a['y']*10));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.63,
+  "echo_orient": 3,
+  "wave_mode": 6,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "wave_a": 0.298726,
+  "wave_scale": 0.266717,
+  "wave_smoothing": 0.9,
+  "modwavealphastart": 0,
+  "warpanimspeed": 8.926891,
+  "warpscale": 1.104615,
+  "fshader": 1,
+  "zoom": 0.980295,
+  "dx": 0.02,
+  "warp": 0.080814,
+  "sx": 1.22019,
+  "sy": 1.374839,
+  "wave_r": 0.1,
+  "wave_g": 0.6,
+  "wave_x": 0.52,
+  "ob_size": 0,
+  "ib_size": 0.5,
+  "mv_x": 64,
+  "mv_y": 2.4,
+  "mv_l": 0.45,
+  "mv_a": 0.02
+ },
+ "warp": "",
+ "comp": ""
+}

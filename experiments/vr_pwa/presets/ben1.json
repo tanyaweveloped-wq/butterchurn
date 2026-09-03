@@ -1,0 +1,81 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['vol'] = 0; a['vol2'] = 0; a['bassr'] = 0; a['treb1'] = 0;",
+ "frame_eqs_str": "a['vol']=((a['treb']*a['bass'])*a['mid']); a['zoom']=pow(a['vol'], 0.5); a['warp']=pow(a['vol'], 2); a['vol2']=(a['bassr']*a['bass']); a['rot']=((pow(a['vol'], 2)*Math.sin(div(a['time'],10)))*0.1); a['fshader']=a['vol']; a['monitor']=a['treb1'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "gammaadj": 2.7,
+  "echo_zoom": 1,
+  "echo_alpha": 1,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "mv_x": 1,
+  "mv_y": 1,
+  "wave_a": 1,
+  "wave_smoothing": 0.4,
+  "wave_mystery": -1,
+  "modwavealphastart": 1,
+  "modwavealphaend": 1,
+  "warpanimspeed": 0,
+  "warpscale": 1.005,
+  "zoomexp": 3,
+  "fshader": 20,
+  "warp": 0,
+  "//rot": 0.03,
+  "//warp": null,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,73 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_x']=(a['wave_x']+(0.250*((0.60*Math.sin((2.121*a['time'])))+(0.40*Math.sin((1.621*a['time'])))))); a['wave_y']=(a['wave_y']+(0.250*((0.60*Math.sin((1.742*a['time'])))+(0.40*Math.sin((2.322*a['time'])))))); a['wave_r']=(a['wave_r']+(0.500*((0.60*Math.sin((0.823*a['time'])))+(0.40*Math.sin((0.916*a['time'])))))); a['wave_g']=(a['wave_g']+(0.500*((0.60*Math.sin((0.900*a['time'])))+(0.40*Math.sin((1.023*a['time'])))))); a['wave_b']=(a['wave_b']+(0.500*((0.60*Math.sin((0.808*a['time'])))+(0.40*Math.sin((0.949*a['time'])))))); a['zoom']=(a['zoom']+(0.010*((0.60*Math.sin((0.339*a['time'])))+(0.40*Math.sin((0.276*a['time'])))))); a['rot']=(a['rot']+(0.035*((0.60*Math.sin((0.381*a['time'])))+(0.40*Math.sin((0.539*a['time'])))))); a['cx']=(a['cx']+(0.030*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.194*a['time'])))))); a['cy']=(a['cy']+(0.037*((0.60*Math.sin((0.274*a['time'])))+(0.40*Math.sin((0.394*a['time'])))))); a['dx']=(a['dx']+(0.019*((0.60*Math.sin((100.334*a['time'])))+(0.40*Math.sin((250.277*a['time'])))))); a['dy']=(a['dy']+(0.019*((0.60*Math.sin((200.384*a['time'])))+(0.40*Math.sin((150.247*a['time'])))))); a['sx']=(a['sx']+(0.010*((0.60*Math.sin((0.313*a['time'])))+(0.40*Math.sin((0.383*a['time']))))));",
+ "pixel_eqs_str": "a['rot']=(a['rot']+((a['rad']*0.18)*Math.sin((((0.6*a['time'])*0.439)+((0.4*a['time'])*0.338)))));",
+ "baseVals": {
+  "rating": 2,
+  "decay": 0.9,
+  "wave_mode": 2,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "wave_a": 5.581546,
+  "wave_scale": 1.235,
+  "wave_smoothing": 0.9,
+  "warpscale": 1.772,
+  "zoomexp": 2.301,
+  "zoom": 1.042,
+  "warp": 2.594,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

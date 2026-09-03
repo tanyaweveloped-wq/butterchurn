@@ -1,0 +1,98 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 6,
+    "additive": 1,
+    "x": 0.1,
+    "rad": 0.298779,
+    "r": 0.4,
+    "g": 0.4,
+    "b": 0.2,
+    "r2": 0.5,
+    "g2": 0.5,
+    "b2": 0.5,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['q4'] = 0; ",
+   "frame_eqs_str": "a['x']=(0.25+Math.abs((div(Math.floor(randint(100)),100)-0.5))); a['y']=(0.25+Math.abs((div(Math.floor(randint(100)),100)-0.5))); a['rad']=div(a['q4'],10); a['a']=div(a['q4'],5);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "g": 0.5,
+    "b": 0
+   },
+   "init_eqs_str": "a['x1'] = 0; a['q1'] = 0; a['y1'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x1']=Math.floor(randint((a['q1']*a['q1']))); a['y1']=Math.floor(randint((a['q1']*a['q1']))); a['y']=(a['y1']+0.05); a['x']=(a['x1']+0.05); a['g']=(0.5+(Math.abs(div(Math.floor(randint(100)),100))-0.5));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "r": 0,
+    "g": 0.6
+   },
+   "init_eqs_str": "a['x1'] = 0; a['q2'] = 0; a['y1'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x1']=(1-Math.abs(Math.floor(randint((a['q2']*a['q2']))))); a['y1']=Math.floor(randint((a['q2']*a['q2']))); a['y']=(a['y1']+0.05); a['x']=(a['x1']-0.05); a['g']=(0.5+(Math.abs(div(Math.floor(randint(100)),100))-0.5));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "r": 0,
+    "b": 0
+   },
+   "init_eqs_str": "a['x1'] = 0; a['q3'] = 0; a['y1'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x1']=Math.floor(randint((a['q3']*a['q3']))); a['y1']=(1-Math.floor(randint((a['q3']*a['q3'])))); a['y']=(a['y1']-0.05); a['x']=(1-Math.abs((a['x1']-0.5))); a['r']=(0.5+(Math.abs(div(Math.floor(randint(100)),100))-0.5)); a['b']=(0.5+(Math.abs(div(Math.floor(randint(100)),100))-0.5));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "r": 0,
+    "b": 0
+   },
+   "init_eqs_str": "a['x1'] = 0; a['q3'] = 0; a['y1'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x1']=Math.floor(randint((a['q3']*a['q3']))); a['y1']=(1-Math.floor(randint((a['q3']*a['q3'])))); a['y']=(a['y1']-0.05); a['x']=Math.abs((a['x1']-0.5)); a['r']=(0.5+(Math.abs(div(Math.floor(randint(100)),100))-0.5)); a['b']=(0.5+(Math.abs(div(Math.floor(randint(100)),100))-0.5));"
+  }
+ ],
+ "init_eqs_str": "a['q1'] = 0; a['q2'] = 0; a['q3'] = 0; a['q4'] = 0;",
+ "frame_eqs_str": "a['q1']=(a['bass']*1.3); a['q2']=(a['treb']*1.3); a['q3']=(a['mid']*1.3); a['q4']=((a['mid']+a['treb'])+a['bass']);",
+ "pixel_eqs_str": "a['warp']=div(((1-Math.abs((a['x']-0.5)))+(1-Math.abs((a['x']-0.5)))),12.5); a['zoom']=(a['zoom']+0.0042);",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.700001,
+  "decay": 0.8,
+  "wrap": 0,
+  "darken": 1,
+  "wave_a": 0.001,
+  "fshader": 1,
+  "warp": 0.01,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

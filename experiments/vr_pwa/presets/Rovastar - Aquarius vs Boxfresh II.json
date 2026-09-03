@@ -1,0 +1,66 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['box_effect2'] = 0; a['width'] = 0; a['box_effect'] = 0; a['y_pos'] = 0; a['height'] = 0; a['effect3'] = 0; a['effect1'] = 0; a['x_pos'] = 0; a['effect4'] = 0; a['effect2'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['dx']=(a['dx']-0.001); a['dy']=(a['dy']-0.001); a['wave_mystery']=div(a['time'],8); a['wave_r']=(a['wave_r']+div(Math.sin((a['time']*3)),2)); a['wave_g']=Math.abs(a['wave_mystery']); a['wave_b']=(0.5+div(Math.sin(div(a['time'],10)),2));",
+ "pixel_eqs_str": "a['y_pos']=((div(Math.sin(a['time']),2)+0.5)-((div(Math.sin(a['time']),2)+0.5)*a['height'])); a['x_pos']=((div(Math.sin(div(a['time'],3)),2)+0.5)-((div(Math.sin(div(a['time'],3)),2)+0.5)*a['width'])); a['height']=0.3; a['width']=0.4; a['effect1']=(0.11*Math.sin(((a['ang']*8)+(a['time']*5)))); a['effect2']=(0.1*Math.sin(((a['ang']*8)+(a['time']*5)))); a['box_effect']=((Math.abs(above(a['y'], a['y_pos']))>0.00001)?(((Math.abs(below(a['y'], (a['y_pos']+a['height'])))>0.00001)?(((Math.abs(above(a['x'], a['x_pos']))>0.00001)?(((Math.abs(below(a['x'], (a['x_pos']+a['width'])))>0.00001)?(a['effect1']):(a['effect2']))):(a['effect2']))):(a['effect2']))):(a['effect2'])); a['rot']=a['box_effect']; a['effect3']=((1.4+Math.atan(div(((Math.atan(a['rad'])*3)*a['rad']),2)))+div(a['bass'],15)); a['effect4']=(1+pow(Math.abs(a['rot']), 0.8)); a['box_effect2']=((Math.abs(above(a['y'], a['y_pos']))>0.00001)?(((Math.abs(below(a['y'], (a['y_pos']+a['height'])))>0.00001)?(((Math.abs(above(a['x'], a['x_pos']))>0.00001)?(((Math.abs(below(a['x'], (a['x_pos']+a['width'])))>0.00001)?(a['effect3']):(a['effect4']))):(a['effect4']))):(a['effect4']))):(a['effect4'])); a['zoom']=a['box_effect2'];",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 6,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "wave_scale": 0.396379,
+  "wave_smoothing": 0.669,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

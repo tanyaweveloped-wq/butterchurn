@@ -1,0 +1,81 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['xpos'] = 0; a['ypos'] = 0; a['myst'] = 0; a['bass_thresh'] = 0; a['exzoom'] = 0; a['treble'] = 0;",
+ "frame_eqs_str": "a['wave_r']=Math.min(1, Math.max(0, (0.2*a['bass']))); a['wave_g']=Math.min(1, Math.max(0, (0.2*a['mid']))); a['wave_b']=Math.min(1, Math.max(0, (0.2*a['treb']))); a['ib_r']=Math.min(1, Math.max(0, ((0.2*a['bass'])*Math.abs(Math.sin(a['time']))))); a['ib_g']=Math.min(1, Math.max(0, ((0.2*a['mid'])*Math.abs(Math.sin(a['time']))))); a['ib_b']=Math.min(1, Math.max(0, ((0.2*a['treb'])*Math.abs(Math.sin(a['time']))))); a['ob_g']=Math.min(1, Math.max(0, (0.2*a['bass']))); a['ob_r']=Math.min(1, Math.max(0, (0.2*a['mid']))); a['ob_b']=Math.min(1, Math.max(0, (0.2*a['treb']))); a['xpos']=(0.01*Math.floor(randint(100))); a['ypos']=div(Math.max(0, (a['bass_att']-0.3)),2); a['myst']=((Math.abs(equal(a['bass_thresh'], 2))>0.00001)?(((0.02*Math.floor(randint(10)))-1)):(a['myst'])); a['myst']=(a['myst']+((Math.abs(equal(a['bass_thresh'], 2))>0.00001)?((0.2*Math.sin(a['time']))):(0))); a['wave_mystery']=a['myst']; a['wave_x']=((a['wave_x']+a['xpos'])-0.5); a['wave_y']=(a['wave_y']+Math.min((a['ypos']-0.4), 1)); a['decay']=Math.min((a['decay']+(0.01*div(((a['treb']+a['mid'])+a['bass']),3))), 1); a['exzoom']=(a['zoom']+div(((0.01*Math.sin((a['time']*3)))*a['treble']),2));",
+ "pixel_eqs_str": "a['zoom']=(1.01+(Math.tan(((a['rad']*10)+(Math.sin((a['time']+(a['bass_att']*2)))*3)))*0.05)); a['rot']=(a['rot']+((0.513*Math.abs(Math.cos((a['ang']*10))))*Math.max((a['bass_att']-1.2), 0)));",
+ "baseVals": {
+  "rating": 1,
+  "gammaadj": 1.998,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "wrap": 0,
+  "darken": 1,
+  "wave_a": 1.179297,
+  "wave_scale": 0.472722,
+  "wave_smoothing": 0.027,
+  "warpscale": 2.853,
+  "zoom": 1.019934,
+  "warp": 0.01,
+  "wave_r": 0.77,
+  "wave_g": 0.6,
+  "wave_b": 0.6,
+  "wave_x": 0.42,
+  "ob_g": 0.07,
+  "ob_b": 0.29,
+  "ob_a": 0.24,
+  "ib_r": 0.28,
+  "ib_g": 0.32,
+  "ib_b": 0.27,
+  "ib_a": 0.38,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,94 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['beatfreq'] = 0; a['quadrant'] = 0; a['pulsefreq'] = 0; a['sector'] = 0; a['bt'] = 0; a['no_effect'] = 0; a['q1'] = 0; a['structure'] = 0; a['orient'] = 0; a['lastbeat'] = 0; a['pulse'] = 0; a['spd'] = 0; a['q4'] = 0; a['le'] = 0; a['btblock'] = 0; a['leccl'] = 0; a['beat'] = 0; a['hccp'] = 0; a['ccl'] = 0; a['q2'] = 0; a['lastpulse'] = 0; a['q3'] = 0; a['th'] = 0;",
+ "frame_eqs_str": "a['le']=(((1.4*a['bass_att'])+(0.1*a['bass']))+(0.5*a['treb'])); a['pulse']=above(a['le'], a['th']); a['pulsefreq']=((Math.abs(equal(a['pulsefreq'], 0))>0.00001)?(2):(((Math.abs(a['pulse'])>0.00001)?(((0.8*a['pulsefreq'])+(0.2*(a['time']-a['lastpulse'])))):(a['pulsefreq'])))); a['lastpulse']=((Math.abs(a['pulse'])>0.00001)?(a['time']):(a['lastpulse'])); a['bt']=div((a['time']-a['lastbeat']),((0.5*a['beatfreq'])+(0.5*a['pulsefreq']))); a['hccp']=(div(0.03,(a['bt']+0.2))+(0.5*((Math.abs(band(above(a['bt'], 0.8), below(a['bt'], 1.2)))>0.00001)?((pow(Math.sin(((a['bt']-1)*7.854)), 4)-1)):(0)))); a['beat']=band(above(a['le'], (a['th']+a['hccp'])), a['btblock']); a['btblock']=(1-above(a['le'], (a['th']+a['hccp']))); a['lastbeat']=((Math.abs(a['beat'])>0.00001)?(a['time']):(a['lastbeat'])); a['beatfreq']=((Math.abs(equal(a['beatfreq'], 0))>0.00001)?(2):(((Math.abs(a['beat'])>0.00001)?(((0.8*a['beatfreq'])+(0.2*(a['time']-a['lastbeat'])))):(a['beatfreq'])))); a['th']=((Math.abs(above(a['le'], a['th']))>0.00001)?(((a['le']+div(114,(a['le']+10)))-7.407)):(((a['th']+div((a['th']*0.07),(a['th']-12)))+((below(a['th'], 2.7)*0.1)*(2.7-a['th']))))); a['th']=((Math.abs(above(a['th'], 6))>0.00001)?(6):(a['th'])); a['wave_r']=((0.5*sqr(Math.sin((a['time']*3.7))))+(0.5*Math.sin(((37*a['ccl'])+(0.01*a['leccl']))))); a['wave_g']=((0.5*sqr(Math.sin((a['time']*2.8))))+(0.5*Math.sin(((38*a['ccl'])+(0.01*a['leccl']))))); a['wave_b']=((0.5*sqr(Math.sin((a['time']*3.2))))+(0.5*Math.sin(((36*a['ccl'])+(0.01*a['leccl']))))); a['wave_x']=(0.5+(0.1*Math.sin((a['leccl']+a['frame'])))); a['wave_y']=(0.5+(0.1*Math.sin((((1.2*a['leccl'])+a['frame'])+1.17)))); a['ccl']=(a['ccl']+a['beat']); a['q1']=a['ccl']; a['leccl']=((a['leccl']+a['bass'])+a['treb']); a['q2']=(0.001*a['leccl']); a['q3']=a['th']; a['ob_r']=a['wave_r']; a['ob_b']=a['wave_b']; a['ob_g']=a['wave_g'];",
+ "pixel_eqs_str": "a['sector']=((((((a['ang']+a['rot'])+a['x'])+a['y'])*5000)+a['q1'])+(10*Math.sin(a['q2']))); a['orient']=mod(a['sector'],4); a['spd']=(0.005*a['q3']); a['quadrant']=((above(a['x'], 0.5)*2)+above(a['y'], (0.5-a['x']))); a['dx']=(a['dx']+(equal(a['quadrant'], mod(a['q1'],4))*((Math.abs(below(a['orient'], 2))>0.00001)?(-a['spd']):(a['spd'])))); a['dy']=(a['dx']+(equal(a['quadrant'], mod(a['q1'],4))*((Math.abs(mod(a['orient'],2))>0.00001)?(-a['spd']):(a['spd'])))); a['zoom']=(1+equal(a['quadrant'], (mod((a['q1']+1),4)-((a['x']*5)*Math.sin(((100*a['q2'])+(10*sign(Math.sin((20*a['q1'])))))))))); a['sx']=(1+((equal(a['quadrant'], mod((a['q1']+2),4))*0.1)*Math.sin((((53*a['q1'])+(10*a['q2']))+(4*a['ang']))))); a['sy']=(1+((equal(a['quadrant'], mod((a['q1']+2),4))*0.1)*Math.sin((((32*a['q1'])+(10*a['q2']))+(4*a['ang']))))); a['structure']=((equal(a['quadrant'], mod((21.7*a['q1']),4))*above(mod(a['sector'],6), 2))-a['q1']); a['dx']=((Math.abs(a['structure'])>0.00001)?((5*-a['dx'])):(a['dx'])); a['dy']=((Math.abs(a['structure'])>0.00001)?((5*-a['dy'])):(a['dy'])); a['rot']=((Math.abs(above(a['q1'], a['q3']))>0.00001)?(((Math.abs(above(a['no_effect'], 5))>0.00001)?((((((a['rot']*Math.sin(((-a['ang']+a['ang'])-(0.4*a['q1']))))-(((a['rot']*Math.sin((a['ang']+(-a['ang']*a['q3']))))*a['rad'])*Math.sin((a['q1']-a['rad']))))-((a['x']*0.05)*Math.sin(a['q4'])))-((a['y']*0.05)*Math.sin(((a['q2']-a['x'])+(a['y']*a['rad'])))))-(a['rot']*Math.sin(equal(a['q1'], a['q2']))))):((0.1*a['rad'])))):(0)); a['zoom']=((Math.abs(above(a['no_effect'], 5))>0.00001)?((((a['zoom']+((a['rad']*0.03)*Math.sin((a['q2']+a['q3']))))-((a['x']*0.05)*Math.sin((a['q1']+a['q3']))))+(((a['y']*0.10)*0.25)*Math.sin((a['q1']-a['q2']))))):((1+(0.10*Math.sin(a['rad']))))); a['no_effect']=(a['q3']-0.2);",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.97,
+  "echo_zoom": 1.000499,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 1,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 1.000416,
+  "wave_scale": 1.000404,
+  "wave_smoothing": 0,
+  "wave_mystery": -0.72,
+  "modwavealphastart": 1,
+  "modwavealphaend": 1,
+  "zoomexp": 0.999837,
+  "zoom": 0.151017,
+  "rot": 1,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "wave_x": 0.6,
+  "wave_y": 0.7,
+  "ob_size": 0.005,
+  "ob_r": 1,
+  "ob_a": 0.1,
+  "ib_size": 0,
+  "ib_a": 1,
+  "mv_x": 20.223999,
+  "mv_y": 10.656,
+  "mv_l": 2.2,
+  "mv_r": 0.9,
+  "mv_g": 0.5,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

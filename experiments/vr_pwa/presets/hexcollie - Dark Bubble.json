@@ -1,0 +1,113 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 24,
+    "textured": 1,
+    "rad": 0.86642,
+    "tex_zoom": 1.34784,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['spl'] = 0; ",
+   "frame_eqs_str": "a['tex_ang']=0.01; a['x']=(0.5+(Math.sin(a['time'])*0.003)); a['y']=(0.5+(Math.cos((a['time']*3))*0.003)); a['spl']=(a['spl']-0.01); a['spl']=((Math.abs(below(a['spl'], 0))>0.00001)?(1):(a['spl'])); a['tex_zoom']=(1+(1-(a['spl']*a['spl']))); a['a']=Math.min(1, (a['spl']*3));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 22,
+    "textured": 1,
+    "rad": 0.44929,
+    "tex_zoom": 2.21671,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "a2": 1,
+    "border_a": 1
+   },
+   "init_eqs_str": "a['sn'] = 0; a['thick'] = 0; ",
+   "frame_eqs_str": "a['tex_ang']=Math.sin((a['time']*0.5)); a['sn']=sign(a['tex_ang']); a['tex_ang']=(((a['tex_ang']*a['tex_ang'])*a['sn'])*0.5); a['thick']=above(0.9, a['bass']);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thick": 1
+   },
+   "init_eqs_str": "a['n'] = 0; a['size'] = 0; a['flux'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['n']=(a['sample']*6.283); a['size']=0.165; a['x']=((Math.sin(a['n'])*a['size'])+0.5); a['y']=(((Math.cos(a['n'])*a['size'])*1.3333)+0.5); a['flux']=((Math.sin(((a['n']*2)-a['time']))*0.5)+0.5); a['r']=((Math.sin(a['n'])*0.5)+0.5); a['g']=((Math.sin((a['n']+2.1))*0.5)+0.5); a['b']=((Math.sin((a['n']+4.2))*0.5)+0.5); a['r']=(a['r']*a['flux']); a['g']=(a['g']*a['flux']); a['b']=(a['b']*a['flux']);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.200*((0.60*Math.sin((0.933*a['time'])))+(0.40*Math.sin((1.045*a['time'])))))); a['wave_g']=(a['wave_g']+(0.200*((0.60*Math.sin((0.900*a['time'])))+(0.40*Math.sin((0.956*a['time'])))))); a['wave_b']=(a['wave_b']+(0.200*((0.60*Math.sin((0.910*a['time'])))+(0.40*Math.sin((0.920*a['time'])))))); a['zoom']=(a['zoom']+(0.023*((0.60*Math.sin((0.339*a['time'])))+(0.40*Math.sin((0.276*a['time'])))))); a['rot']=(a['rot']+(0.030*((0.60*Math.sin((0.381*a['time'])))+(0.40*Math.sin((0.579*a['time']))))));",
+ "pixel_eqs_str": "a['zoom']=(((a['zoom']+(0.03*Math.sin(((((a['x']*2)-1)*4)+(a['time']*1.63)))))+(0.03*Math.sin(((((a['y']*2)-1)*3)+(a['time']*1.37)))))-(0.1*Math.sin(((a['rad']*0.1)+(a['time']*1.6)))));",
+ "baseVals": {
+  "rating": 4,
+  "gammaadj": 1,
+  "decay": 0.956,
+  "echo_zoom": 2.003,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wave_a": 0.001,
+  "wave_scale": 0.01,
+  "wave_smoothing": 0.63,
+  "wave_mystery": -1,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 2.853,
+  "zoomexp": 3.6,
+  "zoom": 1.025,
+  "rot": -0.02,
+  "warp": 0.309,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_a": 0.5,
+  "ib_a": 0.5,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 0,
+  "mv_r": 0,
+  "mv_g": 0.7,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

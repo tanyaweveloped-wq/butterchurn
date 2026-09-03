@@ -1,0 +1,86 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['treble'] = 0;",
+ "frame_eqs_str": "a['wave_r']=a['bass']; a['wave_g']=a['mid']; a['wave_b']=a['treble']; a['rot']=div(Math.cos(a['time']),20);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1.9,
+  "decay": 0.9899,
+  "echo_zoom": 1.061,
+  "wave_mode": 4,
+  "additivewave": 1,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "mv_x": 4,
+  "mv_y": 4,
+  "darken": 1,
+  "wave_a": 100,
+  "wave_scale": 0.500221,
+  "wave_smoothing": 0.4995,
+  "modwavealphastart": 2,
+  "modwavealphaend": 2,
+  "warpanimspeed": 0.01,
+  "warpscale": 0.01,
+  "zoomexp": 1.549622,
+  "zoom": 1.1197,
+  "dy": 0.075,
+  "warp": 0.01,
+  "sx": 0.999837,
+  "sy": 0.999837,
+  "wave_g": 0,
+  "wave_b": 0,
+  "wave_y": 0.95,
+  "ob_size": 0,
+  "ib_size": 0
+ },
+ "warp": "",
+ "comp": ""
+}

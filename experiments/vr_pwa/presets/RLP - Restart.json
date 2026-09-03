@@ -1,0 +1,90 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "additive": 1,
+    "textured": 1,
+    "rad": 0.94761,
+    "tex_zoom": 0.32164,
+    "g": 1,
+    "b": 1,
+    "a": 0.1,
+    "g2": 0.25,
+    "b2": 0.5,
+    "a2": 0.16,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "g": 0.84
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1,
+    "additive": 1,
+    "r": 0.76
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "b": 0.77
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['sx']=(a['sx']+(0.10*Math.sin((1.00*a['time'])))); a['dy']=(a['dy']+(0.10*Math.sin((1.00*a['time'])))); a['rot']=((a['rot']+(0.220*Math.sin((1.00*a['time']))))+(0.220*Math.cos((1.00*a['time']))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 1,
+  "wave_dots": 1,
+  "fshader": 1,
+  "zoom": 0.87866,
+  "dy": 0.02,
+  "sx": 1.0406,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

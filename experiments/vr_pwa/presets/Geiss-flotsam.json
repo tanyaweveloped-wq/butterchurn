@@ -1,0 +1,71 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['du'] = 0; a['q1'] = 0; a['mult'] = 0; a['ang2'] = 0; a['dv'] = 0; a['q4'] = 0; a['q2'] = 0; a['dist'] = 0; a['q3'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.250*((0.60*Math.sin((0.980*a['time'])))+(0.40*Math.sin((1.047*a['time'])))))); a['wave_g']=(a['wave_g']+(0.250*((0.60*Math.sin((0.835*a['time'])))+(0.40*Math.sin((1.081*a['time'])))))); a['wave_b']=(a['wave_b']+(0.250*((0.60*Math.sin((0.814*a['time'])))+(0.40*Math.sin((1.011*a['time'])))))); a['q1']=(((a['cx']*2)-1)+(0.92*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.494*a['time'])))))); a['q2']=(((a['cy']*2)-1)+(0.92*((0.60*Math.sin((0.393*a['time'])))+(0.40*Math.sin((0.423*a['time'])))))); a['q3']=(((a['cx']*2)-1)+(0.92*((0.60*Math.sin((0.174*-a['time'])))+(0.40*Math.sin((0.364*a['time'])))))); a['q4']=(((a['cy']*2)-1)+(0.92*((0.60*Math.sin((0.234*a['time'])))+(0.40*Math.sin((0.271*-a['time']))))));",
+ "pixel_eqs_str": "a['du']=(((a['x']*2)-1)-a['q1']); a['dv']=(((a['y']*2)-1)-a['q2']); a['dist']=sqrt(((a['du']*a['du'])+(a['dv']*a['dv']))); a['ang2']=Math.atan2(a['du'], a['dv']); a['mult']=div(0.012,(a['dist']+0.4)); a['dx']=(a['mult']*Math.sin((a['ang2']-1.5))); a['dy']=(a['mult']*Math.cos((a['ang2']-1.5))); a['du']=(((a['x']*2)-1)-a['q3']); a['dv']=(((a['y']*2)-1)-a['q4']); a['dist']=sqrt(((a['du']*a['du'])+(a['dv']*a['dv']))); a['ang2']=Math.atan2(a['du'], a['dv']); a['mult']=div(0.012,(a['dist']+0.4)); a['dx']=(a['dx']+(a['mult']*Math.sin((a['ang2']+1.5)))); a['dy']=(a['dy']+(a['mult']*Math.cos((a['ang2']+1.5))));",
+ "baseVals": {
+  "gammaadj": 2.7,
+  "wave_mode": 3,
+  "bmotionvectorson": 0,
+  "wave_a": 4.099998,
+  "wave_scale": 2.24567,
+  "wave_smoothing": 0.7,
+  "warpscale": 1.331,
+  "zoom": 1.012991,
+  "warp": 0.000156,
+  "sx": 0.999666,
+  "sy": 0.9999,
+  "wave_g": 0.65,
+  "wave_b": 0.25,
+  "wave_y": 0.38
+ },
+ "warp": "",
+ "comp": ""
+}

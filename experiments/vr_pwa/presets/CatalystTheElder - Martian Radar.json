@@ -1,0 +1,96 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "rad": 0.136133,
+    "g": 1,
+    "r2": 1,
+    "a2": 0.2,
+    "border_a": 0.999999
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['sides']=(((a['sides']+(a['bass']*2))+(a['treb']*2))+(a['mid']*2)); a['x']=(((Math.sin(a['time'])*0.3)+0.5)+(a['treb_att']*0.1)); a['y']=(((Math.cos(a['time'])*0.3)+0.5)+(a['treb_att']*0.1)); a['r']=(a['r']+(a['bass']*Math.sin((a['time']*1.13)))); a['g']=(a['g']+(a['bass']*Math.sin((a['time']*1.23)))); a['r2']=(a['r2']+(a['mid']*Math.sin((a['time']*1.33)))); a['g2']=(a['g2']+(a['mid']*Math.sin((a['time']*1.43))));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "additive": 1,
+    "textured": 1,
+    "rad": 0.576183
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['sides']=(a['sides']+(a['treb']*10)); a['tex_ang']=(Math.sin(div(a['time'],3))*6.14);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+Math.cos(a['time'])); a['wave_g']=(a['wave_g']+Math.sin(a['time']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.925,
+  "echo_zoom": 1.006596,
+  "echo_orient": 3,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "wave_dots": 1,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "darken_center": 1,
+  "brighten": 1,
+  "wave_a": 4.0999,
+  "wave_scale": 1.285751,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 0.999514,
+  "warp": 0.01,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_x": 1.28,
+  "mv_l": 0.4,
+  "mv_b": 0,
+  "mv_a": 0.25
+ },
+ "warp": "",
+ "comp": ""
+}

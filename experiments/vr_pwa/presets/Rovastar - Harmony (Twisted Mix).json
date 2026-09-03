@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['progress'] = 0; a['tt'] = 0; a['pi'] = 0;",
+ "frame_eqs_str": "a['tt']=div(a['time'],3); a['pi']=3.1415926; a['wave_r']=(div(a['progress'],2)-(0.3*Math.sin(a['time']))); a['wave_g']=(a['wave_g']-(0.3*Math.cos(a['time']))); a['wave_b']=a['progress']; a['wave_mystery']=a['tt'];",
+ "pixel_eqs_str": "a['zoom']=(0.45+(a['rad']*1.4)); a['rot']=Math.abs(Math.sin(div((a['rad']*a['rad']),(7+a['progress']))));",
+ "baseVals": {
+  "rating": 3,
+  "decay": 0.982,
+  "wave_mode": 6,
+  "darken_center": 1,
+  "wave_a": 1.704175,
+  "wave_scale": 14.107429,
+  "wave_smoothing": 0,
+  "fshader": 1,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0.05,
+  "ob_r": 1,
+  "ob_g": 1,
+  "ob_b": 1,
+  "ib_size": 0.5,
+  "ib_r": 0.35,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

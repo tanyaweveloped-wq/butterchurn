@@ -1,0 +1,92 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "x": 0.75,
+    "y": 0.26,
+    "rad": 0.995946
+   },
+   "init_eqs_str": "a['q1'] = 0; a['bsides'] = 0; a['ang']=0;",
+   "frame_eqs_str": "a['ang']=a['q1']; a['bsides']=(3+Math.floor((6*a['bass']))); a['x']=0.25; a['y']=0.25;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "x": 0.25,
+    "y": 0.25,
+    "rad": 0.995947
+   },
+   "init_eqs_str": "a['q3'] = 0; a['bsides'] = 0; a['ang']=0;",
+   "frame_eqs_str": "a['ang']=a['q3']; a['bsides']=(3+Math.floor((6*a['bass']))); a['x']=0.25; a['y']=0.75;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "x": 0.25,
+    "y": 0.75,
+    "rad": 0.995946,
+    "tex_zoom": 2.30672
+   },
+   "init_eqs_str": "a['dang'] = 0; a['q1'] = 0; a['bsides'] = 0; a['q2'] = 0; a['ang']=0;",
+   "frame_eqs_str": "a['dang']=(a['ang']+a['q1']); a['ang']=a['q1']; a['bsides']=(3+Math.floor((6*a['q2']))); a['x']=0.75; a['y']=0.75;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thickoutline": 1,
+    "textured": 1,
+    "x": 0.75,
+    "y": 0.75,
+    "rad": 0.995947
+   },
+   "init_eqs_str": "a['q3'] = 0; a['dang'] = 0; a['q1'] = 0; a['bsides'] = 0; a['q2'] = 0; a['ang']=0;",
+   "frame_eqs_str": "a['ang']=a['q3']; a['dang']=(a['ang']-a['q1']); a['bsides']=(3+Math.floor((6*a['q2']))); a['x']=0.75; a['y']=0.25;"
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['my_q1'] = 0; a['q1'] = 0; a['q2'] = 0; a['q3'] = 0; a['my_zoom'] = 0; a['bzoom'] = 0; a['zoom']=0.4;",
+ "frame_eqs_str": "a['my_q1']=(a['my_q1']+(0.07*a['bass'])); a['q1']=a['my_q1']; a['q2']=a['bass']; a['q3']=(6.283-a['q1']); a['monitor']=a['treb']; a['my_zoom']=(a['my_zoom']+(0.001*a['bass'])); a['zoom']=a['my_zoom']; a['bzoom']=(0.5+(0.3*a['bass'])); a['monitor']=a['zoom'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 6.099996,
+  "echo_zoom": 0.284092,
+  "wave_mode": 2,
+  "wave_scale": 0.000002,
+  "wave_mystery": 0.26,
+  "zoom": 0.600001,
+  "rot": 1.08,
+  "mv_x": 0,
+  "mv_y": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,65 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['wave_mystery']=(a['wave_mystery']+(0.1*Math.sin((a['time']*1.5)))); a['wave_x']=(a['wave_x']+((0.2+(0.1*Math.cos((a['time']*1.2))))*Math.sin((a['time']*0.776)))); a['wave_y']=(a['wave_y']+((0.2+(0.1*Math.sin(a['time'])))*Math.cos((a['time']*0.554)))); a['wave_r']=((a['wave_r']+(0.5*Math.sin((a['time']*0.233))))+(a['bass']*0.245)); a['wave_g']=((a['wave_g']+(0.5*Math.sin((a['time']*0.133))))+(a['treb']*0.245)); a['wave_b']=((a['wave_b']+(0.5*Math.sin((a['time']*0.333))))+(a['mid']*0.245)); a['dx']=(a['dx']+((0.01+(0.01*Math.cos((a['time']*1.2))))*Math.sin((a['time']*0.776)))); a['dy']=(a['dy']+((0.01+(0.01*Math.sin((a['time']*1.2))))*Math.cos((a['time']*0.576))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "wave_scale": 0.015312,
+  "wave_mystery": -0.3,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,88 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['ib_size']=(a['ib_size']+(0.05*a['bass']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "gammaadj": 1,
+  "echo_zoom": 1.16936,
+  "echo_alpha": 0.3,
+  "echo_orient": 3,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "wave_dots": 1,
+  "modwavealphabyvolume": 1,
+  "wave_a": 1.220039,
+  "wave_scale": 1.170433,
+  "wave_smoothing": 0.684,
+  "wave_mystery": -0.04,
+  "warpscale": 3.138,
+  "zoom": 1.06353,
+  "rot": -0.02,
+  "warp": 0.26563,
+  "wave_r": 0.01,
+  "wave_g": 0.1,
+  "wave_b": 0.9,
+  "ob_size": 0,
+  "ob_r": 0.37,
+  "ob_g": 0.46,
+  "ob_b": 0.35,
+  "ib_size": 0,
+  "ib_r": 0.1,
+  "ib_g": 0,
+  "ib_b": 0.3,
+  "ib_a": 1,
+  "mv_x": 2,
+  "mv_y": 2,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,72 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.3*Math.sin((a['time']*0.222)))); a['wave_g']=(a['wave_g']+(0.3*Math.sin((a['time']*0.123)))); a['wave_b']=(a['wave_b']+(0.3*Math.sin((a['time']*0.444)))); a['decay']=(0.9+(0.1*Math.sin((a['time']*0.01))));",
+ "pixel_eqs_str": "a['dx']=(a['dx']-(0.08*Math.tan((a['time']+(a['x']*47))))); a['dy']=(0.01*Math.sin(((-a['time']*0.22)+(a['y']+0.5))));",
+ "baseVals": {
+  "decay": 0.900001,
+  "wave_mode": 6,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "wave_a": 5.053452,
+  "wave_scale": 2.448587,
+  "wave_smoothing": 0.9,
+  "warpanimspeed": 0.01,
+  "warpscale": 0.01,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "wave_x": 0.4999,
+  "wave_y": 0.4999
+ },
+ "warp": "",
+ "comp": ""
+}

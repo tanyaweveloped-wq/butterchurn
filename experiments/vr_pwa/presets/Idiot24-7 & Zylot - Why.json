@@ -1,0 +1,68 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['progress'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['wave_mystery']=(a['wave_mystery']+a['progress']); a['wave_r']=(a['wave_r']+a['progress']);",
+ "pixel_eqs_str": "a['rot']=(a['rot']+(0.1*Math.sin((a['rad']*20)))); a['sy']=(1*Math.tan((a['bass']+1))); a['sx']=(1*Math.tan((a['treb']+1)));",
+ "baseVals": {
+  "rating": 2,
+  "wave_scale": 0.067148,
+  "wave_mystery": -0.5,
+  "zoomexp": 100,
+  "zoom": 1.028412,
+  "sx": 29.579708,
+  "sy": 0.905286,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0.1,
+  "mv_a": 0.1
+ },
+ "warp": "",
+ "comp": ""
+}

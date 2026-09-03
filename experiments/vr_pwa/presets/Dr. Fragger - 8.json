@@ -1,0 +1,109 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "thickoutline": 1,
+    "x": 0,
+    "y": 0.25,
+    "rad": 1.203212,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "x": 1,
+    "y": 0.23,
+    "rad": 1.089252,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 31,
+    "y": 0.02,
+    "rad": 1.329094,
+    "r": 0,
+    "g2": 0.7,
+    "b2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.20*((0.60*Math.sin((0.849*a['time'])))+(0.40*Math.sin((1.090*a['time'])))))); a['wave_g']=(a['wave_g']+(0.20*((0.60*Math.sin((0.711*a['time'])))+(0.40*Math.sin((0.982*a['time'])))))); a['wave_b']=(a['wave_b']+(0.20*((0.60*Math.sin((0.737*a['time'])))+(0.40*Math.sin((1.012*a['time'])))))); a['cy']=(a['cy']+(0.030*((0.60*Math.sin((0.393*a['time'])))+(0.40*Math.sin((0.223*a['time'])))))); a['sx']=(a['sx']+(0.010*((0.60*Math.sin((0.313*a['time'])))+(0.40*Math.sin((0.383*a['time'])))))); a['sy']=(a['sy']+(0.010*((0.60*Math.sin((0.367*a['time'])))+(0.40*Math.sin((0.272*a['time']))))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 4,
+  "gammaadj": 1.770001,
+  "decay": 1,
+  "echo_zoom": 0.021224,
+  "wave_mode": 3,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "darken_center": 1,
+  "darken": 1,
+  "invert": 1,
+  "wave_a": 9.180588,
+  "wave_scale": 0.484543,
+  "wave_smoothing": 0.72,
+  "warpanimspeed": 100,
+  "warpscale": 0.020068,
+  "zoomexp": 0.231186,
+  "zoom": 1.028412,
+  "cx": 0.8,
+  "cy": 1.7,
+  "dy": -0.018,
+  "warp": 3.072695,
+  "sx": 0.952,
+  "wave_b": 0,
+  "wave_y": 0.2,
+  "ob_size": 0,
+  "ib_size": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 0,
+  "mv_r": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

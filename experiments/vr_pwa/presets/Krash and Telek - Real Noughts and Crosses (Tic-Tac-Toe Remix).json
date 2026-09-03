@@ -1,0 +1,93 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "rad": 0.145953,
+    "a": 0.220001,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "spectrum": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['temp'] = 0; a['turn3'] = 0; a['tick'] = 0; a['turn5'] = 0; a['turn4'] = 0; a['inx'] = 0; a['q6'] = 0; a['posx'] = 0; a['turn9'] = 0; a['q1'] = 0; a['q5'] = 0; a['cross'] = 0; a['turn8'] = 0; a['s5_cy'] = 0; a['oldcount'] = 0; a['turn1'] = 0; a['oldstate'] = 0; a['turn6'] = 0; a['count'] = 0; a['mode'] = 0; a['posy'] = 0; a['dd'] = 0; a['line'] = 0; a['last'] = 0; a['delay'] = 0; a['turn2'] = 0; a['wave_size'] = 0; a['state'] = 0; a['init'] = 0; a['turn7'] = 0; a['flipped'] = 0; a['nought'] = 0; a['dist'] = 0; a['s5_cx'] = 0; a['temp2'] = 0; a['q8'] = 0; a['nought']=0; a['cross']=1; a['line']=2; a['state']=0; a['last']=a['time']; a['delay']=1; a['dd']=a['delay'];",
+ "frame_eqs_str": "a['flipped']=((Math.abs(equal(a['state'], 0))>0.00001)?(Math.floor(randint(2))):(a['flipped'])); a['turn1']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(below(Math.floor(randint(3)), 1))>0.00001)?(1):((Math.floor(randint(2))+4)))):(a['turn1'])); a['turn2']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal(a['turn1'], 1))>0.00001)?(5):(1))):(a['turn2'])); a['temp']=((Math.abs(equal((a['turn1']+a['turn2']), 6))>0.00001)?(Math.floor(randint(4))):(Math.floor(randint(7)))); a['turn3']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal((a['turn1']+a['turn2']), 6))>0.00001)?(((Math.abs(above(a['temp'], 0))>0.00001)?((a['temp']+6)):((a['temp']+4)))):(((Math.abs(above(a['temp'], 1))>0.00001)?((a['temp']+3)):((a['temp']+2)))))):(a['turn3'])); a['temp']=(a['turn1']+a['turn3']); a['temp']=((Math.abs(equal(a['temp'], 5))>0.00001)?(7):(((Math.abs(equal(a['temp'], 8))>0.00001)?(4):(((Math.abs(equal(a['temp'], 9))>0.00001)?(6):(((Math.abs(equal(a['temp'], 10))>0.00001)?(((Math.abs(equal(a['turn3'], 6))>0.00001)?(5):(8))):(((Math.abs(equal(a['temp'], 12))>0.00001)?(3):(((Math.abs(equal(a['temp'], 7))>0.00001)?(5):(0)))))))))))); a['turn4']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['temp'])>0.00001)?(a['temp']):(((Math.abs(equal(a['turn3'], 2))>0.00001)?(((Math.abs(equal(a['turn1'], 4))>0.00001)?(5):(8))):(2))))):(a['turn4'])); a['temp']=(a['turn1']+a['turn3']); a['temp2']=((a['temp']+a['turn2'])+a['turn4']); a['turn5']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal(a['temp2'], 20))>0.00001)?(4):(((Math.abs(equal(a['temp2'], 23))>0.00001)?(2):(((Math.abs(equal(a['temp2'], 16))>0.00001)?(((Math.abs(equal(a['temp'], 9))>0.00001)?(8):(((Math.abs(equal(a['temp'], 10))>0.00001)?(9):(((Math.abs(equal(a['temp'], 13))>0.00001)?(((Math.abs(equal(a['turn1'], 5))>0.00001)?(3):(3))):(((Math.abs(equal(a['turn1'], 5))>0.00001)?(2):(2))))))))):(((Math.abs(equal(a['temp2'], 14))>0.00001)?(3):(((Math.abs(equal(a['temp2'], 12))>0.00001)?(9):(((Math.abs(equal(a['temp2'], 17))>0.00001)?(((Math.abs(equal(a['temp'], 8))>0.00001)?(6):(((Math.abs(equal(a['temp'], 14))>0.00001)?(4):(3))))):(9))))))))))))):(a['turn5'])); a['turn6']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal(a['temp2'], 20))>0.00001)?(7):(((Math.abs(equal(a['temp2'], 23))>0.00001)?(3):(((Math.abs(equal(a['temp2'], 16))>0.00001)?(((Math.abs(equal(a['temp'], 9))>0.00001)?(2):(((Math.abs(equal(a['temp'], 10))>0.00001)?(3):(((Math.abs(equal(a['temp'], 13))>0.00001)?(((Math.abs(equal(a['turn1'], 5))>0.00001)?(7):(6))):(((Math.abs(equal(a['turn1'], 5))>0.00001)?(8):(5))))))))):(((Math.abs(equal(a['temp2'], 14))>0.00001)?(5):(((Math.abs(equal(a['temp2'], 12))>0.00001)?(7):(((Math.abs(equal(a['temp2'], 17))>0.00001)?(((Math.abs(equal(a['temp'], 8))>0.00001)?(8):(((Math.abs(equal(a['temp'], 14))>0.00001)?(6):(2))))):(6))))))))))))):(a['turn6'])); a['turn7']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal(a['temp2'], 20))>0.00001)?(3):(((Math.abs(equal(a['temp2'], 23))>0.00001)?(7):(((Math.abs(equal(a['temp2'], 16))>0.00001)?(((Math.abs(equal(a['temp'], 9))>0.00001)?(3):(((Math.abs(equal(a['temp'], 10))>0.00001)?(2):(((Math.abs(equal(a['temp'], 13))>0.00001)?(((Math.abs(equal(a['turn1'], 5))>0.00001)?(4):(8))):(((Math.abs(equal(a['turn1'], 5))>0.00001)?(4):(9))))))))):(((Math.abs(equal(a['temp2'], 14))>0.00001)?(8):(((Math.abs(equal(a['temp2'], 12))>0.00001)?(3):(((Math.abs(equal(a['temp2'], 17))>0.00001)?(((Math.abs(equal(a['temp'], 8))>0.00001)?(2):(((Math.abs(equal(a['temp'], 14))>0.00001)?(3):(8))))):(7))))))))))))):(a['turn7'])); a['turn8']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal(a['temp2'], 20))>0.00001)?(2):(((Math.abs(equal(a['temp2'], 23))>0.00001)?(4):(((Math.abs(equal(a['temp2'], 16))>0.00001)?(((Math.abs(equal(a['temp'], 9))>0.00001)?(7):(((Math.abs(equal(a['temp'], 10))>0.00001)?(7):(((Math.abs(equal(a['temp'], 13))>0.00001)?(((Math.abs(equal(a['turn1'], 5))>0.00001)?(6):(7))):(((Math.abs(equal(a['turn1'], 5))>0.00001)?(6):(7))))))))):(((Math.abs(equal(a['temp2'], 14))>0.00001)?(9):(((Math.abs(equal(a['temp2'], 12))>0.00001)?(6):(((Math.abs(equal(a['temp2'], 17))>0.00001)?(((Math.abs(equal(a['temp'], 8))>0.00001)?(3):(((Math.abs(equal(a['temp'], 14))>0.00001)?(7):(9))))):(8))))))))))))):(a['turn8'])); a['turn9']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(equal(a['temp2'], 20))>0.00001)?(9):(((Math.abs(equal(a['temp2'], 23))>0.00001)?(6):(((Math.abs(equal(a['temp2'], 16))>0.00001)?(((Math.abs(equal(a['temp'], 9))>0.00001)?(9):(((Math.abs(equal(a['temp'], 10))>0.00001)?(11):(((Math.abs(equal(a['temp'], 13))>0.00001)?(((Math.abs(equal(a['turn1'], 5))>0.00001)?(9):(5))):(((Math.abs(equal(a['turn1'], 5))>0.00001)?(9):(10))))))))):(((Math.abs(equal(a['temp2'], 14))>0.00001)?(10):(((Math.abs(equal(a['temp2'], 12))>0.00001)?(8):(((Math.abs(equal(a['temp2'], 17))>0.00001)?(((Math.abs(equal(a['temp'], 8))>0.00001)?(9):(((Math.abs(equal(a['temp'], 14))>0.00001)?(8):(6))))):(2))))))))))))):(a['turn9'])); a['turn1']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn1'])):(a['turn1']))):(a['turn1'])); a['turn2']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn2'])):(a['turn2']))):(a['turn2'])); a['turn3']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn3'])):(a['turn3']))):(a['turn3'])); a['turn4']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn4'])):(a['turn4']))):(a['turn4'])); a['turn5']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn5'])):(a['turn5']))):(a['turn5'])); a['turn6']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn6'])):(a['turn6']))):(a['turn6'])); a['turn7']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn7'])):(a['turn7']))):(a['turn7'])); a['turn8']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?((10-a['turn8'])):(a['turn8']))):(a['turn8'])); a['turn9']=((Math.abs(equal(a['state'], 0))>0.00001)?(((Math.abs(a['flipped'])>0.00001)?(((Math.abs(below(a['turn9'], 10))>0.00001)?((10-a['turn9'])):(a['turn9']))):(a['turn9']))):(a['turn9'])); a['oldcount']=a['count']; a['count']=((Math.abs(equal(a['state'], 0))>0.00001)?(0):(a['count'])); a['count']=(a['count']+above((a['time']-a['last']), a['delay'])); a['last']=((Math.abs(equal(a['count'], a['oldcount']))>0.00001)?(a['last']):(a['time'])); a['tick']=div((a['time']-a['last']),a['delay']); a['oldstate']=a['state']; a['decay']=(1-equal(a['state'], 0)); a['delay']=((Math.abs(equal(a['state'], 0))>0.00001)?(a['dd']):(a['delay'])); a['state']=((Math.abs(equal(a['state'], 0))>0.00001)?(1):(a['state'])); a['count']=((Math.abs(a['init'])>0.00001)?(a['count']):(0)); a['init']=(a['init']+1); a['state']=((Math.abs((equal(a['state'], 2)*equal(a['count'], 9)))>0.00001)?(2.5):(a['state'])); a['count']=((Math.abs(equal(a['state'], 2.5))>0.00001)?(0):(a['count'])); a['delay']=((Math.abs(equal(a['state'], 2.5))>0.00001)?((a['dd']*0.5)):(a['delay'])); a['state']=((Math.abs(equal(a['state'], 2.5))>0.00001)?(((Math.floor(randint(3))*2)+3)):(a['state'])); a['state']=((Math.abs((equal(a['state'], 3)*equal(a['count'], 9)))>0.00001)?(3.5):(a['state'])); a['count']=((Math.abs(equal(a['state'], 3.5))>0.00001)?(0):(a['count'])); a['state']=((Math.abs(equal(a['state'], 3.5))>0.00001)?(4):(a['state'])); a['state']=((Math.abs((equal(a['state'], 4)*equal(a['count'], 3)))>0.00001)?(4.5):(a['state'])); a['state']=((Math.abs(equal(a['state'], 4.5))>0.00001)?(0):(a['state'])); a['state']=((Math.abs((equal(a['state'], 5)*above(a['count'], (a['fps']*3))))>0.00001)?(5.5):(a['state'])); a['delay']=((Math.abs(equal(a['state'], 5))>0.00001)?(0):(a['delay'])); a['delay']=((Math.abs(equal(a['state'], 5.5))>0.00001)?(a['dd']):(a['delay'])); a['state']=((Math.abs(equal(a['state'], 5.5))>0.00001)?(0):(a['state'])); a['state']=((Math.abs(equal(a['state'], 7))>0.00001)?(7.1):(a['state'])); a['state']=((Math.abs((equal(a['state'], 7.1)*equal(a['count'], 6)))>0.00001)?(7.5):(a['state'])); a['state']=((Math.abs(equal(a['state'], 7.5))>0.00001)?(0):(a['state'])); a['state']=((Math.abs((equal(a['state'], 1)*equal(a['count'], 1)))>0.00001)?(1.5):(a['state'])); a['count']=((Math.abs(equal(a['state'], 1.5))>0.00001)?(0):(a['count'])); a['last']=((Math.abs(equal(a['state'], 1.5))>0.00001)?(a['time']):(a['last'])); a['oldcount']=((Math.abs(equal(a['state'], 1.5))>0.00001)?(-1):(a['oldcount'])); a['state']=((Math.abs(equal(a['state'], 1.5))>0.00001)?(2):(a['state'])); a['posx']=((Math.abs(equal(a['count'], 0))>0.00001)?(mod((a['turn1']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 0))>0.00001)?(Math.floor(div((a['turn1']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 1))>0.00001)?(mod((a['turn2']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 1))>0.00001)?(Math.floor(div((a['turn2']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 2))>0.00001)?(mod((a['turn3']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 2))>0.00001)?(Math.floor(div((a['turn3']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 3))>0.00001)?(mod((a['turn4']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 3))>0.00001)?(Math.floor(div((a['turn4']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 4))>0.00001)?(mod((a['turn5']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 4))>0.00001)?(Math.floor(div((a['turn5']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 5))>0.00001)?(mod((a['turn6']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 5))>0.00001)?(Math.floor(div((a['turn6']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 6))>0.00001)?(mod((a['turn7']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 6))>0.00001)?(Math.floor(div((a['turn7']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 7))>0.00001)?(mod((a['turn8']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 7))>0.00001)?(Math.floor(div((a['turn8']-0.5),3))):(a['posy'])); a['posx']=((Math.abs(equal(a['count'], 8))>0.00001)?(mod((a['turn9']-1),3)):(a['posx'])); a['posy']=((Math.abs(equal(a['count'], 8))>0.00001)?(Math.floor(div((a['turn9']-0.5),3))):(a['posy'])); a['q5']=((Math.abs(equal(a['state'], 3))>0.00001)?(a['posx']):(9)); a['q6']=((Math.abs(equal(a['state'], 3))>0.00001)?(a['posy']):(9)); a['ob_a']=(equal(a['state'], 3)*0.05); a['posx']=((Math.abs(equal(a['state'], 2))>0.00001)?(a['posx']):(4)); a['posy']=((Math.abs(equal(a['state'], 2))>0.00001)?(a['posy']):(4)); a['decay']=(((Math.abs(equal(a['state'], 5))>0.00001)?((1-(0.0005*a['count']))):(a['decay']))+((Math.abs(equal(a['state'], 4))>0.00001)?(0.95):(a['decay']))); a['zoom']=(((Math.abs(equal(a['state'], 5))>0.00001)?((1-(0.0002*a['count']))):(1))*((Math.abs(equal(a['state'], 4))>0.00001)?(1.05):(1))); a['rot']=((Math.abs(equal(a['state'], 5))>0.00001)?((0.0001*a['count'])):(0)); a['s5_cx']=((Math.abs(equal(a['count'], 0))>0.00001)?(Math.floor(randint(2))):(a['s5_cx'])); a['s5_cy']=((Math.abs(equal(a['count'], 0))>0.00001)?(Math.floor(randint(2))):(a['s5_cy'])); a['ob_size']=((Math.abs(equal(a['state'], 7.1))>0.00001)?(Math.sin(((div((a['tick']+a['count']),a['delay'])*0.5236)*0.25))):(a['ob_size'])); a['ob_a']=((Math.abs(equal(a['state'], 7.1))>0.00001)?(0.1):(a['ob_a'])); a['monitor']=((((a['turn1']+(a['turn2']*0.1))+(a['turn3']*0.01))+(a['turn4']*0.001))+(a['flipped']*0.0001)); a['cx']=div(((a['posx']*2)+1),6); a['cy']=div(((a['posy']*2)+1),6); a['q1']=mod((a['tick']*4),4); a['mode']=((Math.abs(equal(a['state'], 0))>0.00001)?(-1):(((Math.abs(equal(a['state'], 1))>0.00001)?(a['line']):(((Math.abs(equal(a['count'], a['oldcount']))>0.00001)?(a['mode']):(mod((a['mode']+1),2))))))); a['wave_x']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?(a['cx']):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(((a['cx']+(((a['tick']*2)-above(a['tick'], 0.5))*0.3))-0.15)):(((Math.abs(equal(a['mode'], a['line']))>0.00001)?(0.5):(0)))))); a['wave_y']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?((1-a['cy'])):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?((((1-a['cy'])+(((a['tick']*2)-((above(a['tick'], 0.5)*(a['tick']-0.5))*4))*0.3))-0.15)):(0.57)))); a['wave_mystery']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?((-0.2+(Math.sin((a['time']*20))*0.05))):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(-0.45):(((Math.abs(equal(a['mode'], a['line']))>0.00001)?(mod((a['q1']+1),2)):(0.5)))))); a['wave_mode']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?(0):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(8):(7)))); a['wave_size']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?(0.43):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(0):(0)))); a['wave_r']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?(1):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(0):(0)))); a['wave_g']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?(0):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(0):(1)))); a['wave_b']=((Math.abs(equal(a['mode'], a['nought']))>0.00001)?(0):(((Math.abs(equal(a['mode'], a['cross']))>0.00001)?(1):(0)))); a['q8']=a['mode']; a['cx']=((Math.abs(equal(a['state'], 5))>0.00001)?(((a['s5_cx']*1.3)-0.15)):(a['cx'])); a['cy']=((Math.abs(equal(a['state'], 5))>0.00001)?(((a['s5_cy']*1.3)-0.15)):(a['cy'])); a['monitor']=(a['state']+(0.001*a['count']));",
+ "pixel_eqs_str": "a['nought']=0; a['cross']=1; a['line']=2; a['dist']=sqrt((sqr((a['cx']-a['x']))+sqr((a['cy']-a['y'])))); a['inx']=(below(Math.abs(((a['x']-a['cx'])-(a['y']-a['cy']))), 0.041)+below(Math.abs(((a['x']-a['cx'])+(a['y']-a['cy']))), 0.041)); a['rot']=(a['rot']+((Math.abs(equal(a['q8'], a['nought']))>0.00001)?(((Math.abs(below(Math.abs((a['dist']-0.12)), 0.02))>0.00001)?((0.1*a['bass'])):(0))):(0))); a['dx']=((Math.abs(equal(a['q8'], a['nought']))>0.00001)?(0):(((Math.abs(equal(a['q8'], a['cross']))>0.00001)?(((((below(a['dist'], 0.15)*a['inx'])*sign((a['x']-a['cx'])))*0.02)*a['bass'])):(((Math.abs(equal(a['q8'], a['line']))>0.00001)?(((Math.abs((equal(mod(a['q1'],2), 1)*below(Math.abs((a['y']-(((a['q1']*0.5)+0.5)*0.333))), 0.01)))>0.00001)?(0):(0))):(0)))))); a['dy']=((Math.abs(equal(a['q8'], a['nought']))>0.00001)?(0):(((Math.abs(equal(a['q8'], a['cross']))>0.00001)?(((((below(a['dist'], 0.15)*a['inx'])*sign((a['y']-a['cy'])))*0.02)*a['bass'])):(((Math.abs(equal(a['q8'], a['line']))>0.00001)?(((Math.abs((equal(mod(a['q1'],2), 0)*below(Math.abs((a['x']-(((a['q1']*0.5)+1)*0.333))), 0.01)))>0.00001)?(0):(0))):(0)))))); a['dx']=(((-(a['q5']-1)*0.1)*below(Math.abs((a['x']-((a['q5']*0.3333)+0.166))), 0.16))*below(Math.abs((a['y']-((a['q6']*0.3333)+0.166))), 0.16)); a['dy']=(((-(a['q6']-1)*0.1)*below(Math.abs((a['x']-((a['q5']*0.3333)+0.166))), 0.16))*below(Math.abs((a['y']-((a['q6']*0.3333)+0.166))), 0.16)); a['dx']=(a['dx']+(((((0.02*equal(a['q5'], a['q6']))*equal(a['q5'], 1))*sign((a['x']-0.5)))*below(Math.abs((a['x']-((a['q5']*0.3333)+0.166))), 0.16))*below(Math.abs((a['y']-((a['q6']*0.3333)+0.166))), 0.1))); a['dy']=(a['dy']+(((((0.02*equal(a['q5'], a['q6']))*equal(a['q5'], 1))*sign((a['y']-0.5)))*below(Math.abs((a['x']-((a['q5']*0.3333)+0.166))), 0.16))*below(Math.abs((a['y']-((a['q6']*0.3333)+0.166))), 0.12)));",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "darken_center": 1,
+  "wave_a": 7.523887,
+  "wave_scale": 0.953847,
+  "wave_smoothing": 0.63,
+  "wave_mystery": 1,
+  "modwavealphastart": 2,
+  "modwavealphaend": 2,
+  "warp": 0.001,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.005,
+  "ib_size": 0.26,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_dx": -0.898,
+  "mv_dy": -0.927998,
+  "mv_l": 5,
+  "mv_r": 0,
+  "mv_g": 0,
+  "mv_b": 0.7,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

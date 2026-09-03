@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['wave_mysteryparamater'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.5*Math.sin((a['time']*1.13)))); a['wave_b']=(a['wave_b']+(0.5*Math.tan((a['time']*1.13)))); a['wave_mysteryparamater']=(1*a['time']);",
+ "pixel_eqs_str": "a['dx']=(2*Math.sin(a['y'])); a['sy']=(2*Math.tan(a['time']));",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 7,
+  "wave_a": 1.60541,
+  "wave_scale": 2.630061,
+  "wave_smoothing": 0.9,
+  "wave_mystery": -0.2,
+  "warpanimspeed": 0.01,
+  "warpscale": 1.028414,
+  "dx": 1,
+  "dy": 1,
+  "warp": 0.01,
+  "sx": 0.999968,
+  "sy": 1.000156,
+  "wave_r": 0.6,
+  "wave_g": 0,
+  "mv_x": 0.064,
+  "mv_y": 0.048,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['hold_timer'] = 0; a['radical_dy'] = 0; a['pre_dy'] = 0; a['grid_shift'] = 0; a['effect_5'] = 0; a['bass_flop'] = 0; a['grid'] = 0; a['bass_last'] = 0; a['q1'] = 0; a['q5'] = 0; a['treb_flop'] = 0; a['radical_dx'] = 0; a['effect_3'] = 0; a['bass_thresh'] = 0; a['treb_thresh'] = 0; a['effect_7'] = 0; a['last_bass'] = 0; a['mid_thresh'] = 0; a['q4'] = 0; a['bend'] = 0; a['state'] = 0; a['effect_6'] = 0; a['mid_flop'] = 0; a['pre_dx'] = 0; a['q2'] = 0; a['q3'] = 0; a['effect_1'] = 0; a['effect_4'] = 0; a['effect_2'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['bass_thresh']=((above(a['bass_att'], a['bass_thresh'])*2)+((1-above(a['bass_att'], a['bass_thresh']))*(((a['bass_thresh']-1.3)*0.96)+1.3))); a['bass_flop']=Math.abs((a['bass_flop']-equal(a['bass_thresh'], 2))); a['treb_thresh']=((above(a['treb_att'], a['treb_thresh'])*2)+((1-above(a['treb_att'], a['treb_thresh']))*(((a['treb_thresh']-1.3)*0.96)+1.3))); a['treb_flop']=Math.abs((a['treb_flop']-equal(a['treb_thresh'], 2))); a['mid_thresh']=((above(a['mid_att'], a['mid_thresh'])*2)+((1-above(a['mid_att'], a['mid_thresh']))*(((a['mid_thresh']-1.3)*0.96)+1.3))); a['mid_flop']=Math.abs((a['mid_flop']-equal(a['mid_thresh'], 2))); a['q2']=Math.sin((a['time']*0.2)); a['q3']=Math.sin((a['time']*0.4)); a['q4']=Math.sin((a['time']*0.8)); a['hold_timer']=(a['hold_timer']+((Math.abs(above(a['bass_att'], a['bass_last']))>0.00001)?(0.1):(-0.1))); a['q5']=Math.sin(a['hold_timer']); a['last_bass']=a['bass_att']; a['wave_r']=((Math.abs(equal(a['treb_flop'], 1))>0.00001)?((0+(0.2*a['q2']))):(((Math.abs(equal(a['bass_flop'], 1))>0.00001)?((0.8+(0.2*a['q2']))):((0.6+(0.08*a['q3'])))))); a['wave_g']=((Math.abs(equal(a['treb_flop'], 1))>0.00001)?(0):(((Math.abs(equal(a['mid_flop'], 1))>0.00001)?(0):(0.49)))); a['wave_b']=((Math.abs(equal(a['treb_flop'], 1))>0.00001)?((0.8+(0.2*a['q4']))):(0)); a['effect_1']=(1+(1*a['bass_flop'])); a['effect_2']=(1+(2*a['treb_flop'])); a['effect_3']=(1+((4*a['bass_flop'])*a['mid_flop'])); a['effect_4']=(1+((6*a['bass_flop'])*a['treb_flop'])); a['effect_5']=(1+(((10*a['treb_flop'])*a['mid_flop'])*above(a['q5'], 0))); a['effect_6']=(1+((12*a['mid_flop'])*above(a['q4'], 0))); a['effect_7']=(1+(((16*a['treb_flop'])*a['mid_flop'])*above(a['q3'], 0))); a['state']=((((((a['effect_1']*a['effect_2'])*a['effect_3'])*a['effect_4'])*a['effect_5'])*a['effect_6'])*a['effect_7']); a['q1']=a['state']; a['wave_mystery']=(((bnot(a['effect_3'])*0.5)-(bnot(a['effect_7'])*0.5))+(0.5*a['q5'])); a['cx']=(a['cx']+(((0.5*a['q3'])*bnot(a['effect_3']))*bnot(a['effect_4']))); a['cy']=(a['cy']+(((0.5*a['q4'])*bnot(a['effect_5']))*bnot(a['effect_6'])));",
+ "pixel_eqs_str": "a['bend']=Math.cos(((((((a['x']*10)*a['q2'])*bnot(mod(a['q1'],15)))+((((a['rad']*10)*a['q2'])-(10*a['q3']))*bnot(mod(a['q1'],7))))+((a['y']*10)*a['q4']))-((10*a['q3'])*bnot(mod(a['q1'],3))))); a['zoom']=(a['zoom']+(((a['bend']*0.05)*bnot(mod(a['q1'],10)))*((Math.abs(bnot(mod(a['q1'],2)))>0.00001)?(1):(a['q5'])))); a['grid']=(mod((a['x']*10),2)+mod((a['y']*10),2)); a['grid_shift']=(1-(bnot(equal(a['grid'], bnot(mod(a['q1'],221))))*((Math.abs(bnot(mod(a['q1'],85)))>0.00001)?(a['q5']):(0.1)))); a['pre_dx']=(a['radical_dx']*bnot(mod(a['q1'],21))); a['pre_dy']=(a['radical_dy']*bnot(mod(a['q1'],3))); a['dx']=((Math.abs(bnot(mod(a['q1'],13)))>0.00001)?((a['dx']-((bnot(mod(a['q3'],17))*a['grid_shift'])*sign(a['q5'])))):(Math.sin(a['pre_dx']))); a['dy']=((Math.abs(bnot(mod(a['q1'],3)))>0.00001)?((a['dx']-((bnot(mod(a['q3'],34))*a['grid_shift'])*sign(a['q5'])))):(Math.cos(a['pre_dy'])));",
+ "baseVals": {
+  "rating": 3,
+  "echo_zoom": 1.0065,
+  "echo_alpha": 0.5,
+  "echo_orient": 1,
+  "wave_mode": 5,
+  "wave_brighten": 0,
+  "bmotionvectorson": 0,
+  "mv_x": 15,
+  "mv_y": 6,
+  "wave_a": 0.876469,
+  "wave_scale": 0.551761,
+  "wave_smoothing": 0,
+  "modwavealphastart": 1.15,
+  "modwavealphaend": 0.75,
+  "warpanimspeed": 1.53,
+  "warpscale": 1.731,
+  "zoomexp": 1.003424,
+  "fshader": 0.5,
+  "zoom": 1.000223,
+  "warp": 0.1401,
+  "sx": 1.006,
+  "sy": 0.9999,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,174 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "bdrawback": 0,
+    "x_wrap_mode": 0,
+    "y_wrap_mode": 0,
+    "textured": 1,
+    "tex_capture": 1,
+    "tex_cx": 0.5,
+    "tex_cy": 0.5,
+    "y": 0.4,
+    "rad": 0.329957,
+    "tex_ang": 1.822124,
+    "tex_zoom": 0.880263,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "b2": 1,
+    "border_a": 1
+   },
+   "init_eqs_str": "a['q4'] = 0; a['q5'] = 0; ",
+   "frame_eqs_str": "a['ang']=1.830; a['a']=above(a['treb'], 0.5); a['x']=(0.5+a['q4']); a['y']=((0.4+a['q5'])+0.1);"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "additive": 1,
+    "bdrawback": 0,
+    "x_wrap_mode": 0,
+    "y_wrap_mode": 0,
+    "textured": 1,
+    "tex_capture": 1,
+    "tex_cx": 0.5,
+    "tex_cy": 0.5,
+    "y": 0.39,
+    "rad": 2.946219,
+    "ang": 1.822124,
+    "tex_ang": 1.822124,
+    "tex_zoom": 2.44861,
+    "r": 0,
+    "g2": 0,
+    "b2": 0.01,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['ang']=1.830;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "bdrawback": 0,
+    "x_wrap_mode": 0,
+    "y_wrap_mode": 0,
+    "textured": 1,
+    "tex_capture": 1,
+    "tex_cx": 0.5,
+    "tex_cy": 0.5,
+    "y": 1.8,
+    "rad": 0.808141,
+    "r": 0.4,
+    "g": 0.4,
+    "b": 0.8,
+    "r2": 0.7,
+    "g2": 0.6,
+    "b2": 0.5,
+    "border_a": 0
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "bdrawback": 0,
+    "additive": 1
+   },
+   "init_eqs_str": "a['typ1'] = 0; a['q5'] = 0; a['txp2'] = 0; a['v'] = 0; a['tri_point'] = 0; a['q4'] = 0; a['t_y'] = 0; a['txp1'] = 0; a['t_x'] = 0; a['typ2'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['tri_point']=randint(3); a['txp1']=0; a['txp2']=1; a['typ1']=0.2; a['typ2']=0.2; a['t_x']=(a['t_x']+(equal(a['tri_point'], 0)*((0.5-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 0)*((0.8-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 1)*((a['txp1']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 1)*((a['typ1']-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 2)*((a['txp2']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 2)*((a['typ2']-a['t_y'])*0.5))); a['x']=((((a['t_x']-0.5)*0.55)+0.5)+a['q4']); a['y']=((a['t_y']+a['q5'])+0.1); a['v']=Math.min(((a['bass']*a['bass'])*0.78), 1); a['r']=a['v']; a['g']=a['v']; a['b']=a['v']; a['a']=1;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "bdrawback": 0,
+    "additive": 1
+   },
+   "init_eqs_str": "a['typ1'] = 0; a['q5'] = 0; a['txp2'] = 0; a['v'] = 0; a['tri_point'] = 0; a['q4'] = 0; a['t_y'] = 0; a['txp1'] = 0; a['t_x'] = 0; a['typ2'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['tri_point']=randint(3); a['txp1']=0; a['txp2']=1; a['typ1']=0.2; a['typ2']=0.2; a['t_x']=(a['t_x']+(equal(a['tri_point'], 0)*((0.5-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 0)*((0.8-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 1)*((a['txp1']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 1)*((a['typ1']-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 2)*((a['txp2']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 2)*((a['typ2']-a['t_y'])*0.5))); a['x']=(((a['t_x']-0.5)*0.55)+0.5); a['y']=a['t_y']; a['x']=(a['x']+a['q4']); a['y']=((a['y']+a['q5'])+0.1); a['v']=Math.min(((a['bass']*a['bass'])*0.78), 1); a['r']=a['v']; a['g']=a['v']; a['b']=a['v']; a['a']=1;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "bdrawback": 0,
+    "additive": 1
+   },
+   "init_eqs_str": "a['typ1'] = 0; a['q5'] = 0; a['txp2'] = 0; a['v'] = 0; a['tri_point'] = 0; a['q4'] = 0; a['t_y'] = 0; a['txp1'] = 0; a['t_x'] = 0; a['typ2'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['tri_point']=randint(3); a['txp1']=0; a['txp2']=1; a['typ1']=0.2; a['typ2']=0.2; a['t_x']=(a['t_x']+(equal(a['tri_point'], 0)*((0.5-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 0)*((0.8-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 1)*((a['txp1']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 1)*((a['typ1']-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 2)*((a['txp2']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 2)*((a['typ2']-a['t_y'])*0.5))); a['x']=(((a['t_x']-0.5)*0.55)+0.5); a['y']=a['t_y']; a['x']=(a['x']+a['q4']); a['y']=((a['y']+a['q5'])+0.1); a['v']=Math.min(((a['bass']*a['bass'])*0.78), 1); a['r']=a['v']; a['g']=a['v']; a['b']=a['v']; a['a']=1;"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "thick": 1,
+    "bdrawback": 0,
+    "additive": 1
+   },
+   "init_eqs_str": "a['typ1'] = 0; a['q5'] = 0; a['txp2'] = 0; a['v'] = 0; a['tri_point'] = 0; a['q4'] = 0; a['t_y'] = 0; a['txp1'] = 0; a['t_x'] = 0; a['typ2'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['tri_point']=randint(3); a['txp1']=0; a['txp2']=1; a['typ1']=0.2; a['typ2']=0.2; a['t_x']=(a['t_x']+(equal(a['tri_point'], 0)*((0.5-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 0)*((0.8-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 1)*((a['txp1']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 1)*((a['typ1']-a['t_y'])*0.5))); a['t_x']=(a['t_x']+(equal(a['tri_point'], 2)*((a['txp2']-a['t_x'])*0.5))); a['t_y']=(a['t_y']+(equal(a['tri_point'], 2)*((a['typ2']-a['t_y'])*0.5))); a['x']=(((a['t_x']-0.5)*0.55)+0.5); a['y']=a['t_y']; a['x']=(a['x']+a['q4']); a['y']=((a['y']+a['q5'])+0.1); a['v']=Math.min(((a['bass']*a['bass'])*0.78), 1); a['r']=a['v']; a['g']=a['v']; a['b']=a['v']; a['a']=1;"
+  }
+ ],
+ "init_eqs_str": "a['bl'] = 0; a['d'] = 0; a['cx1'] = 0; a['y3'] = 0; a['y1'] = 0; a['basstime'] = 0; a['cy1'] = 0; a['sw'] = 0; a['x1'] = 0; a['q5'] = 0; a['qy'] = 0; a['midtime'] = 0; a['x3'] = 0; a['q4'] = 0; a['dir'] = 0; a['zm'] = 0; a['rd'] = 0; a['x2'] = 0; a['qx'] = 0; a['y2'] = 0; a['q2'] = 0;",
+ "frame_eqs_str": "a['decay']=0.98; a['zoom']=1.00; a['basstime']=(a['basstime']+(((a['bass_att']*a['bass_att'])*0.01)*div(75,a['fps']))); a['midtime']=(a['midtime']+(((a['mid_att']*a['mid_att'])*0.01)*div(75,a['fps']))); a['qx']=(Math.sin(((a['basstime']*0.01)*0.2))*0.2); a['cx']=(0.5+a['qx']); a['q4']=a['qx']; a['qy']=(Math.sin(((a['midtime']*0.01)*0.2))*0.2); a['cy']=(0.5-a['qy']); a['q5']=a['qy']; a['monitor']=a['q4'];",
+ "pixel_eqs_str": "a['sw']=(div(a['ang'],6.2832)+1); a['sw']=(a['sw']*8); a['bl']=equal(mod(Math.floor(a['sw']),2), 0); a['sw']=(a['sw']-Math.floor(a['sw'])); a['sw']=(((Math.abs(a['bl'])>0.00001)?(a['sw']):((1-a['sw'])))*3); a['rd']=pow((a['rad']*0.8), 0.9); a['rd']=(((a['rd']*6.2832)*2)-((a['q2']+a['sw'])*3)); a['zm']=(0.01+(0.01*Math.sin(a['rd']))); a['dx']=((a['x']-0.5)*a['zm']); a['dy']=((a['y']-0.5)*a['zm']); a['cx1']=(0.5+(Math.sin((a['time']*0.618))*0.2)); a['cy1']=(0.5+(Math.cos((a['time']*1.618))*0.2)); a['dir']=a['bass']; a['d']=sqrt((((a['x']-a['cx1'])*(a['x']-a['cx1']))+((a['y']-a['cy1'])*(a['y']-a['cy1'])))); a['x1']=((Math.abs(above(a['d'], 0.3))>0.00001)?(0):(((Math.sin((a['y']-a['cy1']))*0.05)*a['dir']))); a['y1']=((Math.abs(above(a['d'], 0.3))>0.00001)?(0):(((-Math.sin((a['x']-a['cx1']))*0.05)*a['dir']))); a['cx1']=(0.5+(Math.sin((a['time']*2.618))*0.3)); a['cy1']=(0.5+(Math.cos((a['time']*3.14))*0.3)); a['dir']=(-a['mid']*2); a['d']=sqrt((((a['x']-a['cx1'])*(a['x']-a['cx1']))+((a['y']-a['cy1'])*(a['y']-a['cy1'])))); a['x2']=((Math.abs(above(a['d'], 0.2))>0.00001)?(0):(((Math.sin((a['y']-a['cy1']))*0.05)*a['dir']))); a['y2']=((Math.abs(above(a['d'], 0.2))>0.00001)?(0):(((-Math.sin((a['x']-a['cx1']))*0.05)*a['dir']))); a['cx1']=(0.5+(Math.sin((-a['time']*2.618))*0.4)); a['cy1']=(0.5+(Math.cos((-a['time']*1.14))*0.4)); a['dir']=(a['treb']*3); a['d']=sqrt((((a['x']-a['cx1'])*(a['x']-a['cx1']))+((a['y']-a['cy1'])*(a['y']-a['cy1'])))); a['x3']=((Math.abs(above(a['d'], 0.1))>0.00001)?(0):(((Math.sin((a['y']-a['cy1']))*0.05)*a['dir']))); a['y3']=((Math.abs(above(a['d'], 0.1))>0.00001)?(0):(((-Math.sin((a['x']-a['cx1']))*0.05)*a['dir']))); a['dx']=((a['x1']+a['x2'])+a['x3']); a['dy']=((a['y1']+a['y2'])+a['y3']);",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1,
+  "decay": 0.65,
+  "echo_zoom": 0.996621,
+  "echo_orient": 1,
+  "nechowrap_x": 0,
+  "nechowrap_y": 0,
+  "wave_mode": 6,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "nwrapmode_x": 1,
+  "nwrapmode_y": 1,
+  "brighten": 1,
+  "darken": 1,
+  "wave_a": 0.001,
+  "wave_scale": 7.709095,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 0.01,
+  "fshader": 1,
+  "zoom": 0.9995,
+  "warp": 0,
+  "sx": 0.999993,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.1,
+  "ob_r": 0.01,
+  "ob_a": 1,
+  "ib_size": 0.26,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

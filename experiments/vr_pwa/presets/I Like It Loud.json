@@ -1,0 +1,76 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['yank_x'] = 0; a['yank_y'] = 0; a['t1'] = 0; a['spank_rad'] = 0; a['whip_me'] = 0; a['t3'] = 0; a['spank_x'] = 0; a['yank_rad'] = 0; a['shift'] = 0; a['spank_y'] = 0; a['anti_rad'] = 0; a['t2'] = 0; a['cycle_speed'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['cycle_speed']=(Math.max(Math.max(a['mid_att'], a['bass_att']), a['treb_att'])*0.1); a['shift']=((Math.abs(above(Math.abs(a['shift']), 1000))>0.00001)?(-1000):((a['shift']+a['cycle_speed']))); a['t1']=Math.sin((a['shift']*a['cycle_speed'])); a['t2']=Math.sin(((a['shift']*0.95)*a['cycle_speed'])); a['t3']=Math.sin(((a['shift']*0.975)*a['cycle_speed'])); a['wave_r']=(a['wave_r']+(0.5*a['t1'])); a['wave_g']=(a['wave_g']+(0.5*a['t2'])); a['wave_b']=(a['wave_b']+(0.5*a['t3'])); a['wave_mystery']=a['t2']; a['wave_x']=(a['wave_x']+(0.1*a['t1'])); a['wave_y']=(a['wave_y']+(0.1*a['t3'])); a['decay']=(0.99+(0.01*a['t1']));",
+ "pixel_eqs_str": "a['anti_rad']=(1-a['rad']); a['yank_x']=(((a['x']*2)-a['rad'])*10); a['spank_x']=(((a['x']*2)-a['anti_rad'])*10); a['yank_y']=(((a['y']*2)-a['rad'])*10); a['spank_y']=(((a['x']*2)-a['anti_rad'])*10); a['yank_rad']=(((a['rad']*2)+a['x'])*10); a['spank_rad']=(((a['rad']*2)+a['y'])*10); a['whip_me']=(Math.cos(((((((a['yank_x']*Math.sin((a['time']*0.511)))-(a['spank_x']*Math.sin((a['time']*0.491))))+(a['yank_y']*Math.sin((a['time']*0.687))))-(a['spank_y']*Math.sin((a['time']*0.641))))+(a['yank_rad']*Math.sin((a['time']*0.391))))-(a['spank_rad']*Math.sin((a['time']*0.362)))))*0.1); a['zoom']=(a['zoom']-a['whip_me']);",
+ "baseVals": {
+  "rating": 3,
+  "decay": 0.975,
+  "echo_zoom": 1.006585,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "bmotionvectorson": 0,
+  "darken": 1,
+  "wave_a": 1.264366,
+  "wave_scale": 0.179142,
+  "wave_smoothing": 0.27,
+  "wave_mystery": 0.3,
+  "sx": 1.06152,
+  "sy": 1.06152,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

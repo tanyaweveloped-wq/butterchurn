@@ -1,0 +1,69 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['zoom']=(1.4+(0.1*Math.sin((a['time']*0.55)))); a['decay']=((0.75+(0.05*Math.sin((a['time']*2))))-(a['treb']*0.05)); a['dx']=(a['dx']-0.001); a['dy']=(a['dy']-0.001);",
+ "pixel_eqs_str": "a['zoom']=(((a['zoom']+-a['rad'])+(a['bass']*0.2))+(0.15*Math.sin((a['ang']*5))));",
+ "baseVals": {
+  "rating": 4,
+  "wave_mode": 3,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "wave_scale": 0.274297,
+  "wave_smoothing": 0.72,
+  "wave_mystery": 1,
+  "zoom": 0.999963,
+  "sy": 0.999831,
+  "wave_r": 0.6,
+  "wave_g": 0.49,
+  "wave_b": 0.19
+ },
+ "warp": "",
+ "comp": ""
+}

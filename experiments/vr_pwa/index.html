@@ -1,0 +1,2410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Butterchurn (Milkdrop)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Projects the Butterchurn (Milkdrop) audio visualizer onto the inside of a sphere, viewable in WebXR." />
+
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#07070b" />
+<link rel="icon" href="logo192.png" type="image/png" />
+<link rel="apple-touch-icon" href="logo192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Butterchurn VR" />
+<meta name="mobile-web-app-capable" content="yes" />
+
+<style>
+  body { margin: 0; background: #111; color: #eee; font-family: Arial, sans-serif; }
+  #ui { padding: 16px; }
+  button { font-size: 16px; padding: 10px 16px; margin-right: 8px; margin-bottom: 8px; cursor: pointer; }
+  #status { white-space: pre-wrap; font-size: 13px; color: #9cf; background: #1a1a22; border: 1px solid #333; border-radius: 4px; padding: 10px 12px; margin-top: 12px; max-width: 900px; max-height: 220px; overflow-y: auto; }
+  #preview { display: block; margin-top: 12px; max-width: 480px; width: 100%; border: 1px solid #333; }
+</style>
+</head>
+<body>
+<div id="ui">
+  <h2>Butterchurn → Mono XREquirectLayer</h2>
+  <button id="enterVR" disabled>Enter VR (waiting for XR check…)</button>
+  <button id="reenterVR" style="display:none; background:#2a7a4a; color:#fff; font-weight:bold;">▶ Tap to return to VR</button>
+  <div style="font-size: 13px; color: #999; margin-top: 4px;">
+    In VR: press the controller <strong>grip</strong> button to open/close the menu, and <strong>trigger</strong> to click.
+  </div>
+    <canvas id="test" width="900" height="700"></canvas>
+    <div id="status"></div>
+</div>
+
+<script type="module">
+import butterchurn from './libs/butterchurn@3.0.0-beta.5.js';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const statusEl = document.getElementById('status');
+      const logHistory = [];
+      const MAX_LOG_LINES = 200; // capped so a long session doesn't grow the DOM node unbounded
+      const log = (msg) => {
+        console.log(msg);
+        const time = new Date().toLocaleTimeString();
+        logHistory.push(`[${time}] ${msg}`);
+        if (logHistory.length > MAX_LOG_LINES) logHistory.shift();
+        if (statusEl) {
+          statusEl.textContent = logHistory.join('\n');
+          statusEl.scrollTop = statusEl.scrollHeight; // keep pinned to the newest line
+        }
+      };
+
+  // Several functions here (startXR() from the file-picker re-entry paths,
+  // checkXRSupport()'s auto-launch, etc.) are called fire-and-forget without
+  // an await/catch at the call site. Without this, an exception partway
+  // through one of them would just silently vanish — this is the safety net
+  // that makes such failures visible instead of a mysterious "nothing happened".
+  window.addEventListener('unhandledrejection', (evt) => {
+    console.error('Unhandled promise rejection:', evt.reason);
+    log('Unhandled error: ' + (evt.reason && evt.reason.message ? evt.reason.message : evt.reason));
+  });
+
+
+  // ---------------------------------------------------------------------------
+  // PWA: service worker registration
+  // ---------------------------------------------------------------------------
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js')
+      .then(() => log('Service worker registered — app shell + presets can be cached for offline use.'))
+      .catch((err) => console.error('Service worker registration failed:', err));
+
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      const data = event.data || {};
+      if (data.type === 'REFRESH_SHELL_DONE') {
+        log('App shell cache refreshed.');
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Detect "running as the installed Bubblewrap TWA on Quest" specifically —
+  // this is what gates auto-entering VR without a click. Two things have to
+  // both be true:
+  //   1. display-mode: standalone — we're an installed app shell, not a tab
+  //      in Quest Browser (a plain browser tab has no user-gesture cover for
+  //      an unprompted requestSession call, so auto-launching there would
+  //      just throw and log an error instead of skip gracefully).
+  //   2. The UA reports Quest/Oculus — narrows this to the headset itself,
+  //      so a desktop/Android TWA install of the same PWA (if you ever ship
+  //      one) doesn't also try to auto-enter VR.
+  const isInstalledQuestPwa =
+    window.matchMedia('(display-mode: standalone)').matches &&
+    /OculusBrowser|Quest/i.test(navigator.userAgent);
+
+  // ---------------------------------------------------------------------------
+  // Preset bundle: one big /presets-bundle.json instead of one request per
+  // preset. Downloaded once, then "unpacked" — split back into individual
+  // ./presets/<key>.json entries inside the service worker's cache — so
+  // getPresetData() below can keep fetching per-key exactly as before, just
+  // served from cache after this runs once instead of hitting the network
+  // per preset. The License tab shows progress for both phases; see
+  // drawPresetBundleLoadingScreen() and the 'license' tab branch in drawMenu().
+  // ---------------------------------------------------------------------------
+  const PRESET_BUNDLE_URL = './presets-bundle.json';
+  const PRESET_BUNDLE_VERSION = 'v1'; // bump to force everyone to re-download+re-unpack
+  const PRESET_BUNDLE_UNPACKED_KEY = 'butterchurnPresetBundleUnpacked';
+
+  var presetBundleState = {
+    // 'idle' | 'downloading' | 'unpacking' | 'ready' | 'error'
+    status: localStorage.getItem(PRESET_BUNDLE_UNPACKED_KEY) === PRESET_BUNDLE_VERSION ? 'ready' : 'idle',
+    loadedBytes: 0,
+    totalBytes: 0,   // 0 = unknown (no Content-Length header)
+    unpackedCount: 0,
+    totalCount: 0,
+    errorMessage: null,
+  };
+
+  var bundleLoadingRedrawTimer = null;
+  // Keeps the License tab's progress bar animating smoothly even between
+  // network chunks / unpack-progress messages (important for the
+  // indeterminate case, when totalBytes is unknown). Self-stops once the
+  // load leaves the downloading/unpacking states.
+  function ensureBundleLoadingRedrawLoop() {
+    if (bundleLoadingRedrawTimer) return;
+    bundleLoadingRedrawTimer = setInterval(() => {
+      const active = presetBundleState.status === 'downloading' || presetBundleState.status === 'unpacking';
+      if (!active) {
+        clearInterval(bundleLoadingRedrawTimer);
+        bundleLoadingRedrawTimer = null;
+        return;
+      }
+      if (menuActiveTab === 'license') drawMenu();
+    }, 100);
+  }
+
+  // Sends the parsed bundle to the service worker, which writes each preset
+  // in as its own cache entry (mapWithConcurrency-batched on that side —
+  // see sw.js's UNPACK_PRESET_BUNDLE handler) and reports progress back.
+  function unpackPresetBundleIntoCache(bundle) {
+    return new Promise((resolve, reject) => {
+      if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) {
+        // No SW controlling this page yet (e.g. the very first load, before
+        // it's finished activating) — not fatal, presets just get fetched
+        // individually on demand this run instead of bulk-unpacked.
+        resolve(0);
+        return;
+      }
+
+      const controller = navigator.serviceWorker.controller;
+      const onMessage = (event) => {
+        const data = event.data || {};
+        if (data.type === 'UNPACK_PROGRESS') {
+          presetBundleState.unpackedCount = data.done;
+          presetBundleState.totalCount = data.total;
+          drawMenu();
+        } else if (data.type === 'UNPACK_DONE') {
+          navigator.serviceWorker.removeEventListener('message', onMessage);
+          presetBundleState.unpackedCount = data.total;
+          presetBundleState.totalCount = data.total;
+          resolve(data.total);
+        } else if (data.type === 'UNPACK_ERROR') {
+          navigator.serviceWorker.removeEventListener('message', onMessage);
+          reject(new Error(data.message || 'Unpack failed'));
+        }
+      };
+      navigator.serviceWorker.addEventListener('message', onMessage);
+      controller.postMessage({ type: 'UNPACK_PRESET_BUNDLE', presets: bundle });
+    });
+  }
+
+  // Downloads presets-bundle.json (tracking byte progress via a streamed
+  // read where possible), parses it, then unpacks it into the cache.
+  // force=true (Settings "Refresh Cache" button) bypasses HTTP cache and
+  // re-runs even if already marked ready; force=false (page load) skips
+  // straight to 'ready' if we've already done this successfully before.
+  async function loadAndUnpackPresetBundle(force) {
+    if (!force && presetBundleState.status === 'ready') return;
+    if (presetBundleState.status === 'downloading' || presetBundleState.status === 'unpacking') return;
+
+    presetBundleState.status = 'downloading';
+    presetBundleState.loadedBytes = 0;
+    presetBundleState.totalBytes = 0;
+    presetBundleState.unpackedCount = 0;
+    presetBundleState.totalCount = 0;
+    presetBundleState.errorMessage = null;
+    ensureBundleLoadingRedrawLoop();
+    drawMenu();
+
+    try {
+      const res = await fetch(PRESET_BUNDLE_URL, force ? { cache: 'reload' } : {});
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const contentLength = res.headers.get('content-length');
+      presetBundleState.totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
+
+      let text;
+      if (res.body && res.body.getReader) {
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let chunks = '';
+        let lastDraw = 0;
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          chunks += decoder.decode(value, { stream: true });
+          presetBundleState.loadedBytes += value.length;
+          const now = performance.now();
+          if (now - lastDraw > 80) {
+            lastDraw = now;
+            drawMenu();
+          }
+        }
+        text = chunks;
+      } else {
+        text = await res.text(); // fallback: no progress during download on this runtime
+      }
+
+      presetBundleState.status = 'unpacking';
+      drawMenu();
+
+      const bundle = JSON.parse(text);
+      presetBundleState.totalCount = Object.keys(bundle).length;
+      const unpackedCount = await unpackPresetBundleIntoCache(bundle);
+
+      presetBundleState.status = 'ready';
+      localStorage.setItem(PRESET_BUNDLE_UNPACKED_KEY, PRESET_BUNDLE_VERSION);
+      log(`Preset bundle ready: ${unpackedCount} presets cached for offline use.`);
+    } catch (err) {
+      console.error('Failed to load/unpack preset bundle:', err);
+      presetBundleState.status = 'error';
+      presetBundleState.errorMessage = err.message;
+      log('Failed to load preset bundle: ' + err.message);
+    }
+
+    drawMenu();
+  }
+
+  // Settings tab "Refresh Cache" button: checks for a new service worker
+  // version, force-refreshes the app shell, and force re-downloads +
+  // re-unpacks the preset bundle.
+  function refreshPwaCache() {
+    if (!('serviceWorker' in navigator)) {
+      log('Service workers are not available in this browser — nothing to refresh.');
+      return;
+    }
+    log('Refreshing PWA cache…');
+    navigator.serviceWorker.ready.then((reg) => {
+      reg.update().catch(() => {}); // check the server for a newer sw.js
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({ type: 'REFRESH_SHELL' });
+      }
+      loadAndUnpackPresetBundle(true);
+    });
+  }
+
+  var visualizer = null;
+
+  var audioContext = null;
+  var audioEl = new Audio();
+  //audioEl.crossOrigin = 'anonymous'; // needed if you ever point src at a remote URL
+  var mediaSourceNode = null;        // see note below on why this is created only once
+  var delayedAudible = null;
+  var sourceNode = null;
+
+  var cycleInterval = null;
+
+  const presetCache = new Map();
+
+  var presetKeys = [];
+  var presetIndexHist = [];
+  var presetIndex = 0;
+  var presetCycle = true;
+  var presetCycleLength = 25000;
+  var presetRandom = true;
+  var currentTrackName = null;
+
+  // ---------------------------------------------------------------------------
+  // Songs-tab playlist state
+  // ---------------------------------------------------------------------------
+  var playlist = [];             // [{ name, file }]
+  var currentPlaylistIndex = -1; // index into playlist currently loaded into audioEl, or -1
+  var currentObjectUrl = null;   // blob URL currently assigned to audioEl.src, for revocation
+  var songsScrollOffset = 0;     // first visible row index in the songs-tab list
+
+  // ---------------------------------------------------------------------------
+  // Viz-tab preset playlist state (persisted to localStorage, export/importable)
+  // ---------------------------------------------------------------------------
+  var presetPlaylists = {};       // { playlistName: [presetKey, presetKey, ...] }
+  var activePlaylistName = null;  // name of the currently active playlist (always set once loaded)
+  var vizPlaylistScrollOffset = 0; // first visible row index in the active playlist's list
+
+  var bcCanvas = document.createElement('canvas');
+  // Placeholder size only — initVisualizer() calls resizeCanvasForResolution()
+  // to set the real dimensions from RESOLUTION_BASE_SIZES/resolutionIndex
+  // and the current projectionMode before anything renders.
+  bcCanvas.width = 4096;
+  bcCanvas.height = 2048;
+
+  // FPS monitor: when enabled (Settings tab), a small readout is composited
+  // directly into the equirect/cylinder layer itself, not the menu — so
+  // it's visible in the visualizer even while the menu is closed. Drawing
+  // text onto bcCanvas isn't possible (it's WebGL-owned by Butterchurn), so
+  // we copy its current frame into a same-sized 2D canvas each frame and
+  // draw the readout on top of that copy; see drawFpsOverlay()/onXRFrame().
+  var fpsMonitorEnabled = false;
+  var fpsOverlayCanvas = document.createElement('canvas');
+  var fpsOverlayCtx = fpsOverlayCanvas.getContext('2d');
+  fpsOverlayCanvas.width = bcCanvas.width;
+  fpsOverlayCanvas.height = bcCanvas.height;
+
+  // ---------------------------------------------------------------------------
+  // In-VR menu state (persists across XR sessions)
+  // ---------------------------------------------------------------------------
+  // Which layer type/geometry is used to project the visualizer in VR.
+  // One of: 'equirect180', 'equirect360', 'cylinder180'.
+  var projectionMode = 'equirect180';
+  var menuActiveTab = 'license'; // 'license' | 'settings' | 'viz' | 'songs'
+
+  // Offscreen 2D canvas the in-VR menu is drawn into, then uploaded as the
+  // texture of an XRQuadLayer. Kept separate from bcCanvas (the Butterchurn
+  // render target) entirely.
+  var menuCanvas = document.getElementById('test');
+
+  //var menuCanvas = document.createElement('canvas');
+  menuCanvas.width = 1180;
+  menuCanvas.height = 850;
+  var menuCtx = menuCanvas.getContext('2d');
+
+  // Where the controller ray currently hits the menu, in canvas-pixel
+  // space ({px,py}), or null if no controller is pointing at it. Updated
+  // every XR frame while the menu is open (see onXRFrame), then drawn as a
+  // cursor dot at the end of drawMenu().
+  var menuPointerPx = null;
+
+  // Clickable regions on menuCanvas, in canvas-pixel space, rebuilt every
+  // time drawMenu() runs. Populated with {x,y,w,h,action(),repeatable}.
+  var menuHitRegions = [];
+
+  // --- Repeat-scroll while the trigger is held on a ▲/▼ scroll button ---
+  // A plain selectstart only fires once per press, so without this a held
+  // trigger scrolled exactly one page and then sat there. heldScrollAction
+  // is re-invoked on a timer (see handleHeldScrollRepeat, called each XR
+  // frame) for as long as the same input source that pressed it keeps the
+  // trigger down.
+  var heldScrollAction = null;
+  var heldScrollInputSource = null;
+  var heldScrollStartTime = 0;
+  var lastScrollRepeatTime = 0;
+  const SCROLL_REPEAT_INITIAL_DELAY_MS = 450; // hold this long before repeat kicks in, so a tap only fires once
+  const SCROLL_REPEAT_INTERVAL_MS = 150;      // repeat cadence once past the initial delay
+
+  function clearHeldScrollAction() {
+    heldScrollAction = null;
+    heldScrollInputSource = null;
+  }
+
+  // Called every XR frame. No-ops unless a repeatable button is currently
+  // held past the initial delay and it's time for the next repeat.
+  function handleHeldScrollRepeat(now) {
+    if (!heldScrollAction) return;
+    if (now - heldScrollStartTime < SCROLL_REPEAT_INITIAL_DELAY_MS) return;
+    if (now - lastScrollRepeatTime < SCROLL_REPEAT_INTERVAL_MS) return;
+    lastScrollRepeatTime = now;
+    heldScrollAction();
+  }
+
+  // Each entry is the 180° (1:1) square edge length for that quality step —
+  // e.g. 3584 means "3584×3584 in a 180 mode". In 360 mode (1:2) the same
+  // step keeps the same total pixel count, just reshaped to a 2:1 rectangle.
+  const RESOLUTION_BASE_SIZES = [1024, 2048, 3072, 3584, 4096, 6144];
+  let resolutionIndex = 3; // default: 3584×3584
+
+  const MESH_SIZE_OPTIONS = [
+  { w: 24,  h: 18 },
+  { w: 32,  h: 24 },
+  { w: 48,  h: 36 },
+  { w: 64,  h: 48 },
+  { w: 96,  h: 72 },
+  { w: 128, h: 96 }
+];
+let meshSizeIndex = 2; // default 48 x 36
+
+
+
+  // Target FPS cap for visualizer.render() while in an XR session; 0 = uncapped.
+  // See onXRFrame() inside startXR() — this only throttles rendering, never
+  // the XR posing/compositor callback itself.
+  var frameLimit = 45;
+
+  function connectToAudioAnalyzer(sourceNode) {
+    if (delayedAudible) {
+      delayedAudible.disconnect();
+    }
+
+    delayedAudible = audioContext.createDelay();
+    delayedAudible.delayTime.value = 0.26;
+
+    sourceNode.connect(delayedAudible)
+    delayedAudible.connect(audioContext.destination);
+
+    visualizer.connectAudio(delayedAudible);
+  }
+
+  // NOTE: there is no standalone render loop anymore. visualizer.render()
+  // is only ever called from inside onXRFrame() (see startXR() below), so
+  // rendering only happens — at frameLimit fps — while an XR session is
+  // active, and keeps running even if the desktop browser window loses
+  // focus (window.requestAnimationFrame does not, which was the bug).
+
+  function playStreamSource(url) {
+    audioEl.src = url;
+    audioEl.play();
+
+    // A MediaElementAudioSourceNode is bound to its <audio> element for the
+    // element's whole lifetime — you can only create ONE per element, ever.
+    // So we don't recreate it per track; we just keep changing audioEl.src.
+    if (!mediaSourceNode) {
+      mediaSourceNode = audioContext.createMediaElementSource(audioEl);
+      connectToAudioAnalyzer(mediaSourceNode);
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // VR reentry state
+  // ---------------------------------------------------------------------------
+  var wasInVRBeforeFilePicker = false;
+  var isStartingXR = false;
+
+  // ---------------------------------------------------------------------------
+  // Songs-tab playlist: add/remove/reorder/play
+  // ---------------------------------------------------------------------------
+  async function addFilesToPlaylist(files) {
+    if (!files || files.length === 0) return;
+    if (!audioContext) await initVisualizer(); // first real audio — start the engine now
+
+    const startIndex = playlist.length;
+    for (const file of files) {
+      playlist.push({ name: file.name, file });
+    }
+    // If nothing is currently playing, kick off the first newly-added track.
+    if (currentPlaylistIndex === -1) {
+      playPlaylistIndex(startIndex);
+    } else {
+      drawMenu();
+    }
+  }
+
+  function playPlaylistIndex(index) {
+    if (index < 0 || index >= playlist.length) return;
+    audioContext.resume();
+
+    currentPlaylistIndex = index;
+    const item = playlist[index];
+    currentTrackName = item.name;
+
+    if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+    currentObjectUrl = URL.createObjectURL(item.file);
+    playStreamSource(currentObjectUrl);
+
+    // advance on the element's real 'ended' event instead of a
+    // setTimeout(buf.duration) guess
+    audioEl.onended = () => {
+      if (currentPlaylistIndex + 1 < playlist.length) {
+        playPlaylistIndex(currentPlaylistIndex + 1);
+      } else {
+        currentPlaylistIndex = -1;
+        drawMenu();
+      }
+    };
+
+    drawMenu();
+  }
+
+  function removePlaylistItem(index) {
+    if (index < 0 || index >= playlist.length) return;
+    const wasCurrent = index === currentPlaylistIndex;
+    playlist.splice(index, 1);
+
+    if (index < currentPlaylistIndex) {
+      currentPlaylistIndex--;
+    } else if (wasCurrent) {
+      if (playlist.length === 0) {
+        currentPlaylistIndex = -1;
+        currentTrackName = null;
+        audioEl.pause();
+        audioEl.removeAttribute('src');
+        if (currentObjectUrl) { URL.revokeObjectURL(currentObjectUrl); currentObjectUrl = null; }
+      } else {
+        // Play whatever now sits at this index (the next track), or wrap to the last.
+        playPlaylistIndex(Math.min(index, playlist.length - 1));
+        return;
+      }
+    }
+
+    drawMenu();
+  }
+
+  function movePlaylistItem(index, dir) {
+    const newIndex = index + dir;
+    if (newIndex < 0 || newIndex >= playlist.length) return;
+    [playlist[index], playlist[newIndex]] = [playlist[newIndex], playlist[index]];
+
+    if (currentPlaylistIndex === index) currentPlaylistIndex = newIndex;
+    else if (currentPlaylistIndex === newIndex) currentPlaylistIndex = index;
+
+    drawMenu();
+  }
+
+  // Ends the active XR session, if any. Native browser file dialogs (audio
+  // file picker, preset-playlist import) can't render inside an immersive
+  // session, so anything that opens one calls this first.
+  //
+  // Returns a promise that resolves once the session has *actually* finished
+  // tearing down (the 'end' event has fired), not just once .end() has been
+  // called. Re-entering VR (requestSession again) while the previous session
+  // is still mid-teardown is what made auto re-entry flaky — on some
+  // runtimes a fresh requestSession() call made too early either throws or
+  // silently no-ops because the device still considers itself "in" the old
+  // session. Callers that want to re-enter VR afterwards should await this.
+  function exitVRIfActive() {
+    if (!xrSession) return Promise.resolve();
+    const session = xrSession;
+    return new Promise((resolve) => {
+      session.addEventListener('end', () => resolve(), { once: true });
+      session.end().catch((err) => {
+        console.error('Failed to end XR session:', err);
+        resolve(); // still resolve — the 'end' listener above won't fire if end() itself rejected
+      });
+    });
+  }
+
+  // Tries to jump straight back into VR first — this sometimes succeeds
+  // (e.g. when the file was picked quickly enough that the browser still
+  // treats the original tap that opened the picker as recent/"active"), but
+  // isn't guaranteed: testing showed navigator.xr.requestSession() can throw
+  // "SecurityError: ...requires user activation" from here even when called
+  // synchronously, with zero async gap, because some browsers don't count
+  // selecting a file in the native OS dialog as an activation-granting
+  // gesture at all. Falls back to a visible "Re-enter VR" button — a real
+  // tap — only if the automatic attempt actually fails.
+  async function reenterVRIfNeeded() {
+    if (!wasInVRBeforeFilePicker) return;
+    wasInVRBeforeFilePicker = false;
+    const reentered = await startXR();
+    if (!reentered) {
+      reenterVRBtn.style.display = 'inline-block';
+      log('Tap "Re-enter VR" to jump back in.');
+    }
+  }
+
+  function openFilePickerForPlaylist() {
+    wasInVRBeforeFilePicker = !!xrSession;
+    // Not awaited: fileSelector.click() below must run synchronously in this
+    // same gesture, or the native file dialog silently never opens.
+    exitVRIfActive();
+    const fileSelector = document.createElement('input');
+    fileSelector.type = 'file';
+    fileSelector.accept = 'audio/*';
+    fileSelector.multiple = true;
+    fileSelector.onchange = () => {
+      addFilesToPlaylist(Array.from(fileSelector.files));
+      reenterVRIfNeeded();
+    };
+    fileSelector.click();
+  }
+
+  // Helper to load individual preset JSON file
+  async function getPresetData(key) {
+    if (presetCache.has(key)) {
+      return presetCache.get(key);
+    }
+
+    try {
+      const res = await fetch(`/presets/${encodeURIComponent(key)}.json`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+
+      // Prevent memory leaks by keeping max 50 presets in memory cache
+      if (presetCache.size > 50) {
+        const oldestKey = presetCache.keys().next().value;
+        presetCache.delete(oldestKey);
+      }
+      presetCache.set(key, data);
+      return data;
+    } catch (err) {
+      console.error(`Failed to load preset "${key}":`, err);
+      return null;
+    }
+  }
+
+  async function loadPresetAtIndex(index, blendTime) {
+    const key = presetKeys[index];
+    if (!key) return;
+
+    const presetData = await getPresetData(key);
+    if (presetData && visualizer) {
+      visualizer.loadPreset(presetData, blendTime);
+
+      const selectElem = document.getElementById('presetSelect');
+      if (selectElem) selectElem.value = index;
+    }
+  }
+
+  // Returns the array of preset key strings that Prev/Next/auto-cycle should
+  // draw from: the active preset playlist if one is selected and non-empty,
+  // otherwise the full preset library.
+  function getActivePresetPool() {
+    if (activePlaylistName && presetPlaylists[activePlaylistName] && presetPlaylists[activePlaylistName].length > 0) {
+      return presetPlaylists[activePlaylistName];
+    }
+    return presetKeys;
+  }
+
+  async function nextPreset(blendTime = 5.7) {
+    const pool = getActivePresetPool();
+    if (pool.length === 0) return;
+
+    presetIndexHist.push(presetIndex);
+
+    const currentKey = presetKeys[presetIndex];
+    let nextKey;
+    if (presetRandom) {
+      nextKey = pool[Math.floor(Math.random() * pool.length)];
+    } else {
+      let poolPos = pool.indexOf(currentKey);
+      poolPos = poolPos === -1 ? 0 : (poolPos + 1) % pool.length;
+      nextKey = pool[poolPos];
+    }
+
+    const idx = presetKeys.indexOf(nextKey);
+    if (idx === -1) return;
+    presetIndex = idx;
+
+    await loadPresetAtIndex(presetIndex, blendTime);
+  }
+
+  async function prevPreset(blendTime = 5.7) {
+    if (presetKeys.length === 0) return;
+
+    var numPresets = presetKeys.length;
+    if (presetIndexHist.length > 0) {
+      presetIndex = presetIndexHist.pop();
+    } else {
+      presetIndex = ((presetIndex - 1) + numPresets) % numPresets;
+    }
+
+    await loadPresetAtIndex(presetIndex, blendTime);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Preset playlists: persistence, CRUD, export/import
+  // ---------------------------------------------------------------------------
+  const PRESET_PLAYLISTS_STORAGE_KEY = 'butterchurnPresetPlaylists';
+  const DEFAULT_PRESET_PLAYLISTS_URL = './preset-playlists.json';
+
+  // Fetches the server-provided default playlist set and replaces
+  // presetPlaylists with it. Used on first boot (nothing in localStorage
+  // yet) and whenever the user deletes their last remaining playlist.
+  async function loadDefaultPresetPlaylistsFromServer() {
+    try {
+      const res = await fetch(DEFAULT_PRESET_PLAYLISTS_URL);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      const source = (data && typeof data.playlists === 'object' && data.playlists) || data || {};
+
+      presetPlaylists = {};
+      for (const [name, keys] of Object.entries(source)) {
+        if (Array.isArray(keys)) {
+          presetPlaylists[name] = keys.filter((k) => typeof k === 'string');
+        }
+      }
+
+      const names = Object.keys(presetPlaylists);
+      activePlaylistName = names.length > 0 ? names[0] : null;
+      savePresetPlaylistsToStorage();
+      rebuildPresetKeysFromPlaylists();
+      log(`Loaded ${names.length} default preset playlist(s) from ${DEFAULT_PRESET_PLAYLISTS_URL}.`);
+    } catch (err) {
+      console.error('Failed to load default preset playlists from server:', err);
+      log(`Could not load default preset playlists from ${DEFAULT_PRESET_PLAYLISTS_URL}: ${err.message}`);
+    }
+  }
+
+  async function loadPresetPlaylistsFromStorage() {
+    try {
+      const raw = localStorage.getItem(PRESET_PLAYLISTS_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        presetPlaylists = (parsed && typeof parsed.playlists === 'object' && parsed.playlists) || {};
+        activePlaylistName = (parsed && parsed.active) || null;
+      }
+    } catch (err) {
+      console.error('Failed to load preset playlists from storage:', err);
+      presetPlaylists = {};
+      activePlaylistName = null;
+    }
+
+    // First boot (nothing saved yet), or a previously-saved but empty set:
+    // seed from the server's default playlist file.
+    if (Object.keys(presetPlaylists).length === 0) {
+      await loadDefaultPresetPlaylistsFromServer();
+    } else if (!activePlaylistName || !presetPlaylists[activePlaylistName]) {
+      activePlaylistName = Object.keys(presetPlaylists)[0];
+    }
+  }
+
+  function savePresetPlaylistsToStorage() {
+    try {
+      localStorage.setItem(PRESET_PLAYLISTS_STORAGE_KEY, JSON.stringify({
+        playlists: presetPlaylists,
+        active: activePlaylistName,
+      }));
+    } catch (err) {
+      console.error('Failed to save preset playlists to storage:', err);
+    }
+  }
+
+  function createPresetPlaylist(name) {
+    name = (name || '').trim();
+    if (!name || presetPlaylists[name]) return false;
+    presetPlaylists[name] = [];
+    activePlaylistName = name;
+    vizPlaylistScrollOffset = 0;
+    savePresetPlaylistsToStorage();
+    drawMenu();
+    return true;
+  }
+
+  // Deletes a playlist. If that was the last one remaining, re-seeds from
+  // the server's default playlist file rather than leaving the user with
+  // nothing to select.
+  async function deletePresetPlaylist(name) {
+    if (!presetPlaylists[name]) return;
+    delete presetPlaylists[name];
+    if (activePlaylistName === name) activePlaylistName = null;
+    vizPlaylistScrollOffset = 0;
+
+    if (Object.keys(presetPlaylists).length === 0) {
+      await loadDefaultPresetPlaylistsFromServer();
+    } else {
+      if (!activePlaylistName) activePlaylistName = Object.keys(presetPlaylists)[0];
+      savePresetPlaylistsToStorage();
+    }
+    drawMenu();
+  }
+
+  function setActivePresetPlaylist(name) {
+    activePlaylistName = name;
+    vizPlaylistScrollOffset = 0;
+    savePresetPlaylistsToStorage();
+
+    // Jump straight into playing this playlist, not just marking it active.
+    const pool = presetPlaylists[name] || [];
+    if (visualizer && pool.length > 0) {
+      const startKey = pool[Math.floor(Math.random() * pool.length)];
+      const idx = presetKeys.indexOf(startKey);
+      if (idx !== -1) {
+        presetIndexHist.push(presetIndex);
+        presetIndex = idx;
+        loadPresetAtIndex(presetIndex, 2.7).then(() => {
+          restartCycleInterval();
+          drawMenu();
+        });
+        return; // drawMenu() runs once the preset finishes loading, above
+      }
+    }
+
+    drawMenu();
+  }
+
+  function addCurrentPresetToActivePlaylist() {
+    if (!activePlaylistName) return;
+    const key = presetKeys[presetIndex];
+    if (!key) return;
+    const list = presetPlaylists[activePlaylistName];
+    if (!list.includes(key)) {
+      list.push(key);
+      savePresetPlaylistsToStorage();
+    }
+    drawMenu();
+  }
+
+  function removePresetFromPlaylist(name, key) {
+    const list = presetPlaylists[name];
+    if (!list) return;
+    const idx = list.indexOf(key);
+    if (idx === -1) return;
+    list.splice(idx, 1);
+    savePresetPlaylistsToStorage();
+    drawMenu();
+  }
+
+  function exportPresetPlaylists() {
+    const data = JSON.stringify({ playlists: presetPlaylists }, null, 2);
+    const blob = new Blob([data], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'butterchurn-preset-playlists.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    log('Exported preset playlists to butterchurn-preset-playlists.json.');
+  }
+
+  // Merges imported playlists into the existing set: new playlist names are
+  // added, and for playlist names that already exist, new preset keys are
+  // appended (no existing playlists or entries are deleted or overwritten).
+  function importPresetPlaylistsFromFile() {
+    wasInVRBeforeFilePicker = !!xrSession;
+    // Not awaited — see openFilePickerForPlaylist() above.
+    exitVRIfActive();
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+    input.onchange = () => {
+      const file = input.files[0];
+      if (!file) {
+        reenterVRIfNeeded(); // user cancelled
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const parsed = JSON.parse(reader.result);
+          const imported = (parsed && typeof parsed.playlists === 'object' && parsed.playlists) || parsed;
+          let playlistCount = 0, keyCount = 0;
+          for (const [name, keys] of Object.entries(imported)) {
+            if (!Array.isArray(keys)) continue;
+            if (!presetPlaylists[name]) presetPlaylists[name] = [];
+            playlistCount++;
+            for (const k of keys) {
+              if (typeof k === 'string' && !presetPlaylists[name].includes(k)) {
+                presetPlaylists[name].push(k);
+                keyCount++;
+              }
+            }
+          }
+          savePresetPlaylistsToStorage();
+          rebuildPresetKeysFromPlaylists();
+          log(`Imported ${playlistCount} preset playlist(s), ${keyCount} new preset entr${keyCount === 1 ? 'y' : 'ies'}.`);
+          drawMenu();
+          reenterVRIfNeeded();
+        } catch (err) {
+          log('Failed to import preset playlists: ' + err.message);
+          reenterVRIfNeeded(); // re-enter VR even on error
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+  }
+
+  function restartCycleInterval() {
+    if (cycleInterval) {
+      clearInterval(cycleInterval);
+      cycleInterval = null;
+    }
+
+    if (presetCycle) {
+      cycleInterval = setInterval(() => nextPreset(2.7), presetCycleLength);
+    }
+  }
+
+  // Rebuilds presetKeys (the master preset library, used by the top <select>
+  // and as the last-resort cycle pool) from the union of every preset
+  // referenced across all preset playlists — there is no separate
+  // /playlist.json library anymore, so a preset is only "known" once it
+  // shows up in at least one playlist.
+  function rebuildPresetKeysFromPlaylists() {
+    const previousKey = presetKeys[presetIndex];
+
+    const keySet = new Set();
+    Object.values(presetPlaylists).forEach((keys) => {
+      keys.forEach((k) => keySet.add(k));
+    });
+    presetKeys = Array.from(keySet).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+
+    // Keep pointing at the same preset (by key) if it's still in the library.
+    if (previousKey) {
+      const idx = presetKeys.indexOf(previousKey);
+      if (idx !== -1) {
+        presetIndex = idx;
+      }
+    }
+  }
+
+  async function initVisualizer() {
+    audioContext = new AudioContext();
+    resizeCanvasForResolution(); // size bcCanvas per the current resolution + projection setting
+
+    visualizer = butterchurn.createVisualizer(audioContext, bcCanvas, {
+      width: bcCanvas.width,
+      height: bcCanvas.height,
+      pixelRatio: window.devicePixelRatio || 1,
+      textureRatio: 1,
+    });
+
+    // Preset library comes from the preset playlists (loaded earlier via
+    // loadPresetPlaylistsFromStorage), not a fetch — rebuild it here in case
+    // that hasn't happened yet for some reason.
+    if (presetKeys.length === 0) {
+      rebuildPresetKeysFromPlaylists();
+    }
+
+    // Start initial preset and cycle, drawn from the active preset playlist
+    // (the first playlist loaded, by default) rather than the full merged
+    // library — see getActivePresetPool().
+    const startPool = getActivePresetPool();
+    if (startPool.length > 0) {
+      const startKey = startPool[Math.floor(Math.random() * startPool.length)];
+      const startIdx = presetKeys.indexOf(startKey);
+      presetIndex = startIdx !== -1 ? startIdx : 0;
+      await loadPresetAtIndex(presetIndex, 0);
+    }
+
+    restartCycleInterval();
+  }
+
+  // ---------------------------------------------------------------------------
+  // In-VR menu: drawing
+  // ---------------------------------------------------------------------------
+  // Renders the whole menu (tab bar + active tab's content) into menuCanvas
+  // and rebuilds menuHitRegions for click testing. Doesn't touch WebXR at
+  // all — startXR() re-uploads the canvas into the menu's XRQuadLayer
+  // whenever this has been called.
+  const PROJECTION_OPTIONS = [
+    { key: 'equirect180', label: '180° — XREquirectLayer' },
+    { key: 'equirect360', label: '360° — XREquirectLayer' },
+    { key: 'cylinder180', label: '180° — XRCylinderLayer' },
+  ];
+
+  function drawMenu() {
+    const ctx = menuCtx;
+    const W = menuCanvas.width, H = menuCanvas.height;
+    menuHitRegions = [];
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(12,12,18,0.94)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = '#555';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1, 1, W - 2, H - 2);
+
+    // --- Tab bar ---
+    const tabs = ['License', 'Settings', 'Viz', 'Songs'];
+    const tabH = 84;
+    const tabW = W / tabs.length;
+    tabs.forEach((tab, i) => {
+      const key = tab.toLowerCase();
+      const active = key === menuActiveTab;
+      const x = i * tabW;
+      ctx.fillStyle = active ? '#2a2a40' : '#16161f';
+      ctx.fillRect(x, 0, tabW, tabH);
+      ctx.strokeStyle = '#444';
+      ctx.strokeRect(x, 0, tabW, tabH);
+      ctx.fillStyle = active ? '#9cf' : '#ccc';
+      ctx.font = 'bold 30px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(tab, x + tabW / 2, tabH / 2);
+      menuHitRegions.push({
+        x, y: 0, w: tabW, h: tabH,
+        action: () => { menuActiveTab = key; drawMenu(); }
+      });
+    });
+
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic';
+    const contentX = 44;
+    let y = tabH + 56;
+
+    // `repeatable` marks buttons (the scroll ▲/▼ buttons) that should keep
+    // firing on a timer while the trigger stays held on them, instead of
+    // only once per press — see heldScrollAction / handleHeldScrollRepeat.
+    function drawButton(bx, by, bw, bh, label, action, repeatable = false) {
+      ctx.fillStyle = '#23232f';
+      ctx.strokeStyle = '#666';
+      ctx.lineWidth = 2;
+      ctx.fillRect(bx, by, bw, bh);
+      ctx.strokeRect(bx, by, bw, bh);
+      ctx.fillStyle = '#eee';
+      ctx.font = '24px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(label, bx + bw / 2, by + bh / 2);
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      menuHitRegions.push({ x: bx, y: by, w: bw, h: bh, action, repeatable });
+    }
+
+    // Small square icon button, used for the per-row playlist controls
+    // (reorder up/down, remove). Renders dimmed and non-interactive when
+    // `disabled` is true (e.g. "move up" on the first row).
+    function drawSmallBtn(bx, by, size, label, action, disabled = false) {
+      ctx.fillStyle = disabled ? '#1c1c24' : '#23232f';
+      ctx.strokeStyle = disabled ? '#333' : '#666';
+      ctx.lineWidth = 1.5;
+      ctx.fillRect(bx, by, size, size);
+      ctx.strokeRect(bx, by, size, size);
+      ctx.fillStyle = disabled ? '#555' : '#eee';
+      ctx.font = '18px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(label, bx + size / 2, by + size / 2 + 1);
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      if (!disabled) {
+        menuHitRegions.push({ x: bx, y: by, w: size, h: size, action });
+      }
+    }
+
+    // Discrete "slider": a filled track + thumb, with one tap-target per step
+// (tapping anywhere along that step's slice jumps straight to it).
+function drawStepSlider(sx, sy, sw, valueLabel, index, maxIndex, onChange) {
+  const trackH = 10;
+  const trackY = sy + 14;
+
+  ctx.font = '18px Arial';
+  ctx.fillStyle = '#9cf';
+  ctx.textAlign = 'right';
+  ctx.fillText(valueLabel, sx + sw, sy);
+  ctx.textAlign = 'left';
+
+  ctx.fillStyle = '#2a2a2a';
+  ctx.fillRect(sx, trackY, sw, trackH);
+  const frac = maxIndex === 0 ? 0 : index / maxIndex;
+  ctx.fillStyle = '#5a8fd6';
+  ctx.fillRect(sx, trackY, sw * frac, trackH);
+
+  const stepW = sw / (maxIndex + 1);
+  for (let i = 0; i <= maxIndex; i++) {
+    menuHitRegions.push({
+      x: sx + i * stepW, y: trackY - 20, w: stepW, h: 50,
+      action: () => onChange(i)
+    });
+  }
+
+  ctx.beginPath();
+  ctx.arc(sx + sw * frac, trackY + trackH / 2, 12, 0, Math.PI * 2);
+  ctx.fillStyle = '#9cf';
+  ctx.fill();
+  ctx.strokeStyle = '#1a1a24';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+// Shown on the License tab in place of the license text until the preset
+// bundle has been downloaded and unpacked into individual cache entries.
+function drawPresetBundleLoadingScreen(contentX, ly, W) {
+  const state = presetBundleState;
+
+  if (state.status === 'error') {
+    ctx.fillStyle = '#f88';
+    ctx.font = 'bold 26px Arial';
+    ctx.fillText('Failed to load presets', contentX, ly);
+    ctx.font = '18px Arial';
+    ctx.fillStyle = '#999';
+    ctx.fillText(state.errorMessage || 'Unknown error', contentX, ly + 32);
+    drawButton(contentX, ly + 64, 160, 56, 'Retry', () => {
+      loadAndUnpackPresetBundle(true);
+    });
+    return;
+  }
+
+  let title, sublabel, frac;
+  if (state.status === 'unpacking') {
+    title = 'Unpacking presets into cache…';
+    frac = state.totalCount > 0 ? state.unpackedCount / state.totalCount : 0;
+    sublabel = `${state.unpackedCount} / ${state.totalCount}`;
+  } else {
+    // 'downloading' or 'idle' (idle only for one frame before the fetch kicks off)
+    title = 'Downloading presets…';
+    if (state.totalBytes > 0) {
+      frac = state.loadedBytes / state.totalBytes;
+      sublabel = `${(state.loadedBytes / 1048576).toFixed(1)} / ${(state.totalBytes / 1048576).toFixed(1)} MB`;
+    } else {
+      frac = null; // unknown size — indeterminate bar
+      sublabel = `${(state.loadedBytes / 1048576).toFixed(1)} MB downloaded`;
+    }
+  }
+
+  ctx.fillStyle = '#eee';
+  ctx.font = 'bold 26px Arial';
+  ctx.fillText(title, contentX, ly);
+  ly += 40;
+
+  const barW = W - 2 * contentX, barH = 28;
+  ctx.fillStyle = '#2a2a2a';
+  ctx.fillRect(contentX, ly, barW, barH);
+
+  if (frac === null) {
+    // Indeterminate: a segment sweeping back and forth.
+    const segW = barW * 0.28;
+    const period = 1400;
+    const t = (performance.now() % period) / period;
+    const sweep = t < 0.5 ? t * 2 : 2 - t * 2;
+    ctx.fillStyle = '#5a8fd6';
+    ctx.fillRect(contentX + (barW - segW) * sweep, ly, segW, barH);
+  } else {
+    ctx.fillStyle = '#5a8fd6';
+    ctx.fillRect(contentX, ly, barW * Math.max(0, Math.min(1, frac)), barH);
+  }
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(contentX, ly, barW, barH);
+  ly += barH + 26;
+
+  ctx.font = '18px Arial';
+  ctx.fillStyle = '#999';
+  ctx.textAlign = 'left';
+  ctx.fillText(sublabel, contentX, ly);
+  if (frac !== null) {
+    ctx.textAlign = 'right';
+    ctx.fillText(`${Math.round(frac * 100)}%`, contentX + barW, ly);
+    ctx.textAlign = 'left';
+  }
+  ly += 40;
+
+  ctx.font = '16px Arial';
+  ctx.fillStyle = '#777';
+  ctx.fillText('This only happens once — presets are cached for offline use afterward.', contentX, ly);
+}
+
+    if (menuActiveTab === 'license') {
+      if (presetBundleState.status !== 'ready') {
+        drawPresetBundleLoadingScreen(contentX, y, W);
+      } else {
+      ctx.fillStyle = '#eee';
+      ctx.font = '24px Arial';
+      const lines = [
+        'FLASHING LIGHTS',
+        'Be advised this visualizer displays rapidly flashing lights.',
+        '',
+        'Butterchurn (the visualizer engine) is MIT licensed.',
+'MIT License',
+
+'Copyright (c) 2013-2018 Jordan Berg',
+
+'Permission is hereby granted, free of charge, to any person obtaining a copy',
+'of this software and associated documentation files (the "Software"), to deal',
+'in the Software without restriction, including without limitation the rights',
+'to use, copy, modify, merge, publish, distribute, sublicense, and/or sell',
+'copies of the Software, and to permit persons to whom the Software is',
+'furnished to do so, subject to the following conditions:',
+
+'The above copyright notice and this permission notice shall be included in all',
+'copies or substantial portions of the Software.',
+
+'THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR',
+'IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,',
+'FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE',
+'AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER',
+'LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,',
+'OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE',
+'SOFTWARE.',
+
+      ];
+      lines.forEach((line, i) => ctx.fillText(line, contentX, y + i * 34));
+      }
+
+    } else if (menuActiveTab === 'settings') {
+  ctx.fillStyle = '#eee';
+  ctx.font = 'bold 28px Arial';
+  ctx.fillText('Projection', contentX, y);
+  y += 40;
+
+  const currentProjIdx = PROJECTION_OPTIONS.findIndex((o) => o.key === projectionMode);
+  drawButton(contentX, y, 460, 56, PROJECTION_OPTIONS[currentProjIdx].label, () => {
+    const nextIdx = (currentProjIdx + 1) % PROJECTION_OPTIONS.length;
+    setProjectionMode(PROJECTION_OPTIONS[nextIdx].key);
+  });
+  y += 80;
+
+  ctx.fillStyle = '#999';
+  ctx.font = '18px Arial';
+  ctx.fillText('Tap to cycle: 180° equirect → 360° equirect → 180° cylinder.', contentX, y);
+  y += 50;
+
+  ctx.fillStyle = '#eee';
+  ctx.font = 'bold 28px Arial';
+  ctx.fillText('Mesh size', contentX, y);
+  y += 20;
+
+  const meshOpt = MESH_SIZE_OPTIONS[meshSizeIndex];
+  drawStepSlider(contentX, y, W - 2 * contentX, `${meshOpt.w} × ${meshOpt.h}`, meshSizeIndex, MESH_SIZE_OPTIONS.length - 1, (i) => {
+    meshSizeIndex = i;
+    const opt = MESH_SIZE_OPTIONS[meshSizeIndex];
+    if (visualizer) visualizer.setInternalMeshSize(opt.w, opt.h);
+    drawMenu();
+  });
+  y += 70;
+
+  ctx.fillStyle = '#999';
+  ctx.font = '18px Arial';
+  ctx.fillText('Higher mesh sizes look smoother but cost more render time.', contentX, y);
+  y += 50;
+
+  ctx.fillStyle = '#eee';
+  ctx.font = 'bold 28px Arial';
+  ctx.fillText('Resolution', contentX, y);
+  y += 20;
+
+  const resDims = getResolutionDimensions();
+  drawStepSlider(contentX, y, W - 2 * contentX, `${resDims.w} × ${resDims.h}`, resolutionIndex, RESOLUTION_BASE_SIZES.length - 1, (i) => {
+    resolutionIndex = i;
+    resizeCanvasForResolution();
+    drawMenu();
+  });
+  y += 70;
+
+  ctx.fillStyle = '#999';
+  ctx.font = '18px Arial';
+  ctx.fillText(`Renders at ${resDims.w} × ${resDims.h} — 1:1 in 180° modes, 1:2 in 360°, same pixel count either way.`, contentX, y);
+  y += 50;
+
+  ctx.fillStyle = '#eee';
+  ctx.font = 'bold 28px Arial';
+  ctx.fillText('FPS monitor', contentX, y);
+  y += 20;
+
+  drawButton(contentX, y, 240, 56, fpsMonitorEnabled ? 'FPS Monitor: On' : 'FPS Monitor: Off', () => {
+    fpsMonitorEnabled = !fpsMonitorEnabled;
+    drawMenu();
+  });
+  y += 80;
+
+  ctx.fillStyle = '#999';
+  ctx.font = '18px Arial';
+  ctx.fillText('Shows a live readout in the corner of the equirect/cylinder layer itself,', contentX, y);
+  ctx.fillText('so it stays visible in the visualizer even with the menu closed.', contentX, y + 26);
+  y += 56;
+
+  ctx.fillStyle = '#eee';
+  ctx.font = 'bold 28px Arial';
+  ctx.fillText('Offline / PWA', contentX, y);
+  y += 20;
+
+  drawButton(contentX, y, 220, 56, 'Refresh Cache', () => {
+    menuActiveTab = 'license';
+    refreshPwaCache();
+  });
+  y += 70;
+
+  ctx.fillStyle = '#999';
+  ctx.font = '18px Arial';
+  ctx.fillText('Re-downloads the app shell and the preset bundle for offline use.', contentX, y);
+
+    } else if (menuActiveTab === 'viz') {
+      ctx.fillStyle = '#eee';
+      const presetName = presetKeys[presetIndex] || '—';
+      ctx.font = '20px Arial';
+      ctx.fillText(presetName.slice(0, 100) + (presetName.length > 100 ? '…' : ''), contentX, y);
+
+      ctx.font = '18px Arial';
+      ctx.fillStyle = '#999';
+      ctx.fillText('Thumbstick left/right: change preset. Up/down: scroll. A: add to Fav, B: remove.', contentX, y + 22);
+
+      // -----------------------------------------------------------------
+      // Preset playlists: a row of tabs (one per saved playlist, seeded
+      // from the server on first boot), persisted to localStorage, with
+      // manage/export/import/auto-cycle/random controls and a scrollable
+      // contents view.
+      // -----------------------------------------------------------------
+      let py = y + 10;
+
+      const chipY = py + 16;
+      const chipH = 30;
+      let cx = contentX;
+
+function drawChip(label, active, action, opts) {
+  opts = opts || {};
+  ctx.font = '18px Arial';
+  const textW = ctx.measureText(label).width;
+  const chipW = Math.max(0, textW + 30);
+  const x = opts.x !== undefined ? opts.x : cx;
+
+  ctx.fillStyle = active ? '#3a3a58' : '#20202a';
+  ctx.strokeStyle = active ? '#9cf' : '#555';
+  ctx.lineWidth = 2;
+  ctx.fillRect(x, chipY, chipW, chipH);
+  ctx.strokeRect(x, chipY, chipW, chipH);
+  ctx.fillStyle = active ? '#9cf' : '#ddd';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(label, x + chipW / 2, chipY + chipH / 2 + 1);
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'alphabetic';
+
+  menuHitRegions.push({ x, y: chipY, w: chipW, h: chipH, action });
+
+  // Only advance the shared left-to-right cursor for normally-flowed chips.
+  if (opts.x === undefined) cx += chipW + 1;
+  return chipW;
+}
+
+      Object.keys(presetPlaylists).forEach((name) => {
+        drawChip(name, activePlaylistName === name, () => setActivePresetPlaylist(name));
+      });
+      drawChip('+', false, () => {
+      exitVRIfActive();
+        const name = window.prompt('New preset playlist name:');
+        if (name && name.trim()) createPresetPlaylist(name.trim());
+      });
+      drawChip('-', false, () => {
+        deletePresetPlaylist(activePlaylistName)
+      });
+
+      drawChip('Import', false, () => {
+importPresetPlaylistsFromFile();
+      });
+
+            drawChip('Export', false, () => {
+exportPresetPlaylists();
+      });
+
+ctx.font = '18px Arial';
+const presetCycleSeconds = Math.floor(presetCycleLength / 1000); // truncate down to seconds
+const autoCycleDownW = ctx.measureText('▼').width + 30;
+const autoCycleUpW = ctx.measureText('▲').width + 30;
+const autoCycleW = ctx.measureText('Auto-cycle: ' + presetCycleSeconds + 's').width + 30;
+const randomW = ctx.measureText('Random').width + 30;
+
+//'▼'
+const autoCycleDownX = W - contentX - autoCycleDownW;
+const autoCycleUpX = autoCycleDownX - autoCycleUpW;
+const autoCycleX = autoCycleUpX - autoCycleW - 2;
+const randomX = autoCycleX - randomW - 5; // 5px gap between the two
+
+
+drawChip('Random', presetRandom, () => {
+  presetRandom = !presetRandom;
+}, { x: randomX });
+
+drawChip('Auto-cycle: '+ presetCycleSeconds + 's', presetCycle, () => {
+  presetCycle = !presetCycle;
+  restartCycleInterval();
+}, { x: autoCycleX });
+
+drawChip('▲', false, () => {
+  presetCycleLength += 1000;
+  restartCycleInterval();
+}, { x: autoCycleUpX });
+
+drawChip('▼', false, () => {
+  presetCycleLength = Math.max(1000, presetCycleLength - 1000); // don't go below 1s
+  restartCycleInterval();
+}, { x: autoCycleDownX });
+
+
+      py = chipY + chipH - 5;
+
+      if (Object.keys(presetPlaylists).length === 0) {
+        ctx.font = '18px Arial';
+        ctx.fillStyle = '#888';
+        ctx.fillText('Loading default preset playlists from the server…', contentX, py + 4);
+      }
+
+      // Active playlist's contents.
+      if (activePlaylistName) {
+        const list = presetPlaylists[activePlaylistName] || [];
+
+        const rowH = 40, rowGap = 6;
+        const listTop = py + 8;
+        const listBottom = H - 22;
+        const rowW = W - 2 * contentX;
+        const maxRows = Math.max(1, Math.floor((listBottom - listTop) / (rowH + rowGap)));
+        const needsScroll = list.length > maxRows;
+        const usableRows = needsScroll ? Math.max(1, maxRows - 1) : maxRows;
+
+        if (list.length === 0) {
+          ctx.font = '17px Arial';
+          ctx.fillStyle = '#888';
+          const emptyMsg = activePlaylistName === FAVORITES_PLAYLIST_NAME
+            ? 'Empty — push A on a preset you like to add it here.'
+            : 'Empty — use "+ Add current preset" above to start building this playlist.';
+          ctx.fillText(emptyMsg, contentX, listTop + 16);
+        } else {
+          if (vizPlaylistScrollOffset > list.length - usableRows) {
+            vizPlaylistScrollOffset = Math.max(0, list.length - usableRows);
+          }
+          if (vizPlaylistScrollOffset < 0) vizPlaylistScrollOffset = 0;
+
+          const visibleCount = Math.min(usableRows, list.length - vizPlaylistScrollOffset);
+          let ry = listTop;
+
+          for (let vi = 0; vi < visibleCount; vi++) {
+            const li = vizPlaylistScrollOffset + vi;
+            const key = list[li];
+            const isCurrentPreset = key === presetKeys[presetIndex];
+
+            ctx.fillStyle = isCurrentPreset ? '#2a2a40' : '#1a1a24';
+            ctx.fillRect(contentX, ry, rowW, rowH);
+            ctx.strokeStyle = '#3a3a3a';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(contentX, ry, rowW, rowH);
+
+            const removeBtnSize = 30;
+            ctx.fillStyle = isCurrentPreset ? '#9cf' : '#ddd';
+            ctx.font = '16px Arial';
+            ctx.textBaseline = 'middle';
+            const nameMaxW = rowW - removeBtnSize - 28;
+            let dn = key;
+            while (ctx.measureText(dn).width > nameMaxW && dn.length > 1) dn = dn.slice(0, -1);
+            if (dn.length < key.length) dn = dn.slice(0, -1) + '…';
+            ctx.fillText(dn, contentX + 12, ry + rowH / 2 + 1);
+            ctx.textBaseline = 'alphabetic';
+
+            // Tapping the row (outside the remove button) jumps straight to that preset.
+            menuHitRegions.push({
+              x: contentX, y: ry, w: rowW - removeBtnSize - 16, h: rowH,
+              action: () => {
+                const idx = presetKeys.indexOf(key);
+                if (idx === -1) return;
+                presetIndexHist.push(presetIndex);
+                presetIndex = idx;
+                loadPresetAtIndex(presetIndex, 2.7).then(() => {
+                  restartCycleInterval();
+                  drawMenu();
+                });
+              }
+            });
+
+            drawSmallBtn(contentX + rowW - removeBtnSize - 6, ry + (rowH - removeBtnSize) / 2, removeBtnSize, '✕',
+              () => removePresetFromPlaylist(activePlaylistName, key));
+
+            ry += rowH + rowGap;
+          }
+
+          if (needsScroll) {
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#999';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`${vizPlaylistScrollOffset + 1}-${vizPlaylistScrollOffset + visibleCount} of ${list.length}`, contentX, ry + rowH / 2);
+            ctx.textBaseline = 'alphabetic';
+
+            const scrollBtnW = 90;
+            drawButton(contentX + rowW - 2 * scrollBtnW - 8, ry, scrollBtnW, rowH, '▲', () => {
+              vizPlaylistScrollOffset = Math.max(0, vizPlaylistScrollOffset - usableRows);
+              drawMenu();
+            }, true);
+            drawButton(contentX + rowW - scrollBtnW, ry, scrollBtnW, rowH, '▼', () => {
+              vizPlaylistScrollOffset = Math.min(list.length - usableRows, vizPlaylistScrollOffset + usableRows);
+              drawMenu();
+            }, true);
+          }
+        }
+      }
+    } else if (menuActiveTab === 'songs') {
+      ctx.fillStyle = '#eee';
+      ctx.font = 'bold 26px Arial';
+      ctx.fillText('Now playing:', contentX, y);
+      ctx.font = '20px Arial';
+      ctx.fillStyle = currentTrackName ? '#9cf' : '#888';
+      const npName = currentTrackName || '(nothing loaded)';
+      ctx.fillText(npName.length > 50 ? npName.slice(0, 50) + '…' : npName, contentX, y + 30);
+
+      // "+ Add songs" sits up in the header row, right-aligned.
+      const addBtnW = 180, addBtnH = 48;
+      drawButton(W - contentX - addBtnW, y - 34, addBtnW, addBtnH, '+ Add songs', () => {
+        openFilePickerForPlaylist();
+      });
+
+      y += 56;
+      ctx.font = 'bold 22px Arial';
+      ctx.fillStyle = '#ccc';
+      ctx.fillText(`Playlist (${playlist.length})`, contentX, y);
+
+      const rowH = 54, rowGap = 8;
+      const listTop = y + 22;
+      const listBottom = H - 70; // reserve room for the scroll controls below
+      const maxVisibleRows = Math.max(1, Math.floor((listBottom - listTop) / (rowH + rowGap)));
+
+      if (playlist.length === 0) {
+        ctx.font = '20px Arial';
+        ctx.fillStyle = '#888';
+        ctx.fillText('No songs yet — tap "+ Add songs" above to load audio files.', contentX, listTop + 20);
+      } else {
+        if (songsScrollOffset > playlist.length - maxVisibleRows) {
+          songsScrollOffset = Math.max(0, playlist.length - maxVisibleRows);
+        }
+        if (songsScrollOffset < 0) songsScrollOffset = 0;
+
+        const rowW = W - 2 * contentX;
+        const btnSize = 38;
+        let ry = listTop;
+        const visibleCount = Math.min(maxVisibleRows, playlist.length - songsScrollOffset);
+
+        for (let vi = 0; vi < visibleCount; vi++) {
+          const i = songsScrollOffset + vi;
+          const item = playlist[i];
+          const isCurrent = i === currentPlaylistIndex;
+
+          ctx.fillStyle = isCurrent ? '#2a2a40' : '#1a1a24';
+          ctx.fillRect(contentX, ry, rowW, rowH);
+          ctx.strokeStyle = '#444';
+          ctx.lineWidth = 1;
+          ctx.strokeRect(contentX, ry, rowW, rowH);
+
+          // Play/pause zone on the left of the row.
+          const playZoneW = 56;
+          ctx.fillStyle = isCurrent ? '#9cf' : '#ccc';
+          ctx.font = '20px Arial';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          const icon = isCurrent && !audioEl.paused ? '⏸' : '▶';
+          ctx.fillText(icon, contentX + playZoneW / 2, ry + rowH / 2 + 1);
+          menuHitRegions.push({
+            x: contentX, y: ry, w: playZoneW, h: rowH,
+            action: () => {
+              if (isCurrent) {
+                if (audioEl.paused) audioEl.play(); else audioEl.pause();
+                drawMenu();
+              } else {
+                playPlaylistIndex(i);
+              }
+            }
+          });
+
+          // Track name, truncated to fit between the play zone and the row's
+          // reorder/remove buttons.
+          ctx.textAlign = 'left';
+          ctx.fillStyle = isCurrent ? '#9cf' : '#eee';
+          ctx.font = '19px Arial';
+          const controlsW = (btnSize + 6) * 3;
+          const nameMaxW = rowW - playZoneW - controlsW - 24;
+          let displayName = item.name;
+          while (ctx.measureText(displayName).width > nameMaxW && displayName.length > 1) {
+            displayName = displayName.slice(0, -1);
+          }
+          if (displayName.length < item.name.length) displayName = displayName.slice(0, -1) + '…';
+          ctx.fillText(displayName, contentX + playZoneW + 10, ry + rowH / 2 + 6);
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'alphabetic';
+
+          // Reorder (▲▼) and remove (✕) controls, right-aligned on the row.
+          let bx = contentX + rowW - btnSize - 8;
+          drawSmallBtn(bx, ry + (rowH - btnSize) / 2, btnSize, '✕', () => removePlaylistItem(i));
+          bx -= (btnSize + 6);
+          drawSmallBtn(bx, ry + (rowH - btnSize) / 2, btnSize, '▼', () => movePlaylistItem(i, 1), i === playlist.length - 1);
+          bx -= (btnSize + 6);
+          drawSmallBtn(bx, ry + (rowH - btnSize) / 2, btnSize, '▲', () => movePlaylistItem(i, -1), i === 0);
+
+          ry += rowH + rowGap;
+        }
+
+        if (playlist.length > maxVisibleRows) {
+          const scrollY = listBottom + 12;
+          ctx.font = '18px Arial';
+          ctx.fillStyle = '#999';
+          ctx.fillText(
+            `Showing ${songsScrollOffset + 1}-${songsScrollOffset + visibleCount} of ${playlist.length}`,
+            contentX, scrollY + 24
+          );
+
+          const scrollBtnW = 150, scrollBtnH = 40;
+          drawButton(W - contentX - 2 * scrollBtnW - 10, scrollY, scrollBtnW, scrollBtnH, '▲ Scroll up', () => {
+            songsScrollOffset = Math.max(0, songsScrollOffset - maxVisibleRows);
+            drawMenu();
+          }, true);
+          drawButton(W - contentX - scrollBtnW, scrollY, scrollBtnW, scrollBtnH, '▼ Scroll down', () => {
+            songsScrollOffset = Math.min(playlist.length - maxVisibleRows, songsScrollOffset + maxVisibleRows);
+            drawMenu();
+          }, true);
+        }
+      }
+    }
+
+    // --- Pointer cursor, drawn last so it sits on top of everything else ---
+    if (menuPointerPx) {
+      const { px, py } = menuPointerPx;
+
+      // Highlight whatever hit-region the cursor is currently over, so
+      // buttons/tabs get hover feedback before you pull the trigger.
+      for (const region of menuHitRegions) {
+        if (px >= region.x && px <= region.x + region.w &&
+            py >= region.y && py <= region.y + region.h) {
+          ctx.strokeStyle = 'rgba(153, 204, 255, 0.9)';
+          ctx.lineWidth = 3;
+          ctx.strokeRect(region.x + 1, region.y + 1, region.w - 2, region.h - 2);
+          break;
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(px, py, 12, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(153, 204, 255, 0.25)';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(px, py, 5, 0, Math.PI * 2);
+      ctx.fillStyle = '#9cf';
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  // Rotate a plain {x,y,z} vector by a WebXR-style {x,y,z,w} quaternion.
+  function applyQuatToVec(q, v) {
+    const ix =  q.w * v.x + q.y * v.z - q.z * v.y;
+    const iy =  q.w * v.y + q.z * v.x - q.x * v.z;
+    const iz =  q.w * v.z + q.x * v.y - q.y * v.x;
+    const iw = -q.x * v.x - q.y * v.y - q.z * v.z;
+    return {
+      x: ix * q.w + iw * -q.x + iy * -q.z - iz * -q.y,
+      y: iy * q.w + iw * -q.y + iz * -q.x - ix * -q.z,
+      z: iz * q.w + iw * -q.z + ix * -q.y - iy * -q.x,
+    };
+  }
+  function vecSub(a, b) { return { x: a.x - b.x, y: a.y - b.y, z: a.z - b.z }; }
+  function vecDot(a, b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+
+  // ---------------------------------------------------------------------------
+  // WebXR: mono XREquirectLayer / XRCylinderLayer + in-VR quad-layer menu
+  // ---------------------------------------------------------------------------
+  // These are set up fresh by startXR() each time a session begins, and
+  // cleared when it ends. They live at module scope (rather than local to
+  // startXR) so the menu's click handlers — built once in drawMenu() above —
+  // can reach them without startXR needing to rebuild the menu itself.
+  var xrGlBinding = null;
+  var vizRefSpace = null;
+  var vizLayer = null;       // the visualizer's equirect/cylinder layer
+  var uploadViz = null;      // canvas->texture uploader bound to vizLayer
+  var vizBlankFrameUploaded = false; // true once the empty bcCanvas has been uploaded to the current vizLayer at least once (see onXRFrame)
+  var menuOpen = false;
+  var menuLayer = null;      // the menu's XRQuadLayer, only exists while open
+  var uploadMenu = null;     // canvas->texture uploader bound to menuLayer
+  var menuPlane = null;      // {position, orientation, width, height} in vizRefSpace, for raycasting
+
+  // Set by startXR() when entering VR with no track loaded yet (visualizer
+  // not initialized) — consumed by the first onXRFrame call, which opens
+  // the menu on the Songs tab so there's something to interact with right
+  // away instead of an empty scene waiting on a grip press.
+  var autoOpenMenuOnNextFrame = false;
+
+  // Thumbstick prev/next navigation: tracks, per controller handedness,
+  // whether that stick is "armed" to fire again. A stick fires once when it
+  // crosses the threshold, then must return near center before it can fire
+  // again — this makes a held-over stick step once, not repeat every frame.
+  var joystickPrimed = {};
+  const JOYSTICK_FIRE_THRESHOLD = 0.7;
+  const JOYSTICK_RESET_THRESHOLD = 0.35;
+
+  // Walks all active XR input sources and steps Prev/Next whenever a
+  // thumbstick is pushed hard left/right, once per push.
+  function handleJoystickNav(session) {
+    for (const inputSource of session.inputSources) {
+      const gp = inputSource.gamepad;
+      if (!gp || !gp.axes || gp.axes.length === 0) continue;
+
+      const hand = inputSource.handedness || 'unknown';
+      if (joystickPrimed[hand] === undefined) joystickPrimed[hand] = true;
+
+      // Standard WebXR gamepad mapping puts the thumbstick at axes[2]/[3]
+      // (axes[0]/[1] are the touchpad) when both are present; fall back to
+      // axes[0] on controllers that only report one 2D control.
+      const x = gp.axes.length >= 4 ? gp.axes[2] : gp.axes[0];
+
+      if (Math.abs(x) < JOYSTICK_RESET_THRESHOLD) {
+        joystickPrimed[hand] = true;
+        continue;
+      }
+      if (!joystickPrimed[hand]) continue;
+
+      if (x <= -JOYSTICK_FIRE_THRESHOLD) {
+        joystickPrimed[hand] = false;
+        prevPreset(2.7);
+        restartCycleInterval();
+      } else if (x >= JOYSTICK_FIRE_THRESHOLD) {
+        joystickPrimed[hand] = false;
+        nextPreset(2.7);
+        restartCycleInterval();
+      }
+    }
+  }
+
+  // Thumbstick up/down: scrolls whichever tab's list is on screen (Songs'
+  // playlist, or the Viz tab's active-playlist contents). Repeats while the
+  // stick is held past the threshold, paced by JOYSTICK_SCROLL_REPEAT_MS —
+  // unlike Prev/Next, a list benefits from continuous motion rather than a
+  // single step per push.
+  var lastJoystickScrollTime = 0;
+  const JOYSTICK_SCROLL_REPEAT_MS = 180;
+
+  function handleJoystickScroll(session) {
+    const now = performance.now();
+    if (now - lastJoystickScrollTime < JOYSTICK_SCROLL_REPEAT_MS) return;
+
+    for (const inputSource of session.inputSources) {
+      const gp = inputSource.gamepad;
+      if (!gp || !gp.axes || gp.axes.length === 0) continue;
+
+      // axes[3] is the thumbstick Y in the standard mapping (axes[1] is the
+      // touchpad Y fallback). Negative is "stick pushed up" on most
+      // controllers — flip the two branches below if yours reports the
+      // opposite sign.
+      const yAxis = gp.axes.length >= 4 ? gp.axes[3] : gp.axes[1];
+      if (Math.abs(yAxis) < JOYSTICK_RESET_THRESHOLD) continue;
+
+      if (yAxis <= -JOYSTICK_FIRE_THRESHOLD) {
+        scrollActiveTabList(-1);
+        lastJoystickScrollTime = now;
+        return;
+      } else if (yAxis >= JOYSTICK_FIRE_THRESHOLD) {
+        scrollActiveTabList(1);
+        lastJoystickScrollTime = now;
+        return;
+      }
+    }
+  }
+
+  // Scrolls whichever tab's list is currently visible by `direction` rows
+  // (-1 = up, +1 = down). No-ops on tabs without a scrollable list.
+  function scrollActiveTabList(direction) {
+    if (menuActiveTab === 'songs') {
+      songsScrollOffset = Math.max(0, songsScrollOffset + direction);
+      drawMenu();
+    } else if (menuActiveTab === 'viz' && activePlaylistName) {
+      const list = presetPlaylists[activePlaylistName] || [];
+      const maxOffset = Math.max(0, list.length - 1);
+      vizPlaylistScrollOffset = Math.max(0, Math.min(maxOffset, vizPlaylistScrollOffset + direction));
+      drawMenu();
+    }
+  }
+
+  // A/B favorites shortcuts: A adds the current preset to the Fav playlist,
+  // B removes it. Tracked per hand + button so a held-down button fires
+  // once, not every frame (same "primed" pattern as the thumbstick).
+  var faceButtonPrimed = {};
+  const FAVORITES_PLAYLIST_NAME = 'Fav';
+
+  function handleFavoriteButtons(session) {
+    for (const inputSource of session.inputSources) {
+      const gp = inputSource.gamepad;
+      if (!gp || !gp.buttons) continue;
+      const hand = inputSource.handedness || 'unknown';
+
+      // xr-standard mapping: buttons[4] = A/X (primary face button),
+      // buttons[5] = B/Y (secondary face button).
+      firePrimedButton(gp.buttons[4], `${hand}-a`, addCurrentPresetToFavorites);
+      firePrimedButton(gp.buttons[5], `${hand}-b`, removeCurrentPresetFromFavorites);
+    }
+  }
+
+  function firePrimedButton(button, key, action) {
+    if (!button) return;
+    if (button.pressed) {
+      if (faceButtonPrimed[key] !== false) {
+        faceButtonPrimed[key] = false;
+        action();
+      }
+    } else {
+      faceButtonPrimed[key] = true;
+    }
+  }
+
+  function addCurrentPresetToFavorites() {
+    const key = presetKeys[presetIndex];
+    if (!key) return;
+    if (!presetPlaylists[FAVORITES_PLAYLIST_NAME]) {
+      presetPlaylists[FAVORITES_PLAYLIST_NAME] = [];
+    }
+    const list = presetPlaylists[FAVORITES_PLAYLIST_NAME];
+    if (!list.includes(key)) {
+      list.push(key);
+      savePresetPlaylistsToStorage();
+      log(`Added "${key}" to ${FAVORITES_PLAYLIST_NAME}.`);
+      drawMenu();
+    }
+  }
+
+  function removeCurrentPresetFromFavorites() {
+    const key = presetKeys[presetIndex];
+    const list = presetPlaylists[FAVORITES_PLAYLIST_NAME];
+    if (!key || !list) return;
+    const idx = list.indexOf(key);
+    if (idx === -1) return;
+    list.splice(idx, 1);
+    savePresetPlaylistsToStorage();
+    log(`Removed "${key}" from ${FAVORITES_PLAYLIST_NAME}.`);
+    // Deliberately not rebuilding presetKeys here — the key may still be
+    // referenced by other playlists, and even if not, we don't want to pull
+    // the currently-playing preset out from under active playback/paging.
+    drawMenu();
+  }
+
+  // Returns a texture-uploader closure bound to whichever colorTexture
+  // backing (plain TEXTURE_2D vs TEXTURE_2D_ARRAY) the runtime hands back
+  // for a given layer. Probed once per layer on first use, then cached —
+  // same approach as the original mono-equirect-only code, just factored
+  // out so both vizLayer and menuLayer can each get their own.
+  function createCanvasUploader(gl) {
+    let fn = null;
+    return function upload(subImage, canvas) {
+      if (fn) { fn(subImage, canvas); return; }
+
+      const tex = subImage.colorTexture;
+      const prevTex = gl.getParameter(gl.TEXTURE_BINDING_2D);
+      gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+      const err = gl.getError();
+      gl.bindTexture(gl.TEXTURE_2D, prevTex);
+
+      if (err === gl.NO_ERROR) {
+        fn = (subImage, canvas) => {
+          gl.bindTexture(gl.TEXTURE_2D, subImage.colorTexture);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas);
+        };
+        log('Layer upload path: TEXTURE_2D.');
+        return;
+      }
+
+      const prevArrTex = gl.getParameter(gl.TEXTURE_BINDING_2D_ARRAY);
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, tex);
+      gl.texSubImage3D(
+        gl.TEXTURE_2D_ARRAY, 0, 0, 0, subImage.imageIndex || 0,
+        canvas.width, canvas.height, 1, gl.RGBA, gl.UNSIGNED_BYTE, canvas
+      );
+      const arrErr = gl.getError();
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, prevArrTex);
+
+      if (arrErr === gl.NO_ERROR) {
+        fn = (subImage, canvas) => {
+          gl.bindTexture(gl.TEXTURE_2D_ARRAY, subImage.colorTexture);
+          gl.texSubImage3D(
+            gl.TEXTURE_2D_ARRAY, 0, 0, 0, subImage.imageIndex || 0,
+            canvas.width, canvas.height, 1, gl.RGBA, gl.UNSIGNED_BYTE, canvas
+          );
+        };
+        log('Layer upload path: TEXTURE_2D_ARRAY, imageIndex=' + (subImage.imageIndex || 0) + '.');
+      } else {
+        log('Layer upload failed on both TEXTURE_2D and TEXTURE_2D_ARRAY paths.');
+      }
+    };
+  }
+
+  // Builds the visualizer's projection layer for the given mode. radius: 0
+  // on the equirect layers means "infinite" (skybox-style, always centered
+  // on the viewer). The cylinder layer instead gets a finite radius, since
+  // XRCylinderLayer has no such "infinite" option.
+  function createVizLayer(mode) {
+    const common = {
+      space: vizRefSpace,
+      viewPixelWidth: bcCanvas.width,
+      viewPixelHeight: bcCanvas.height,
+      layout: 'mono',
+    };
+    if (mode === 'equirect180') {
+      return xrGlBinding.createEquirectLayer({
+        ...common,
+        centralHorizontalAngle: Math.PI,       // 180° horizontal
+        upperVerticalAngle: Math.PI / 2,
+        lowerVerticalAngle: -Math.PI / 2,       // 180° vertical
+        radius: 0,
+      });
+    } else if (mode === 'cylinder180') {
+      return xrGlBinding.createCylinderLayer({
+        ...common,
+        radius: 2,
+        centralAngle: Math.PI,                  // 180° wrap
+        aspectRatio: bcCanvas.width / bcCanvas.height,
+      });
+    }
+    // default / 'equirect360'
+    return xrGlBinding.createEquirectLayer({
+      ...common,
+      centralHorizontalAngle: 2 * Math.PI,     // full 360°
+      upperVerticalAngle: Math.PI / 2,
+      lowerVerticalAngle: -Math.PI / 2,         // full 180° vertical (a full sphere)
+      radius: 0,
+    });
+  }
+
+  function updateRenderStateLayers() {
+    if (!xrSession) return;
+    const layers = [];
+    if (vizLayer) layers.push(vizLayer);
+    if (menuOpen && menuLayer) layers.push(menuLayer); // last = drawn on top
+    xrSession.updateRenderState({ layers });
+  }
+
+  function rebuildVizLayerIfActive() {
+  if (!xrSession || !xrGlBinding || !vizRefSpace) return;
+  const old = vizLayer;
+  vizLayer = createVizLayer(projectionMode);
+  uploadViz = createCanvasUploader(glFromBinding);
+  vizBlankFrameUploaded = false; // fresh layer needs its own (single) blank-frame upload if no visualizer yet
+  updateRenderStateLayers();
+  if (old) old.destroy();
+}
+
+  function setProjectionMode(mode) {
+    if (mode === projectionMode) return;
+    projectionMode = mode;
+    resizeCanvasForResolution(); // aspect ratio changed — re-derive w/h at the same total pixel count
+    drawMenu(); // reflect the new selection immediately in the (still-open) menu
+    rebuildVizLayerIfActive();
+  }
+
+  function getProjectionAspectRatio() {
+  // 180° content is authored 1:1; 360° equirect unwraps to 2:1 (w:h).
+  return projectionMode === 'equirect360' ? 2 : 1;
+}
+
+function getResolutionDimensions() {
+  const base = RESOLUTION_BASE_SIZES[resolutionIndex];
+  const totalPixels = base * base;
+  const ratio = getProjectionAspectRatio();
+  const h = Math.round(Math.sqrt(totalPixels / ratio));
+  const w = Math.round(h * ratio);
+  return { w, h };
+}
+
+  function resizeCanvasForResolution(){
+  const { w, h } = getResolutionDimensions();
+
+  bcCanvas.width = w;
+  bcCanvas.height = h;
+  fpsOverlayCanvas.width = w;
+  fpsOverlayCanvas.height = h;
+  if (visualizer) visualizer.setRendererSize(w, h);
+rebuildVizLayerIfActive();
+  }
+
+  // Copies the just-rendered frame from bcCanvas into fpsOverlayCanvas and
+  // stamps an FPS readout on top of the copy, scaled to the canvas size so
+  // it stays legible regardless of the resolution setting. Returns the
+  // overlay canvas, which the caller uploads to the XR layer instead of
+  // bcCanvas directly.
+  function drawFpsOverlay(fps) {
+    const w = fpsOverlayCanvas.width, h = fpsOverlayCanvas.height;
+    fpsOverlayCtx.drawImage(bcCanvas, 0, 0, w, h);
+
+    const fontSize = Math.max(24, Math.round(h / 28));
+    const pad = Math.round(fontSize * 0.5);
+    const label = `${fps} FPS`;
+
+    fpsOverlayCtx.font = `bold ${fontSize}px Arial`;
+    const textW = fpsOverlayCtx.measureText(label).width;
+    const boxW = textW + pad * 2;
+    const boxH = fontSize + pad * 2;
+
+    // Position the box in the exact center of the canvas
+    const boxX = (w - boxW) / 2;
+    const boxY = (h - boxH) / 2;
+
+    fpsOverlayCtx.fillStyle = 'rgba(0,0,0,0.55)';
+    fpsOverlayCtx.fillRect(boxX, boxY, boxW, boxH);
+
+    fpsOverlayCtx.fillStyle = fps >= frameLimit * 0.9 || frameLimit === 0 ? '#8f8' : (fps >= frameLimit * 0.6 ? '#ff8' : '#f88');
+    fpsOverlayCtx.textAlign = 'left';
+    fpsOverlayCtx.textBaseline = 'middle';
+    fpsOverlayCtx.fillText(label, boxX + pad, boxY + boxH / 2 + 1);
+    fpsOverlayCtx.textAlign = 'left';
+    fpsOverlayCtx.textBaseline = 'alphabetic';
+
+    return fpsOverlayCanvas;
+  }
+
+  // Opens the menu ~1.1m in front of wherever the headset was looking when
+  // grip was pressed, matching the viewer's full orientation (so it's
+  // "attached to gaze" at open time, not billboarded every frame after).
+  function openMenu(frame) {
+    const viewerPose = frame.getViewerPose(vizRefSpace);
+    if (!viewerPose) return;
+    const { position, orientation } = viewerPose.transform;
+
+    const forward = applyQuatToVec(orientation, { x: 0, y: 0, z: -1 });
+    const distance = 1.5;
+    const menuPos = {
+      x: position.x + forward.x * distance,
+      y: position.y + forward.y * distance - 0.05,
+      z: position.z + forward.z * distance,
+    };
+
+    const width = 0.85;
+    const height = width * (menuCanvas.height / menuCanvas.width);
+    menuPlane = { position: menuPos, orientation, width, height };
+
+    const menuSpace = vizRefSpace.getOffsetReferenceSpace(new XRRigidTransform(menuPos, orientation));
+    menuLayer = xrGlBinding.createQuadLayer({
+      space: menuSpace,
+      viewPixelWidth: menuCanvas.width,
+      viewPixelHeight: menuCanvas.height,
+      layout: 'mono',
+      width,
+      height,
+    });
+    uploadMenu = createCanvasUploader(glFromBinding);
+
+    menuOpen = true;
+    drawMenu();
+    updateRenderStateLayers();
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    updateRenderStateLayers();
+    if (menuLayer) { menuLayer.destroy(); menuLayer = null; }
+    menuPlane = null;
+    menuPointerPx = null;
+    clearHeldScrollAction();
+  }
+
+  function toggleMenu(frame) {
+    if (menuOpen) closeMenu(); else openMenu(frame);
+  }
+
+  // Intersects a controller's target ray (given as an XRPose in vizRefSpace)
+  // against the menu's quad plane, returning canvas-pixel coordinates on a
+  // hit, or null. Plain vector math — the Layers API doesn't do hit-testing
+  // for you, since a quad layer isn't a scene-graph object.
+  function raycastMenuToCanvasPx(rayPose) {
+    if (!menuPlane) return null;
+
+    const rayOrigin = rayPose.transform.position;
+    const rayDir = applyQuatToVec(rayPose.transform.orientation, { x: 0, y: 0, z: -1 });
+
+    // The quad's front face (the side the viewer was facing when it opened)
+    // points back along its own +Z axis, since it was placed facing the
+    // viewer's -Z (forward) direction.
+    const normal = applyQuatToVec(menuPlane.orientation, { x: 0, y: 0, z: 1 });
+    const denom = vecDot(rayDir, normal);
+    if (Math.abs(denom) < 1e-6) return null; // ray parallel to plane
+
+    const t = vecDot(vecSub(menuPlane.position, rayOrigin), normal) / denom;
+    if (t <= 0) return null; // plane is behind the ray origin
+
+    const hit = { x: rayOrigin.x + rayDir.x * t, y: rayOrigin.y + rayDir.y * t, z: rayOrigin.z + rayDir.z * t };
+    const local = vecSub(hit, menuPlane.position);
+
+    const right = applyQuatToVec(menuPlane.orientation, { x: 1, y: 0, z: 0 });
+    const up = applyQuatToVec(menuPlane.orientation, { x: 0, y: 1, z: 0 });
+    const uOffset = vecDot(local, right);
+    const vOffset = vecDot(local, up);
+
+    const u = uOffset / menuPlane.width + 0.5;
+    const v = 0.5 - vOffset / menuPlane.height;
+    if (u < 0 || u > 1 || v < 0 || v > 1) return null; // hit the plane but outside the quad
+
+    return { px: u * menuCanvas.width, py: v * menuCanvas.height };
+  }
+
+  function handleMenuSelect(frame, inputSource) {
+    if (!menuOpen || !menuLayer || !inputSource.targetRaySpace) return;
+    const rayPose = frame.getPose(inputSource.targetRaySpace, vizRefSpace);
+    if (!rayPose) return;
+
+    const hit = raycastMenuToCanvasPx(rayPose);
+    if (!hit) return;
+
+    for (const region of menuHitRegions) {
+      if (hit.px >= region.x && hit.px <= region.x + region.w &&
+          hit.py >= region.y && hit.py <= region.y + region.h) {
+        region.action();
+        if (region.repeatable) {
+          heldScrollAction = region.action;
+          heldScrollInputSource = inputSource;
+          heldScrollStartTime = performance.now();
+          lastScrollRepeatTime = heldScrollStartTime;
+        }
+        break;
+      }
+    }
+  }
+
+  // Called once per XR frame while the menu is open. Walks the active input
+  // sources, finds the first whose ray hits the menu plane, and updates
+  // menuPointerPx so drawMenu() can render a cursor there. Cleared to null
+  // when nothing is pointing at the menu.
+  function updateMenuPointer(frame, session) {
+    menuPointerPx = null;
+    for (const inputSource of session.inputSources) {
+      if (!inputSource.targetRaySpace) continue;
+      const rayPose = frame.getPose(inputSource.targetRaySpace, vizRefSpace);
+      if (!rayPose) continue;
+      const hit = raycastMenuToCanvasPx(rayPose);
+      if (hit) {
+        menuPointerPx = { px: hit.px, py: hit.py };
+        break; // first hit wins — fine for the common one-hand-pointing case
+      }
+    }
+  }
+
+  // Stashed so setProjectionMode/openMenu can build canvas uploaders without
+  // threading `gl` through every function signature.
+  var glFromBinding = null;
+
+  const enterVRBtn = document.getElementById('enterVR');
+  const reenterVRBtn = document.getElementById('reenterVR');
+  let xrSupported = false;
+
+  async function checkXRSupport() {
+    if (!navigator.xr) {
+      log('navigator.xr is not available (no WebXR in this browser/context — needs HTTPS).');
+      return;
+    }
+ xrSupported = await navigator.xr.isSessionSupported('immersive-vr');
+  if (xrSupported) {
+    enterVRBtn.disabled = false;
+    enterVRBtn.textContent = 'Enter VR';
+    if (isInstalledQuestPwa) {
+      startXR(); // auto-launch — only legitimate here
+    }
+  }
+}
+  checkXRSupport();
+
+  let xrSession = null;
+
+  enterVRBtn.addEventListener('click', async () => {
+    // Entering VR no longer forces the visualizer to start — if no track has
+    // been loaded yet, startXR() opens the menu instead so there's
+    // something to do (Songs tab → "+ Add songs") rather than starting a
+    // random preset with no audio connected.
+    await startXR();
+  });
+
+  reenterVRBtn.addEventListener('click', async () => {
+    reenterVRBtn.style.display = 'none';
+    await startXR();
+  });
+
+  // Returns true if the session was started successfully, false otherwise —
+  // callers that have a fallback plan for failure (see reenterVRIfNeeded)
+  // check this instead of assuming success.
+  async function startXR() {
+    // Guards against overlapping requestSession() calls — e.g. the
+    // auto-launch on boot racing with a manual Enter VR click, or two
+    // file-picker re-entry paths firing close together. Browsers reject a
+    // second concurrent requestSession() with an error, which — before this
+    // guard existed — was silently swallowed by the catch below and made
+    // "auto re-enter VR" look like it randomly failed.
+    if (isStartingXR || xrSession) {
+      log(`startXR() skipped — isStartingXR=${isStartingXR}, already in a session=${!!xrSession}.`);
+      return false;
+    }
+    isStartingXR = true;
+
+    let session;
+    try {
+      session = await navigator.xr.requestSession('immersive-vr', {
+        requiredFeatures: ['layers', 'local'],
+      });
+    } catch (err) {
+      log('Failed to start session with "layers" feature required: ' + err.name + ': ' + err.message +
+          '\nYour browser likely does not support the WebXR Layers API, or this call was not made ' +
+          'directly on a user gesture. Try Meta Quest Browser or desktop Chrome with WebXR Layers enabled.');
+      isStartingXR = false;
+      return false;
+    }
+    xrSession = session;
+    isStartingXR = false;
+    reenterVRBtn.style.display = 'none'; // in case it was showing from an earlier file-picker round trip
+    log('XR session created — setting up layers, input, and the render loop…');
+
+    try {
+
+    xrSession.addEventListener('end', () => {
+      xrSession = null;
+      xrGlBinding = null;
+      vizRefSpace = null;
+      vizLayer = null;
+      uploadViz = null;
+      menuOpen = false;
+      menuLayer = null;
+      uploadMenu = null;
+      menuPlane = null;
+      glFromBinding = null;
+      joystickPrimed = {};
+      faceButtonPrimed = {};
+      autoOpenMenuOnNextFrame = false;
+      clearHeldScrollAction();
+      log('XR session ended.');
+    });
+
+    // A dedicated canvas/GL context just for XR compositing. This context is
+    // SEPARATE from Butterchurn's own canvas/context — we only ever read
+    // Butterchurn's canvas as a texture *source*, we never share GL contexts.
+    const xrCanvas = document.createElement('canvas');
+    const gl = xrCanvas.getContext('webgl2', { xrCompatible: true });
+    if (gl.makeXRCompatible) {
+      await gl.makeXRCompatible();
+    }
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    glFromBinding = gl;
+
+    // Binding is what lets us create layers backed by this WebGL context.
+    xrGlBinding = new XRWebGLBinding(xrSession, gl);
+    vizRefSpace = await xrSession.requestReferenceSpace('local');
+
+    // bcCanvas needs to be correctly sized (per Settings) before the viz
+    // layer is created from it, whether or not the visualizer itself has
+    // started yet — resizeCanvasForResolution() is safe to call with no
+    // visualizer (it no-ops the parts that need one).
+    resizeCanvasForResolution();
+
+    // The visualizer's own projection layer — equirect (180/360) or
+    // cylinder (180), per the current Settings-tab choice. radius: 0 on the
+    // equirect layers means "infinite" — rendered like a skybox, always
+    // centered on the viewer regardless of how far they walk.
+    vizLayer = createVizLayer(projectionMode);
+    uploadViz = createCanvasUploader(gl);
+    vizBlankFrameUploaded = false;
+    updateRenderStateLayers();
+
+    // No track loaded yet — open the menu on the License tab on the first
+    // frame instead of leaving the person in an empty scene.
+    if (!visualizer) {
+      menuActiveTab = 'license';
+      autoOpenMenuOnNextFrame = true;
+    }
+
+
+    // --- Grip (squeeze) toggles the in-VR menu; trigger (select) clicks it ---
+    // XRInputSourceEvent carries its own `.frame`, so both handlers can pose
+    // things (viewer pose to place the menu, target-ray pose to raycast it)
+    // without waiting for the next onXRFrame tick.
+    xrSession.addEventListener('squeezestart', (evt) => {
+      toggleMenu(evt.frame);
+    });
+    xrSession.addEventListener('selectstart', (evt) => {
+      handleMenuSelect(evt.frame, evt.inputSource);
+    });
+    // Releasing the trigger stops any hold-to-repeat scrolling it started.
+    // Guarded to the same inputSource so releasing a *different* controller's
+    // trigger (e.g. the off-hand one) doesn't cancel an in-progress repeat.
+    xrSession.addEventListener('selectend', (evt) => {
+      if (evt.inputSource === heldScrollInputSource) {
+        clearHeldScrollAction();
+      }
+    });
+
+    // --- Frame limiting + FPS monitoring, folded into onXRFrame itself ---
+    // These replace the old standalone startRenderer()/playStreamSource()
+    // path entirely: visualizer.render() now ONLY runs from inside
+    // onXRFrame, at up to frameLimit fps, and only while in VR.
+    let lastRenderTime = performance.now();
+    const frameInterval = frameLimit > 0 ? 1000 / frameLimit : 0;
+    let frameCount = 0;
+    let fpsLastTime = performance.now();
+    let currentFps = 0;
+
+    function shouldRenderThisFrame(now) {
+      if (frameLimit === 0) return true;
+      const elapsed = now - lastRenderTime;
+      if (elapsed <= frameInterval) return false;
+      lastRenderTime = now - (elapsed % frameInterval);
+      return true;
+    }
+
+    function tickFps(now) {
+      frameCount++;
+      if (now - fpsLastTime >= 1000) {
+        currentFps = frameCount;
+        frameCount = 0;
+        fpsLastTime = now;
+        log(`Render FPS: ${currentFps}${frameLimit ? ' (capped at ' + frameLimit + ')' : ' (uncapped)'}`);
+      }
+    }
+
+    function onXRFrame(time, frame) {
+      const session = frame.session;
+      // UNCONDITIONAL — every XR frame, no throttling above this line.
+      // Keeps head-pose polling / compositor reprojection at the
+      // headset's full native rate regardless of frameLimit below.
+      session.requestAnimationFrame(onXRFrame);
+
+      if (autoOpenMenuOnNextFrame && frame.getViewerPose(vizRefSpace)) {
+        autoOpenMenuOnNextFrame = false;
+        openMenu(frame);
+      }
+
+      // Thumbstick prev/next is also unthrottled, so a flick registers
+      // immediately rather than waiting on the render-frame cap.
+      handleJoystickNav(session);
+      handleJoystickScroll(session);
+      handleFavoriteButtons(session);
+      handleHeldScrollRepeat(performance.now());
+
+      const now = performance.now();
+      if (!shouldRenderThisFrame(now)) {
+        // Posing above still happened; we're just not re-rendering the
+        // preset or re-uploading the texture this frame. The compositor
+        // reprojects the last submitted texture(s) against the fresh pose
+        // it just got.
+        return;
+      }
+
+      if (visualizer) visualizer.render();
+      tickFps(now);
+
+      if (!frame.getViewerPose(vizRefSpace)) return;
+
+      // Before a track/preset is loaded, bcCanvas never changes — nothing
+      // draws to it — so re-uploading it into vizLayer on every single frame
+      // (a full texImage2D of a multi-megapixel canvas, up to frameLimit
+      // times/sec) is pure wasted GPU work. That's exactly the window right
+      // after boot: shaders are still compiling and the preset bundle is
+      // still downloading/unpacking on the main thread, so burning extra
+      // GPU time here is what shows up as "laggy while the viz is hidden."
+      // Upload it once so the layer isn't left with undefined contents, then
+      // skip re-uploading until there's an actual visualizer producing new
+      // frames.
+      if (vizLayer && (visualizer || !vizBlankFrameUploaded)) {
+        const subImage = xrGlBinding.getSubImage(vizLayer, frame);
+        const uploadSource = fpsMonitorEnabled ? drawFpsOverlay(currentFps) : bcCanvas;
+        uploadViz(subImage, uploadSource);
+        if (!visualizer) vizBlankFrameUploaded = true;
+      }
+      // The menu is static content-wise between clicks, but the pointer
+      // cursor moves every frame, so we recompute where it's pointing and
+      // redraw before re-uploading (cheap next to the visualizer render).
+      if (menuOpen && menuLayer) {
+        updateMenuPointer(frame, session);
+        drawMenu();
+        const menuSubImage = xrGlBinding.getSubImage(menuLayer, frame);
+        uploadMenu(menuSubImage, menuCanvas);
+      }
+    }
+
+    xrSession.requestAnimationFrame(onXRFrame);
+    log('In VR: ' + projectionMode + ' layer is live. Press grip to open the menu. Take off/put on the headset, or check the emulator.');
+    return true;
+
+    } catch (err) {
+      // Anything in the setup above (GL context, layer creation, reference
+      // space, etc.) throwing here used to silently reject startXR()'s
+      // returned promise — nobody awaits/catches it from the file-picker
+      // re-entry path, so the failure was completely invisible and it just
+      // looked like "doesn't re-enter VR" with no clue why. Surfacing it
+      // here, and ending the half-set-up session so a retry isn't blocked
+      // by the isStartingXR/xrSession guard above.
+      log('startXR() setup failed after the session was created: ' + err.name + ': ' + err.message);
+      console.error('startXR() setup error:', err);
+      try { xrSession.end(); } catch (endErr) { /* best effort */ }
+      return false;
+    }
+  }
+  // ---------------------------------------------------------------------------
+  // Desktop-mode menu interactivity
+  // ---------------------------------------------------------------------------
+  // The menu canvas (#test) is visible on the page at all times, not just in
+  // VR. It's already backed by menuHitRegions ({x,y,w,h,action} in
+  // canvas-pixel space), the same array the controller raycasting in
+  // handleMenuSelect() uses — so mouse clicks just need to hit-test against
+  // that same array instead of raycasting a 3D plane.
+  function canvasCoordsFromMouseEvent(evt) {
+    const rect = menuCanvas.getBoundingClientRect();
+    const scaleX = menuCanvas.width / rect.width;
+    const scaleY = menuCanvas.height / rect.height;
+    return {
+      px: (evt.clientX - rect.left) * scaleX,
+      py: (evt.clientY - rect.top) * scaleY,
+    };
+  }
+
+  function hitRegionAt(px, py) {
+    for (const region of menuHitRegions) {
+      if (px >= region.x && px <= region.x + region.w &&
+          py >= region.y && py <= region.y + region.h) {
+        return region;
+      }
+    }
+    return null;
+  }
+
+  menuCanvas.style.cursor = 'default';
+
+  // Hover feedback: reuses menuPointerPx (the same field the VR cursor dot
+  // uses in drawMenu()) so hovering a button on desktop highlights it the
+  // same way pointing at it with a controller does in VR.
+  menuCanvas.addEventListener('mousemove', (evt) => {
+    const { px, py } = canvasCoordsFromMouseEvent(evt);
+    menuPointerPx = { px, py };
+    menuCanvas.style.cursor = hitRegionAt(px, py) ? 'pointer' : 'default';
+    drawMenu();
+  });
+  menuCanvas.addEventListener('mouseleave', () => {
+    menuPointerPx = null;
+    drawMenu();
+  });
+  menuCanvas.addEventListener('click', (evt) => {
+    const { px, py } = canvasCoordsFromMouseEvent(evt);
+    const region = hitRegionAt(px, py);
+    if (region) region.action();
+    // Some actions (prev/next preset) don't redraw themselves; harmless to
+    // redraw again if the action already did.
+    drawMenu();
+  });
+
+  (async () => {
+    await loadPresetPlaylistsFromStorage();
+    resizeCanvasForResolution(); // correct bcCanvas/vizLayer sizing even before any track is loaded
+    drawMenu();
+  })();
+
+  // Runs in parallel with the above — drives the License tab's loading bar
+  // until the preset bundle is downloaded and unpacked into the cache.
+  loadAndUnpackPresetBundle(false);
+
+});
+</script>
+</body>
+</html>

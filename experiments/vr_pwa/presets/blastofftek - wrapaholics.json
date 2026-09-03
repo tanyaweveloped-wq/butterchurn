@@ -1,0 +1,81 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['ob_r']=Math.sin(a['time']); a['ob_b']=Math.sin((a['time']*1.1)); a['ob_g']=Math.sin((a['time']*0.9)); a['wave_r']=(1-a['ob_r']); a['wave_b']=(1-a['ob_b']); a['wave_g']=(1-a['ob_g']); a['zoom']=((Math.abs(above(div(((a['bass']+a['mid'])+a['treb']),3), 2))>0.00001)?(3):(a['zoom']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.999,
+  "echo_zoom": 1,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 1,
+  "wave_smoothing": 0.5,
+  "modwavealphastart": 0,
+  "modwavealphaend": 2,
+  "warpanimspeed": 2.307,
+  "warpscale": 1.987,
+  "zoom": 0.91434,
+  "warp": 4.85627,
+  "ob_size": 0.005,
+  "ob_a": 0.1,
+  "ib_size": 0.5,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 64,
+  "mv_y": 1.248,
+  "mv_l": 5,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

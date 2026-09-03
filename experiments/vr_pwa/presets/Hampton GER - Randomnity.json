@@ -1,0 +1,88 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=div(Math.floor(randint(1001)),1000); a['wave_g']=div(Math.floor(randint(1001)),1000); a['wave_b']=div(Math.floor(randint(1001)),1000); a['wave_x']=div(Math.floor(randint(1001)),1000); a['wave_y']=div(Math.floor(randint(1001)),1000); a['wave_mystery']=(div(Math.floor(randint(2001)),1000)-1); a['wave_mode']=Math.floor(randint(8)); a['ob_size']=div(Math.floor(randint(501)),1000); a['ob_r']=div(Math.floor(randint(1001)),1000); a['ob_g']=div(Math.floor(randint(1001)),1000); a['ob_b']=div(Math.floor(randint(1001)),1000); a['ob_a']=div(Math.floor(randint(1001)),1000); a['ib_size']=div(Math.floor(randint(501)),1000); a['ib_r']=div(Math.floor(randint(1001)),1000); a['ib_g']=div(Math.floor(randint(1001)),1000); a['ib_b']=div(Math.floor(randint(1001)),1000); a['ib_a']=div(Math.floor(randint(1001)),1000);",
+ "pixel_eqs_str": "a['zoom']=div(Math.floor(randint(2001)),1000); a['zoomexp']=div(Math.floor(randint(100001)),1000); a['warp']=div(Math.floor(randint(2001)),1000); a['rot']=(div(Math.floor(randint(2001)),1000)-1); a['cx']=div(Math.floor(randint(1001)),1000); a['cy']=div(Math.floor(randint(1001)),1000); a['dx']=(div(Math.floor(randint(2001)),1000)-1); a['dy']=(div(Math.floor(randint(2001)),1000)-1); a['sx']=div(Math.floor(randint(2001)),1000); a['sy']=div(Math.floor(randint(2001)),1000); a['decay']=(div(Math.floor(randint(101)),1000)+0.9);",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.9,
+  "echo_zoom": 0.01,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 6.350456,
+  "wave_scale": 0.463937,
+  "wave_smoothing": 0.27,
+  "modwavealphastart": 0,
+  "modwavealphaend": 0,
+  "warpanimspeed": 0.01,
+  "warpscale": 0.01,
+  "zoomexp": 1.001829,
+  "zoom": 1.0018,
+  "warp": 0.01,
+  "sx": 1.001827,
+  "sy": 1.001829,
+  "wave_r": 0.3,
+  "wave_g": 0.3,
+  "wave_b": 0.3,
+  "ob_size": 0,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 0
+ },
+ "warp": "",
+ "comp": ""
+}

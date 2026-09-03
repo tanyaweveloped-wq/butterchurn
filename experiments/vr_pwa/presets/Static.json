@@ -1,0 +1,66 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['dx']=(a['dx']-0.001); a['dy']=(a['dy']-0.001); a['wave_r']=(a['bass_att']*0.4); a['wave_g']=(a['treb_att']*0.4); a['wave_b']=(a['mid_att']*0.4); a['warp']=0;",
+ "pixel_eqs_str": "a['dx']=(50*sqrt(a['ang'])); a['dy']=(0.01*Math.sin((a['y']*a['time'])));",
+ "baseVals": {
+  "rating": 5,
+  "modwavealphabyvolume": 1,
+  "bmotionvectorson": 0,
+  "wave_mystery": 0.1,
+  "warpanimspeed": 0.671653,
+  "warpscale": 2.006762,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

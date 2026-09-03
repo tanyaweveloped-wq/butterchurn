@@ -1,0 +1,95 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['dy']=((0.0035*Math.sin((a['time']*-5)))+(0.020*Math.cos((a['time']*a['treb'])))); a['dx']=((0.0245*Math.sin((a['time']*5)))+(0.020*Math.sin((a['treb']*a['time'])))); a['wave_mystery']=(a['wave_mystery']-(0.5*Math.sin(a['time']))); a['wave_y']=(a['wave_y']+(0.5*Math.sin((a['time']*a['treb'])))); a['wave_r']=(a['wave_r']*Math.sin((a['time']*0.13))); a['wave_b']=(a['wave_b']*Math.sin((a['time']*0.20))); a['wave_g']=(a['wave_g']*Math.sin((a['time']*5)));",
+ "pixel_eqs_str": "a['zoom']=(a['zoom']-(0.13*Math.sin((a['time']*5))));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.925,
+  "echo_zoom": 1.006596,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wave_a": 12.249948,
+  "wave_scale": 0.319275,
+  "wave_smoothing": 0.63,
+  "wave_mystery": 1,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.981677,
+  "zoomexp": 0.999986,
+  "zoom": 0.904847,
+  "warp": 1.951306,
+  "sx": 1.2201,
+  "sy": 0.274297,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_y": 0,
+  "ob_size": 0.2,
+  "ob_r": 0.61,
+  "ob_a": 0.04,
+  "ib_size": 0.5,
+  "ib_r": 1,
+  "ib_g": 1,
+  "ib_a": 0.01,
+  "mv_x": 1.087998,
+  "mv_y": 48,
+  "mv_dx": 6,
+  "mv_dy": 4,
+  "mv_l": 5,
+  "mv_a": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

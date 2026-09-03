@@ -1,0 +1,68 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_mystery']=((randint(10)*0.1)-1); a['wave_x']=(randint(10)*0.1); a['wave_y']=(randint(10)*0.1); a['wave_r']=(randint(10)*0.1); a['wave_b']=(randint(10)*0.1); a['wave_g']=(randint(10)*0.1); a['warp']=0; a['dx']=(a['dx']-0.001); a['dy']=(a['dy']-0.001); a['decay']=0.75;",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 4,
+  "bmotionvectorson": 0,
+  "wave_scale": 100,
+  "warpanimspeed": 5.995789,
+  "warpscale": 2.216704,
+  "zoomexp": 4.865166,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "wave_x": 0,
+  "wave_y": 0
+ },
+ "warp": "",
+ "comp": ""
+}

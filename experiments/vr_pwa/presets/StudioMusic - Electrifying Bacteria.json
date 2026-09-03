@@ -1,0 +1,73 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['progress'] = 0;",
+ "frame_eqs_str": "a['dx']=(a['dx']-0.001); a['dy']=(a['dy']-0.001); a['ib_size']=((Math.abs(below(a['progress'], 0.5))>0.00001)?((a['ib_size']-a['progress'])):(0)); a['ob_size']=((Math.abs(above(a['progress'], 0.5))>0.00001)?((a['ob_size']-(a['progress']-0.5))):(0.5)); a['ib_r']=(a['ib_r']+(a['progress']*2)); a['ib_g']=(a['ib_g']-(a['progress']*2)); a['ob_r']=(a['ob_size']*2); a['ob_g']=(a['ob_g']-(a['ob_size']*2));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 0,
+  "echo_alpha": 1,
+  "wave_mode": 1,
+  "bmotionvectorson": 1,
+  "zoom": 2,
+  "wave_r": 0.2,
+  "wave_g": 0,
+  "ob_size": 0.5,
+  "ob_r": 1,
+  "ob_g": 1,
+  "ob_a": 1,
+  "ib_size": 0.5,
+  "ib_r": 0,
+  "ib_g": 1,
+  "ib_b": 0,
+  "ib_a": 1
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,88 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['bass_eff'] = 0; a['bass_thresh'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']*Math.sin((a['bass']+a['mid']))); a['wave_b']=(a['wave_b']-(0.4*Math.sin((a['time']*a['bass'])))); a['wave_g']=(a['wave_g']+(0.6*Math.cos(((a['time']*a['mid'])-a['bass'])))); a['bass_eff']=Math.max((Math.max(a['bass'], a['bass_att'])-1), 0); a['bass_thresh']=((above(a['bass_att'], a['bass_thresh'])*2)+((1-above(a['bass_att'], a['bass_thresh']))*(((a['bass_thresh']-1.3)*0.96)+1.3))); a['decay']=(a['decay']-(0.05*equal(mod(a['frame'],16), 0))); a['rot']=((a['rot']+div(a['bass_eff'],a['bass_thresh']))-0.05); a['monitor']=a['rot'];",
+ "pixel_eqs_str": "a['zoom']=(pow(bitand((0.8+a['x']),(0.8+a['y'])), bitand((1+a['x']),(1+a['y'])))+0.1);",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1.28,
+  "decay": 0.97,
+  "echo_zoom": 1.006596,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 1,
+  "additivewave": 1,
+  "wave_a": 4.099998,
+  "wave_scale": 0.660119,
+  "wave_smoothing": 0.63,
+  "wave_mystery": -0.2,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoomexp": 100,
+  "zoom": 0.6077,
+  "warp": 0.01,
+  "sx": 0.999999,
+  "sy": 0.9999,
+  "wave_r": 0.6,
+  "wave_g": 0.4,
+  "wave_b": 0.8,
+  "ob_size": 0,
+  "ob_r": 0.01,
+  "ib_size": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 5,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,91 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "thickoutline": 1,
+    "textured": 1,
+    "rad": 1.97883,
+    "tex_zoom": 0.16678,
+    "r": 0.9,
+    "g": 0.9,
+    "b": 0.9,
+    "a": 0.33,
+    "r2": 0.9,
+    "g2": 0.9,
+    "b2": 0.9,
+    "a2": 1,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['dbass'] = 0; a['angc'] = 0; ",
+   "frame_eqs_str": "a['dbass']=((0.5*a['dbass'])+(0.5*a['bass'])); a['angc']=(a['angc']+(0.075*a['dbass'])); a['ang']=(a['angc']+(0.1*a['time']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['cross'] = 0; a['rect'] = 0; a['ring'] = 0; a['box'] = 0; a['q1'] = 0; a['q2'] = 0; a['q3'] = 0; a['q1']=(randint(2)-1); a['q2']=(randint(2)-1); a['q3']=(randint(2)-1);",
+ "frame_eqs_str": "a['warp']=0; a['wave_r']=(0.5+(0.5*Math.sin((0.66*a['time'])))); a['wave_g']=(0.5+(0.5*Math.sin((0.33*a['time'])))); a['wave_b']=((0.5*0.5)*Math.sin(a['time']));",
+ "pixel_eqs_str": "a['cross']=((above(a['x'], 0.45)*below(a['x'], 0.55))+(above(a['y'], 0.45)*below(a['y'], 0.55))); a['rect']=(((above(a['x'], 0.3)*below(a['x'], 0.7))*below(a['y'], 0.7))*above(a['y'], 0.3)); a['ring']=(above(0.3, a['rad'])*below(0.15, a['rad'])); a['box']=(((-a['cross']*a['q1'])-(a['rect']*a['q2']))+(a['ring']*a['q3'])); a['sx']=(1+(0.025*a['box'])); a['sy']=(1+(0.025*a['box']));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 3.4,
+  "echo_zoom": 0.249,
+  "echo_alpha": 0.3,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "darken_center": 1,
+  "brighten": 1,
+  "darken": 1,
+  "solarize": 1,
+  "wave_scale": 1.817,
+  "wave_smoothing": 0.45,
+  "wave_mystery": -0.24,
+  "zoomexp": 0.10429,
+  "fshader": 1,
+  "zoom": 1.07213,
+  "rot": 1,
+  "sx": 0.90529,
+  "sy": 0.90529,
+  "ob_size": 0,
+  "ob_a": 0.1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

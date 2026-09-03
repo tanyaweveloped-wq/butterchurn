@@ -1,0 +1,78 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.250*((0.60*Math.sin((2.137*a['time'])))+(0.40*Math.sin((1.770*a['time'])))))); a['wave_r']=((Math.abs(above(0.1, Math.max(0, (Math.max(a['bass'], a['bass_att'])-1))))>0.00001)?(a['wave_r']):(1)); a['wave_g']=(a['wave_g']+(0.300*((0.60*Math.sin((1.944*a['time'])))+(0.40*Math.sin((1.541*a['time'])))))); a['wave_b']=(a['wave_b']+(0.250*((0.60*Math.sin((1.251*a['time'])))+(0.40*Math.sin((1.655*a['time'])))))); a['rot']=(a['rot']+(0.010*((0.60*Math.sin((0.381*a['time'])))+(0.40*Math.sin((0.579*a['time'])))))); a['cx']=(a['cx']+(0.410*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.294*a['time'])))))); a['cy']=(a['cy']+(0.410*((0.60*Math.sin((0.393*a['time'])))+(0.40*Math.sin((0.223*a['time'])))))); a['dx']=(a['dx']+(0.010*((0.60*Math.sin((0.234*a['time'])))+(0.40*Math.sin((0.277*a['time'])))))); a['dy']=(a['dy']+(0.010*((0.60*Math.sin((0.284*a['time'])))+(0.40*Math.sin((0.247*a['time'])))))); a['wave_y']=(0.4+div(Math.max(0, (Math.max(a['bass'], a['bass_att'])-1)),5));",
+ "pixel_eqs_str": "a['zoom']=((1+div(Math.sin(a['rad']),10))+div(Math.max(0, (Math.max(a['bass'], a['bass_att'])-1)),5));",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_a": 4,
+  "wave_scale": 0.01,
+  "wave_smoothing": 0.72,
+  "warpanimspeed": 2.630066,
+  "warpscale": 3.072679,
+  "zoomexp": 2.155454,
+  "zoom": 1.254862,
+  "dy": -0.005,
+  "warp": 7.494019,
+  "wave_r": 0,
+  "wave_g": 0.57,
+  "wave_y": 0.53,
+  "mv_x": 10.879999,
+  "mv_y": 11.52,
+  "mv_l": 5,
+  "mv_r": 0,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

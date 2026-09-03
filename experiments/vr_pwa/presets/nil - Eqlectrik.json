@@ -1,0 +1,76 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.400*((0.60*Math.sin((0.933*a['time'])))+(0.40*Math.sin((1.045*a['time'])))))); a['wave_g']=(a['wave_g']+(0.400*((0.60*Math.sin((0.900*a['time'])))+(0.40*Math.sin((0.956*a['time'])))))); a['wave_b']=(a['wave_b']+(0.400*((0.60*Math.sin((0.910*a['time'])))+(0.40*Math.sin((0.920*a['time'])))))); a['cx']=Math.sin((1.432*a['time'])); a['cy']=Math.cos((1.732*a['time']));",
+ "pixel_eqs_str": "a['dx']=(Math.sin(((a['y']*63)*Math.cos((a['x']*a['time']))))*0.01); a['dy']=(Math.sin(((a['x']*63)*Math.sin((a['y']*a['time']))))*0.01);",
+ "baseVals": {
+  "rating": 2,
+  "decay": 0.995,
+  "echo_zoom": 1.037097,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 2,
+  "darken": 1,
+  "wave_a": 3.5,
+  "wave_scale": 3.221308,
+  "wave_smoothing": 0,
+  "wave_mystery": -1,
+  "warpanimspeed": 0.01,
+  "warpscale": 100,
+  "zoomexp": 0.999837,
+  "fshader": 1,
+  "zoom": 1.000196,
+  "rot": 0.02,
+  "warp": 0.01,
+  "wave_r": 0.6,
+  "wave_g": 0.6,
+  "wave_b": 0.6,
+  "wave_y": 0.47,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

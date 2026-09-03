@@ -1,0 +1,74 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['billy']=100;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.3*Math.sin((a['time']*0.345)))); a['wave_g']=(a['wave_g']+(0.3*Math.sin((a['time']*0.425)))); a['wave_b']=(a['wave_b']+(0.3*Math.sin((a['time']*0.515)))); a['decay']=(a['decay']-(0.03*equal(mod(Math.floor(a['frame']),2), 0))); a['rot']=(a['rot']+(0.02*Math.sin((a['time']*0.05))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 1,
+  "gammaadj": 1.994,
+  "decay": 1,
+  "wave_mode": 1,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "darken_center": 1,
+  "solarize": 1,
+  "wave_scale": 0.4783,
+  "wave_smoothing": 0.9,
+  "wave_mystery": -0.36,
+  "zoom": 1.036087,
+  "warp": 0.000715,
+  "wave_r": 0.7,
+  "wave_g": 0.7,
+  "wave_b": 0.7,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

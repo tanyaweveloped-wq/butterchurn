@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['angval'] = 0; a['angval2'] = 0; a['minute_dir'] = 0; a['last_time'] = 0; a['q1'] = 0; a['hour_dir'] = 0; a['bass_thresh'] = 0; a['bass_time'] = 0; a['q2'] = 0; a['q3'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['dx']=-0.0005; a['dy']=-0.0005; a['wave_r']=(a['wave_r']+(0.350*((0.60*Math.sin((0.823*a['time'])))+(0.40*Math.sin((0.916*a['time'])))))); a['wave_g']=(a['wave_g']+(0.350*((0.60*Math.sin((0.900*a['time'])))+(0.40*Math.sin((1.023*a['time'])))))); a['wave_b']=(a['wave_b']+(0.350*((0.60*Math.sin((0.808*a['time'])))+(0.40*Math.sin((0.949*a['time'])))))); a['bass_time']=(a['bass_time']+(((Math.abs(above(a['treb_att'], 1.2))>0.00001)?((2*a['treb_att'])):(1))*(a['time']-a['last_time']))); a['q1']=a['bass_time']; a['last_time']=a['time']; a['bass_thresh']=((above(a['bass_att'], a['bass_thresh'])*2)+((1-above(a['bass_att'], a['bass_thresh']))*(((a['bass_thresh']-1.3)*0.99)+1.3))); a['minute_dir']=((Math.abs(equal(a['minute_dir'], 0))>0.00001)?(-1):(((Math.abs(equal(a['bass_thresh'], 2))>0.00001)?(sign(Math.sin(a['time']))):(a['minute_dir'])))); a['hour_dir']=((Math.abs(equal(a['hour_dir'], 0))>0.00001)?(-1):(((Math.abs(equal(a['bass_thresh'], 2))>0.00001)?(sign(Math.cos(a['time']))):(a['hour_dir'])))); a['q2']=a['minute_dir']; a['q3']=a['hour_dir'];",
+ "pixel_eqs_str": "a['angval']=div(0.3,sqrt(((3.14*Math.tan((((a['q2']*a['ang'])*0.5)-a['q1'])))+4))); a['angval2']=div(0.3,sqrt(((3.14*Math.tan(((((a['q3']*a['ang'])*0.5)-div(a['q1'],12))+1.2)))+4))); a['zoom']=(0.8+(3*sqr(a['angval']))); a['zoom']=(a['zoom']+((Math.abs(below(a['rad'], 0.4))>0.00001)?((3*sqr(a['angval2']))):(0))); a['rot']=(0.1*(Math.sin(a['angval'])-Math.sin(a['angval2'])));",
+ "baseVals": {
+  "rating": 3,
+  "decay": 0.97,
+  "echo_zoom": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "bmotionvectorson": 0,
+  "wave_a": 1,
+  "wave_scale": 0.741922,
+  "wave_mystery": -0.5,
+  "zoomexp": 0.248317,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0
+ },
+ "warp": "",
+ "comp": ""
+}

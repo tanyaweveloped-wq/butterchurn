@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['myval'] = 0; a['q1'] = 0; a['state'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['state']=((Math.abs(above(a['bass_att'], 1.3))>0.00001)?((2+a['bass'])):(((Math.abs(above(a['treb_att'], 1.3))>0.00001)?(2):(1)))); a['wave_b']=((Math.abs(above(a['state'], 2.5))>0.00001)?((0.2+(0.2*Math.sin(a['time'])))):(((Math.abs(equal(a['state'], 3))>0.00001)?((0.9+(0.1*Math.sin(a['time'])))):((0.6+(0.08*Math.sin(a['time']))))))); a['wave_g']=((Math.abs(above(a['state'], 2))>0.00001)?(0):(((Math.abs(equal(a['state'], 2))>0.00001)?(0):(0.29)))); a['wave_r']=((Math.abs(above(a['state'], 1))>0.00001)?((0.75+(0.1*Math.sin((a['time']*0.55))))):(0)); a['zoom']=((Math.abs(above((a['bass_att']+a['treb']), 2))>0.00001)?((1+div(Math.cos((a['state']*1.3)),10))):((1-div(Math.sin((a['state']*1.5)),10)))); a['q1']=a['state']; a['wave_mystery']=(div(a['time'],3)+div(a['bass'],10)); a['wave_x']=(a['wave_x']+(0.3*Math.sin((a['time']*0.876)))); a['wave_y']=(a['wave_y']+(0.3*Math.sin((a['time']*0.654))));",
+ "pixel_eqs_str": "a['myval']=(a['q1']+div(Math.sin(div(a['time'],3)),10)); a['zoom']=((2+((Math.abs(above(a['myval'], 3))>0.00001)?(div(Math.sin(pow(-a['rad'], 5)),10)):(Math.sin(-a['rad']))))+((Math.sin(((a['rad']*10)*Math.sin(a['time'])))*a['bass_att'])*0.3)); a['rot']=((Math.abs(above(a['myval'], 3))>0.00001)?(div(Math.sin(a['rad']),20)):(div(Math.cos(a['x']),10))); a['sx']=(1+Math.cos(((a['x']*10)*Math.sin(div(a['time'],3)))));",
+ "baseVals": {
+  "rating": 4,
+  "decay": 0.978,
+  "echo_zoom": 0.99951,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 2,
+  "additivewave": 1,
+  "bmotionvectorson": 0,
+  "wave_a": 2.781664,
+  "wave_scale": 0.620217,
+  "wave_smoothing": 0.36,
+  "zoomexp": 6.811273,
+  "fshader": 0.2,
+  "zoom": 1.009898,
+  "cx": 0.47,
+  "sx": 0.99,
+  "sy": 0.446651,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "wave_y": 0.45,
+  "ib_size": 0,
+  "ib_r": 0.5,
+  "ib_g": 0.5,
+  "ib_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

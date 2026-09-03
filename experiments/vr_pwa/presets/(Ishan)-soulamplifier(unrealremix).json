@@ -1,0 +1,83 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['ob_r']=(Math.sin((a['time']*1.53))*0.3); a['ob_g']=(Math.sin((a['time']*1.73))*0.3); a['ob_b']=(Math.sin((a['time']*1.93))*0.3); a['ib_r']=a['ob_b']; a['ib_g']=a['ob_r']; a['ib_b']=a['ob_g'];",
+ "pixel_eqs_str": "a['rot']=sqrt((Math.cos((a['ang']*3))+a['rot'])); a['zoom']=(Math.cos(pow(a['rad'], 3))-0.3); a['rot']=((a['rot']+Math.sin((a['rad']*2)))+a['time']); a['zoom']=(a['zoom']+(a['bass_att']*0.1));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.76,
+  "echo_zoom": 0.85282,
+  "echo_alpha": 0.5,
+  "wave_mode": 5,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "solarize": 1,
+  "invert": 1,
+  "wave_a": 0.001,
+  "wave_scale": 1.285751,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "warp": 0.01,
+  "wave_r": 0.65,
+  "wave_g": 0.65,
+  "wave_b": 0.65,
+  "ob_size": 0.1,
+  "ob_r": 0.11,
+  "ob_g": 0.5,
+  "ob_b": 0.8,
+  "ob_a": 1,
+  "ib_size": 0.05,
+  "ib_a": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

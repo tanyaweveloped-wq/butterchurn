@@ -1,0 +1,86 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['zoom']=(a['zoom']*a['bass_att']); a['rot']=((0.2*a['treb_att'])-(0.3*Math.sin(a['treb']))); a['wave_b']=(a['bass_att']-1); a['wave_g']=(a['treb_att']-1); a['wave_r']=((2*a['mid'])-(0.2*Math.max(a['wave_b'], a['wave_g'])));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 2.000992,
+  "decay": 0.9,
+  "echo_alpha": 0.29,
+  "wave_mode": 3,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "darken_center": 1,
+  "bmotionvectorson": 0,
+  "mv_x": 1,
+  "mv_y": 2,
+  "wave_a": 100,
+  "wave_scale": 0.404374,
+  "wave_smoothing": 0,
+  "wave_mystery": 1,
+  "modwavealphastart": 1.1,
+  "modwavealphaend": 2,
+  "warpscale": 4.574824,
+  "zoomexp": 100,
+  "fshader": 1,
+  "zoom": 0.869789,
+  "dx": 0.005,
+  "warp": 1.567673,
+  "wave_r": 0.7,
+  "wave_g": 0.3,
+  "wave_b": 0.3,
+  "ib_size": 0.04,
+  "ib_a": 0.19
+ },
+ "warp": "",
+ "comp": ""
+}

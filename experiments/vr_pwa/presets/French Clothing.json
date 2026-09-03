@@ -1,0 +1,71 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['q1'] = 0; a['q2'] = 0; a['q3'] = 0; a['q4'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.250*((0.60*Math.sin((2.137*a['time'])))+(0.40*Math.sin((1.770*a['time'])))))); a['wave_g']=(a['wave_g']+(0.300*((0.60*Math.sin((1.944*a['time'])))+(0.40*Math.sin((1.541*a['time'])))))); a['wave_b']=(a['wave_b']+(0.250*((0.60*Math.sin((1.251*a['time'])))+(0.40*Math.sin((1.655*a['time'])))))); a['q1']=(a['cx']+(0.410*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.294*a['time'])))))); a['q2']=(a['cy']+(0.410*((0.60*Math.sin((0.393*a['time'])))+(0.40*Math.sin((0.223*a['time'])))))); a['q3']=(a['dx']+(0.010*((0.60*Math.sin((0.234*a['time'])))+(0.40*Math.sin((0.277*a['time'])))))); a['q4']=(a['dy']+(0.010*((0.60*Math.sin((0.284*a['time'])))+(0.40*Math.sin((0.247*a['time'])))))); a['decay']=(a['decay']-(0.01*equal(mod(a['frame'],6), 0)));",
+ "pixel_eqs_str": "a['cx']=((Math.abs(above(Math.sin((a['time']*1.321)), 0))>0.00001)?(a['q1']):(a['cx'])); a['cy']=((Math.abs(above(Math.sin((a['time']*1.432)), 0))>0.00001)?(a['q2']):(a['cx'])); a['dx']=((Math.abs(above(Math.sin((a['time']*1.543)), 0))>0.00001)?(a['q3']):(a['dx'])); a['dy']=((Math.abs(above(Math.sin((a['time']*1.654)), 0))>0.00001)?(a['q4']):(a['dy'])); a['rot']=((Math.abs(above(Math.sin((a['time']*3.888)), 0))>0.00001)?((a['rot']-(0.2*Math.cos(((a['x']*2)-1))))):((0.2*Math.sin((a['time']*4.216))))); a['zoom']=(a['zoom']-((0.043*Math.cos(((a['x']*2)-1)))*Math.sin((a['time']*1.21))));",
+ "baseVals": {
+  "rating": 2,
+  "wave_mode": 1,
+  "bmotionvectorson": 0,
+  "wave_a": 3.5,
+  "wave_scale": 0.478,
+  "wave_smoothing": 0.5,
+  "warpscale": 3.138,
+  "zoomexp": 6.811278,
+  "zoom": 1.000678,
+  "dy": -0.005,
+  "warp": 2.117467,
+  "wave_g": 0.57,
+  "wave_b": 0,
+  "wave_y": 0.47
+ },
+ "warp": "",
+ "comp": ""
+}

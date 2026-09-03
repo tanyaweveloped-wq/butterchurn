@@ -1,0 +1,143 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "rad": 0.150327,
+    "g": 1,
+    "b": 1,
+    "r2": 1,
+    "g2": 0,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['x']=(a['x']-(0.075*Math.sin(((a['bass']+a['mid'])+a['treble'])))); a['y']=(a['y']-(0.12*Math.sin(a['time']))); a['r']=(0.001*Math.floor(randint(1000))); a['g']=(0.001*Math.floor(randint(1000))); a['b']=(0.001*Math.floor(randint(1000)));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "x": 0.4999,
+    "rad": 0.150225,
+    "g": 1,
+    "b": 1,
+    "border_r": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['x']=(a['x']-(0.075*Math.sin(((a['bass']+a['mid'])+a['treble'])))); a['y']=(a['y']+(0.12*Math.sin(a['time']))); a['r']=(0.001*Math.floor(randint(1000))); a['g']=(0.001*Math.floor(randint(1000))); a['b']=(0.001*Math.floor(randint(1000)));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "rad": 0.150375,
+    "g": 1,
+    "b": 1,
+    "g2": 0,
+    "b2": 1,
+    "border_r": 0,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['x']=(a['x']+(0.075*Math.sin(((a['bass']+a['mid'])+a['treble'])))); a['y']=(a['y']-(0.12*Math.sin(a['time']))); a['r']=(0.001*Math.floor(randint(1000))); a['g']=(0.001*Math.floor(randint(1000))); a['b']=(0.001*Math.floor(randint(1000)));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "rad": 0.150375,
+    "g": 1,
+    "b": 1,
+    "g2": 0,
+    "a2": 0.25,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['x']=(a['x']+(0.075*Math.sin(((a['bass']+a['mid'])+a['treble'])))); a['y']=(a['y']+(0.12*Math.sin(a['time']))); a['r']=(0.001*Math.floor(randint(1000))); a['g']=(0.001*Math.floor(randint(1000))); a['b']=(0.001*Math.floor(randint(1000)));"
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sep": 256,
+    "additive": 1,
+    "scaling": 5.995786,
+    "smoothing": 0,
+    "a": 0.5
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['r']=(0.01*Math.floor(randint(100))); a['g']=(0.01*Math.floor(randint(100))); a['b']=(0.01*Math.floor(randint(100)));",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "scaling": 100,
+    "smoothing": 0,
+    "r": 0,
+    "g": 0,
+    "b": 0,
+    "a": 0.1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['treble'] = 0; a['zoom']=0.995;",
+ "frame_eqs_str": "a['rot']=(a['rot']+(0.1*Math.sin(a['time']))); a['cx']=a['treble']; a['cy']=a['treble'];",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 5,
+  "gammaadj": 1,
+  "decay": 0.995,
+  "echo_zoom": 2.003089,
+  "echo_orient": 3,
+  "wave_brighten": 0,
+  "wave_a": 1,
+  "wave_scale": 0.1996,
+  "wave_smoothing": 0,
+  "wave_mystery": -1,
+  "modwavealphastart": 2,
+  "modwavealphaend": 2,
+  "warpanimspeed": 0.01,
+  "warpscale": 100,
+  "zoomexp": 8.081383,
+  "fshader": 0.5,
+  "zoom": 0.9531,
+  "warp": 3.544926,
+  "ob_size": 0,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 0,
+  "mv_r": 0,
+  "mv_g": 0,
+  "mv_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

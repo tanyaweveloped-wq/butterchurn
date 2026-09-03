@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['thresh'] = 0; a['dx_r'] = 0; a['dy_r'] = 0; a['wx'] = 0; a['wy'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(0.5+(0.5*Math.sin((6*a['time'])))); a['wave_g']=(0.5+(0.5*Math.sin((4.1*a['time'])))); a['wave_b']=(-1+(((1-a['wave_r'])+1)-a['wave_g'])); a['warp']=0; a['ob_r']=(1-Math.abs(a['wave_r'])); a['ob_b']=(1-Math.abs(a['wave_b'])); a['ob_g']=(1-Math.abs(a['wave_g'])); a['echo_zoom']=(a['echo_zoom']+Math.sin(a['bass_att']));",
+ "pixel_eqs_str": "a['thresh']=((above(a['bass_att'], a['thresh'])*2)+((1-above(a['bass_att'], a['thresh']))*(((a['thresh']-1.3)*0.96)+1.3))); a['dx_r']=(((equal(a['thresh'], 2)*0.015)*Math.sin((5*a['time'])))+((1-equal(a['thresh'], 2))*a['dx_r'])); a['dy_r']=(((equal(a['thresh'], 2)*0.015)*Math.sin((6*a['time'])))+((1-equal(a['thresh'], 2))*a['dy_r'])); a['wx']=(((0.2*Math.cos(a['time']))*5)*((0.5*Math.sin(a['time']))-a['x'])); a['wy']=(((0.2*Math.sin((1.2*a['time'])))*5)*((0.5*Math.cos(a['time']))-a['y'])); a['rot']=(a['rot']+(a['dx_r']*Math.abs((((a['dy_r']*4)-a['treb_att'])-a['thresh'])))); a['zoom']=(a['zoom']+(0.05*Math.sin((4-(((4*Math.cos((0.5-(((((a['rad']*Math.cos(Math.tan(((14*a['dx_r'])*a['bass_att']))))*Math.cos((1.12*a['time'])))*a['rad'])*14)*a['rad']))))*16)*a['dx_r']))))); a['rot']=(a['rot']+a['dx_r']); a['rot']=(a['rot']+a['dy_r']); a['dx']=(a['dx']+(1.1*a['dx_r'])); a['dy']=(a['dy']+(1.1*a['dy_r'])); a['rot']=(a['rot']+((above(a['bass_att'], 0.825)*0.2)*Math.tan(Math.cos((4*a['time']))))); a['warp']=(a['warp']+(above(a['bass_att'], 1.3)*2)); a['zoom']=(a['zoom']-((((above(a['bass_att'], 1.2)*1.2)*Math.cos((2-Math.abs(((a['rad']*2)-a['time'])))))*a['wx'])*a['rad']));",
+ "baseVals": {
+  "rating": 4,
+  "gammaadj": 1,
+  "decay": 0.995,
+  "echo_zoom": 1,
+  "echo_orient": 3,
+  "wave_mode": 5,
+  "wave_a": 100,
+  "wave_scale": 0.721422,
+  "wave_smoothing": 0.5,
+  "modwavealphastart": 0.5,
+  "modwavealphaend": 1,
+  "warpanimspeed": 0.027817,
+  "warpscale": 0.905287,
+  "dx": 0.00001,
+  "dy": 0.00001,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0.005,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 0,
+  "mv_y": 0,
+  "mv_l": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

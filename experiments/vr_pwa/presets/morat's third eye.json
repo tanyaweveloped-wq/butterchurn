@@ -1,0 +1,78 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['old_treb_flop'] = 0; a['treb_effect'] = 0; a['bass_flop'] = 0; a['q1'] = 0; a['treb_flop'] = 0; a['bass_thresh'] = 0; a['old_bass_flop'] = 0; a['treb_thresh'] = 0; a['pulse'] = 0; a['net_effect'] = 0; a['bass_changed'] = 0; a['mid_thresh'] = 0; a['bass_effect'] = 0; a['mid_changed'] = 0; a['entropy'] = 0; a['old_mid_flop'] = 0; a['chaos'] = 0; a['mid_flop'] = 0; a['treb_changed'] = 0; a['q3'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['old_bass_flop']=a['bass_flop']; a['old_treb_flop']=a['treb_flop']; a['old_mid_flop']=a['mid_flop']; a['chaos']=(0.9+(0.1*Math.sin(a['pulse']))); a['entropy']=((Math.abs(bnot(a['entropy']))>0.00001)?(1):(((Math.abs(equal(a['pulse'], -20))>0.00001)?((1+randint(6))):(a['entropy'])))); a['bass_thresh']=((above(a['bass_att'], a['bass_thresh'])*2)+((1-above(a['bass_att'], a['bass_thresh']))*(((a['bass_thresh']-1.3)*a['chaos'])+1.3))); a['bass_flop']=Math.abs((a['bass_flop']-equal(a['bass_thresh'], 2))); a['treb_thresh']=((above(a['treb_att'], a['treb_thresh'])*2)+((1-above(a['treb_att'], a['treb_thresh']))*(((a['treb_thresh']-1.3)*a['chaos'])+1.3))); a['treb_flop']=Math.abs((a['treb_flop']-equal(a['treb_thresh'], 2))); a['mid_thresh']=((above(a['mid_att'], a['mid_thresh'])*2)+((1-above(a['mid_att'], a['mid_thresh']))*(((a['mid_thresh']-1.3)*a['chaos'])+1.3))); a['mid_flop']=Math.abs((a['mid_flop']-equal(a['mid_thresh'], 2))); a['bass_changed']=bnot(equal(a['old_bass_flop'], a['bass_flop'])); a['mid_changed']=bnot(equal(a['old_mid_flop'], a['mid_flop'])); a['treb_changed']=bnot(equal(a['old_treb_flop'], a['treb_flop'])); a['pulse']=((Math.abs(above(Math.abs(a['pulse']), 20))>0.00001)?(-20):(((a['pulse']+(0.08*bor((bor((a['bass_changed']*bnot(a['treb_changed'])), (a['treb_changed']*bnot(a['bass_changed'])))*bnot(a['mid_changed'])), a['mid_changed'])))+(((a['mid']+a['bass'])+a['treb'])*0.03)))); a['q3']=Math.sin(a['pulse']); a['wave_r']=(a['wave_r']+((0.25*(((0.6*Math.sin((0.784*a['time'])))*a['bass_flop'])+(0.4*Math.sin((0.986*a['time'])))))*a['treb_flop'])); a['wave_g']=(a['wave_g']+((0.25*(((0.6*Math.sin((0.671*a['time'])))*a['treb_flop'])+(0.4*Math.sin((1.164*a['time'])))))*a['bass_flop'])); a['wave_b']=(a['wave_b']+((0.25*(((0.6*Math.sin((1.423*a['time'])))*a['mid_changed'])+(0.4*Math.sin((0.687*a['time'])))))*a['mid_flop'])); a['wave_y']=((Math.abs(a['bass_flop'])>0.00001)?((a['wave_y']+((randint(10)*0.1)*Math.sin((a['time']*3))))):(a['wave_y'])); a['bass_effect']=((Math.abs(a['bass_flop'])>0.00001)?(pow(1.1, a['bass_att'])):(1)); a['treb_effect']=((Math.abs(a['treb_flop'])>0.00001)?(pow(0.97, a['treb_att'])):(1)); a['net_effect']=((Math.abs(a['mid_flop'])>0.00001)?(a['bass_effect']):(a['treb_effect'])); a['zoom']=a['net_effect']; a['q1']=((a['bass_flop']+a['mid_flop'])+a['treb_flop']);",
+ "pixel_eqs_str": "a['rot']=(a['rot']+(0.1*Math.cos(((a['q1']*a['time'])*0.3)))); a['zoom']=(a['zoom']+(Math.sin(((a['rad']*3)*a['q1']))*0.1));",
+ "baseVals": {
+  "rating": 3,
+  "decay": 1,
+  "echo_zoom": 1,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "modwavealphabyvolume": 1,
+  "wave_brighten": 0,
+  "bmotionvectorson": 0,
+  "wave_a": 1.81669,
+  "wave_scale": 1.5991,
+  "modwavealphastart": 0.85,
+  "modwavealphaend": 1.95,
+  "wave_r": 0.4,
+  "wave_g": 0.4,
+  "wave_b": 0.4,
+  "ob_size": 0.005,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0
+ },
+ "warp": "",
+ "comp": ""
+}

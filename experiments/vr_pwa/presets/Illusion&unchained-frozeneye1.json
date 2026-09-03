@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['bass_on'] = 0; a['treb_on'] = 0; a['state'] = 0; a['bass_effect'] = 0; a['treb_effect'] = 0; a['net_effect'] = 0; a['wave_size'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['bass_on']=((Math.abs(above(a['bass_att'], 1.3))>0.00001)?(1):(0)); a['treb_on']=((Math.abs(above(a['treb_att'], 1.3))>0.00001)?(1):(0)); a['state']=(1+a['bass']); a['wave_r']=(a['wave_r']+((0.25*((0.6*Math.sin((0.784*a['time'])))+(0.4*Math.sin((0.986*a['time'])))))*a['state'])); a['wave_g']=(a['wave_g']+((0.25*((0.6*Math.sin((0.671*a['time'])))+(0.4*Math.sin((1.164*a['time'])))))*(4-a['state']))); a['wave_b']=(a['wave_b']+((0.25*((0.6*Math.sin((1.423*a['time'])))+(0.4*Math.sin((0.687*a['time'])))))*div(4,a['state']))); a['wave_y']=((Math.abs(equal(a['state'], 1))>0.00001)?((a['wave_y']+((randint(10)*0.1)*Math.sin((a['time']*3))))):(a['wave_y'])); a['bass_effect']=((Math.abs(above(a['bass_att'], 1.4))>0.00001)?(pow(1.1, a['bass_att'])):(1)); a['treb_effect']=((Math.abs(above(a['treb_att'], 1.4))>0.00001)?(pow(0.97, a['treb_att'])):(1)); a['net_effect']=((Math.abs(above(a['bass_att'], (0.8*a['treb_att'])))>0.00001)?(a['bass_effect']):(a['treb_effect'])); a['zoom']=(0.99*a['net_effect']); a['rot']=((0.03*a['net_effect'])*Math.sin(a['time'])); a['wave_size']=((6*a['state'])+3);",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 1,
+  "echo_zoom": 1,
+  "echo_orient": 3,
+  "additivewave": 1,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "darken_center": 1,
+  "wave_a": 1,
+  "wave_scale": 1.599179,
+  "modwavealphastart": 0.85,
+  "modwavealphaend": 1.95,
+  "zoomexp": 3.072695,
+  "fshader": 1,
+  "wave_r": 0.41,
+  "wave_g": 0.4,
+  "wave_b": 0.4,
+  "ob_size": 0.005,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

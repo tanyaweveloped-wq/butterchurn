@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['bass_q1'] = 0; a['abs_bass_q1'] = 0; a['mid_q1'] = 0; a['abs_mid_q1'] = 0;",
+ "frame_eqs_str": "a['wave_r']=Math.sin(a['bass']); a['wave_g']=Math.cos(a['mid']); a['wave_b']=Math.tan(a['treb']); a['bass_q1']=div(a['bass_att'],a['bass']); a['abs_bass_q1']=Math.abs((1-a['bass_q1'])); a['dx']=((Math.abs(below(a['bass_q1'], 1))>0.00001)?((a['abs_bass_q1']*-1)):((a['abs_bass_q1']*0.1))); a['mid_q1']=div(a['mid_att'],a['mid']); a['abs_mid_q1']=Math.abs((1-a['mid_q1'])); a['dy']=((Math.abs(above(a['mid_q1'], 1))>0.00001)?((a['abs_mid_q1']*0.1)):((a['abs_mid_q1']*-1)));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 0,
+  "gammaadj": 1.7,
+  "decay": 0.9,
+  "echo_zoom": 0.999608,
+  "wave_mode": 3,
+  "wave_brighten": 0,
+  "darken": 1,
+  "wave_a": 0.999744,
+  "wave_scale": 0.500381,
+  "wave_smoothing": 0,
+  "modwavealphastart": 2,
+  "modwavealphaend": 2,
+  "warp": 0.01,
+  "sy": 0.990097,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,96 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=((Math.abs(below(mod(a['frame'],3), 2))>0.00001)?((0.7+(0.3*Math.sin(a['time'])))):(1)); a['wave_g']=((Math.abs(below(mod(a['frame'],3), 2))>0.00001)?(0.4):(0.4)); a['wave_b']=((Math.abs(below(mod(a['frame'],3), 2))>0.00001)?(0):((0.7+(0.3*Math.sin(a['time']))))); a['wave_mode']=((Math.abs(below(mod(a['frame'],3), 2))>0.00001)?(6):(7)); a['zoom']=(a['zoom']+((((a['bass']+a['mid'])+a['treb'])*((a['bass']+a['mid'])+a['treb']))*0.01)); a['wave_mystery']=Math.abs(Math.sin(a['time']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 2.400001,
+  "decay": 0.969999,
+  "echo_zoom": 19.788378,
+  "echo_alpha": 0.3,
+  "echo_orient": 1,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wrap": 0,
+  "solarize": 1,
+  "invert": 1,
+  "wave_a": 0.631569,
+  "wave_scale": 0.397113,
+  "wave_smoothing": 0,
+  "wave_mystery": 1,
+  "modwavealphastart": 0.5,
+  "modwavealphaend": 1,
+  "warpanimspeed": 100,
+  "warpscale": 0.14057,
+  "fshader": 1,
+  "rot": 0.002,
+  "cx": 1.340001,
+  "cy": 0.74,
+  "dx": 0.00001,
+  "dy": 0.00001,
+  "warp": 0.484544,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0.005,
+  "ob_a": 1,
+  "ib_size": 0.5,
+  "ib_r": 1,
+  "ib_g": 1,
+  "ib_b": 1,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

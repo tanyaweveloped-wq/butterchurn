@@ -1,0 +1,88 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thick": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['q1'] = 0; a['speed'] = 0; a['v'] = 0; a['xs'] = 0; a['ys'] = 0; a['smaple'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['q1']=0; a['speed']=0.03; a['v']=(((a['sample']*800)*a['value2'])*a['bass']); a['xs']=(a['xs']+((equal(0, a['q1'])*Math.sin((a['v']*0.1)))*a['speed'])); a['ys']=(a['ys']+((equal(0, a['q1'])*Math.cos((a['v']*0.1)))*a['speed'])); a['x']=(0.5+(0.5*Math.sin((a['xs']*0.1)))); a['y']=(0.5+(0.5*Math.sin((a['ys']*0.1)))); a['r']=(0.25+((0.5*Math.sin((a['time']*1.22)))*a['value1'])); a['g']=(0.25+((0.5*Math.sin((a['time']*1.307)))*a['smaple'])); a['b']=(0.25+(0.5*Math.sin((a['time']*1.959)))); a['xs']=((Math.abs(above(a['xs'], 100))>0.00001)?(0):(a['xs'])); a['ys']=((Math.abs(above(a['ys'], 100))>0.00001)?(0):(a['ys']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thick": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['q1'] = 0; a['speed'] = 0; a['v'] = 0; a['xs'] = 0; a['ys'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['q1']=0; a['speed']=0.032; a['v']=(((a['sample']*800)*a['value2'])*a['bass']); a['xs']=(a['xs']+((equal(0, a['q1'])*Math.sin((a['v']*0.1)))*a['speed'])); a['ys']=(a['ys']+((equal(0, a['q1'])*Math.cos((a['v']*0.1)))*a['speed'])); a['x']=(0.5+(0.5*Math.sin((a['xs']*0.1)))); a['y']=(0.5+(0.5*Math.sin((a['ys']*0.1)))); a['r']=(0.3+((0.5*Math.sin((a['time']*1.22)))*a['value2'])); a['g']=(0.3+(0.5*Math.sin((a['time']*1.307)))); a['b']=(0.3+((0.5*Math.sin((a['time']*1.689)))*a['sample'])); a['xs']=((Math.abs(above(a['xs'], 100))>0.00001)?(0):(a['xs'])); a['ys']=((Math.abs(above(a['ys'], 100))>0.00001)?(0):(a['ys']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thick": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['q1'] = 0; a['speed'] = 0; a['v'] = 0; a['xs'] = 0; a['ys'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['q1']=0; a['speed']=0.034; a['v']=(((a['sample']*800)*a['value2'])*a['bass']); a['xs']=(a['xs']+((equal(0, a['q1'])*Math.sin((a['v']*0.1)))*a['speed'])); a['ys']=(a['ys']+((equal(0, a['q1'])*Math.cos((a['v']*0.1)))*a['speed'])); a['x']=(0.5+(0.5*Math.sin((a['xs']*0.1)))); a['y']=(0.5+(0.5*Math.sin((a['ys']*0.1)))); a['r']=(0.35+((0.5*Math.sin((a['time']*1.22)))*a['sample'])); a['g']=(0.35+((0.5*Math.sin((a['time']*1.789)))*a['value1'])); a['b']=(0.35+(0.5*Math.sin((a['time']*1.959)))); a['xs']=((Math.abs(above(a['xs'], 100))>0.00001)?(0):(a['xs'])); a['ys']=((Math.abs(above(a['ys'], 100))>0.00001)?(0):(a['ys']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thick": 1,
+    "smoothing": 0
+   },
+   "init_eqs_str": "a['q1'] = 0; a['speed'] = 0; a['v'] = 0; a['xs'] = 0; a['ys'] = 0; ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['q1']=0; a['speed']=0.036; a['v']=(((a['sample']*800)*a['value2'])*a['bass']); a['xs']=(a['xs']+((equal(0, a['q1'])*Math.sin((a['v']*0.1)))*a['speed'])); a['ys']=(a['ys']+((equal(0, a['q1'])*Math.cos((a['v']*0.1)))*a['speed'])); a['x']=(0.5+(0.5*Math.sin((a['xs']*0.1)))); a['y']=(0.5+(0.5*Math.sin((a['ys']*0.1)))); a['r']=(0.4+(0.5*Math.sin((a['time']*1.578)))); a['g']=(0.4+(0.5*Math.sin((a['time']*1.307)))); a['b']=(0.4+((0.5*Math.sin((a['time']*1.959)))*a['value1'])); a['xs']=((Math.abs(above(a['xs'], 100))>0.00001)?(0):(a['xs'])); a['ys']=((Math.abs(above(a['ys'], 100))>0.00001)?(0):(a['ys']));"
+  }
+ ],
+ "init_eqs_str": "a['state']=0;",
+ "frame_eqs_str": "a['decay']=1;",
+ "pixel_eqs_str": "a['dx']=0; a['dy']=0; a['warp']=(((((((((a['x']-0.25)*(a['y']-0.5))+((a['x']-0.375)*(a['y']-0.375)))+((a['x']-0.5)*(a['y']-0.25)))+((a['x']-0.625)*(a['y']-0.375)))+((a['x']-0.75)*(a['y']-0.5)))+((a['x']-0.625)*(a['y']-0.625)))+((a['x']-0.5)*(a['y']-0.75)))+((a['x']-0.375)*(a['y']-0.625))); a['warp']=((((a['warp']*5)*a['bass'])*a['bass'])*a['bass']); a['zoom']=(1.01-(a['rad']*0.05));",
+ "baseVals": {
+  "rating": 3,
+  "decay": 1,
+  "echo_zoom": 0.9577,
+  "darken": 1,
+  "invert": 1,
+  "wave_a": 0.001,
+  "warpanimspeed": 21.856518,
+  "warpscale": 6.166172,
+  "zoom": 1.01,
+  "dx": 0.015,
+  "warp": 0.0243,
+  "wave_r": 0,
+  "wave_g": 0,
+  "wave_b": 0,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

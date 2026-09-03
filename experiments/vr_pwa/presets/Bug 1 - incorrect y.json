@@ -1,0 +1,78 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['center_x'] = 0; a['center_y'] = 0; a['radius'] = 0; a['d_x'] = 0; a['d_y'] = 0; a['rr'] = 0;",
+ "frame_eqs_str": "",
+ "pixel_eqs_str": "a['center_x']=0.5; a['center_y']=0.3; a['radius']=0.3; a['d_x']=div((div((a['x']-a['center_x']),a['radius'])*4),3); a['d_y']=div((a['y']-a['center_y']),a['radius']); a['rr']=below(((a['d_x']*a['d_x'])+(a['d_y']*a['d_y'])), 1); a['dx']=0; a['dy']=(a['rr']*0.01);",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1,
+  "decay": 0.95,
+  "echo_zoom": 0.999609,
+  "wave_mode": 7,
+  "additivewave": 1,
+  "wave_brighten": 0,
+  "wrap": 0,
+  "wave_a": 0.017394,
+  "wave_scale": 9.406558,
+  "wave_smoothing": 0.63,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 0.999514,
+  "warp": 0.01,
+  "ob_size": 0.1,
+  "ob_r": 0.01,
+  "ob_b": 1,
+  "ib_size": 0.5,
+  "ib_r": 1,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 5,
+  "mv_b": 0
+ },
+ "warp": "",
+ "comp": ""
+}

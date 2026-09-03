@@ -1,0 +1,88 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "scaling": 2.987785
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": "a['x']=(0.5+((0.25*(a['sample']*2))*Math.sin(((a['sample']*100)+(a['time']*10))))); a['y']=(0.5+((0.25*(a['sample']*2))*Math.cos(((a['sample']*100)+(a['time']*10))))); a['r']=(0.5+(0.5*(a['sample']*50))); a['b']=(0.5+(0.5*(a['sample']*10))); a['g']=(0.5+(0.5*(a['sample']*30)));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['du'] = 0; a['q1'] = 0; a['dv'] = 0; a['q2'] = 0; a['dist'] = 0; a['ang2'] = 0; a['mult'] = 0;",
+ "frame_eqs_str": "a['mv_g']=(a['mv_g']+(0.2*((0.60*Math.sin((0.835*a['time'])))+(0.40*Math.sin((1.081*a['time'])))))); a['mv_b']=(a['mv_b']+(0.2*((0.60*Math.sin((0.814*a['time'])))+(0.40*Math.sin((1.011*a['time'])))))); a['q1']=(((a['cx']*2)-1)+(0.6*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.294*a['time'])))))); a['q2']=(((a['cy']*2)-1)+(0.6*((0.60*Math.sin((0.393*a['time'])))+(0.40*Math.sin((0.223*a['time'])))))); a['ob_r']=(1-(0.4*Math.abs(a['q1']))); a['ob_g']=(0.3*Math.abs(a['q2'])); a['ob_b']=(0.4*Math.abs(a['q1'])); a['wave_x']=((1-Math.abs(a['q2']))-0.05); a['wave_y']=((1-Math.abs(a['q1']))-0.06); a['wave_r']=(a['wave_r']+(0.4*((0.60*Math.sin((0.514*a['time'])))+(0.40*Math.sin((1.211*a['time'])))))); a['wave_b']=(a['wave_b']+(0.4*((0.60*Math.sin((0.714*a['time'])))+(0.40*Math.sin(a['q2']))))); a['wave_g']=(a['wave_g']+(0.4*((0.60*Math.sin((10*a['q1'])))+(0.40*Math.sin((10*a['q2']))))));",
+ "pixel_eqs_str": "a['du']=(((a['x']*2)-1)-a['q1']); a['dv']=(((a['y']*2)-1)-a['q2']); a['dist']=sqrt(((a['du']*a['du'])+(a['dv']*a['dv']))); a['ang2']=(Math.atan2(a['du'], a['dv'])+(a['time']*0.15)); a['mult']=(0.6*Math.sin((a['dist']*0.05)));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.9,
+  "echo_zoom": 1.169,
+  "wave_thick": 1,
+  "wave_brighten": 0,
+  "wave_a": 0.001,
+  "wave_scale": 0.01,
+  "wave_smoothing": 0.27,
+  "wave_mystery": -0.38,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoom": 1.004,
+  "warp": 0.19788,
+  "sx": 0.99967,
+  "sy": 0.9999,
+  "ob_size": 0,
+  "ob_r": 1,
+  "ob_a": 0.7,
+  "ib_size": 0,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "ib_a": 1,
+  "mv_x": 64,
+  "mv_y": 48,
+  "mv_l": 0.85,
+  "mv_r": 0.4999,
+  "mv_g": 0.4999,
+  "mv_b": 0.4999,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

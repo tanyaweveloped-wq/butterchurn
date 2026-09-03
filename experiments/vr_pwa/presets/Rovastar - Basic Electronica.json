@@ -1,0 +1,77 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']-(0.35*Math.sin((a['time']*0.722)))); a['wave_g']=(a['wave_g']+(0.35*Math.sin((a['time']*0.123)))); a['wave_b']=(a['wave_b']+(0.35*Math.sin((a['time']*0.644))));",
+ "pixel_eqs_str": "a['dx']=(a['dx']-(0.005*Math.log(((sqrt(2)-a['rad'])*47)))); a['dy']=(0.0001*Math.log(((-a['time']*0.22)+(a['y']+0.5))));",
+ "baseVals": {
+  "rating": 3,
+  "gammaadj": 1.7,
+  "decay": 0.96,
+  "wave_mode": 7,
+  "wrap": 0,
+  "bmotionvectorson": 1,
+  "mv_x": 64,
+  "mv_y": 48,
+  "wave_a": 5.053452,
+  "wave_scale": 0.051038,
+  "wave_smoothing": 0.9,
+  "wave_mystery": -1,
+  "warpanimspeed": 0.01,
+  "warpscale": 0.01,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "wave_x": 0.75,
+  "wave_y": 0.71
+ },
+ "warp": "",
+ "comp": ""
+}

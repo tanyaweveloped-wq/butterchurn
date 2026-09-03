@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['wave_mode']=(a['wave_mode']-(1*Math.sin(div(a['frame'],0.1)))); a['wave_b']=(a['wave_b']*Math.log(div(a['frame'],20))); a['wave_r']=(a['wave_r']*Math.cos(div(a['frame'],30))); a['wave_g']=(a['wave_g']*Math.sin(div(a['frame'],100))); a['zoom']=(a['zoom']+(0.010*Math.sin(div(a['frame'],1))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 0,
+  "gammaadj": 1,
+  "decay": 0.925,
+  "echo_zoom": 1.006596,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "wrap": 0,
+  "wave_a": 100,
+  "wave_scale": 1.285751,
+  "wave_smoothing": 0.63,
+  "wave_mystery": -1,
+  "modwavealphastart": 0.71,
+  "modwavealphaend": 1.3,
+  "warpscale": 1.331,
+  "zoomexp": 0.608032,
+  "zoom": 0.960512,
+  "rot": 0.02,
+  "warp": 0.01,
+  "sx": 1.104511,
+  "sy": 1.1046,
+  "ob_size": 0.5,
+  "ob_r": 0.01,
+  "ib_size": 0.26,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

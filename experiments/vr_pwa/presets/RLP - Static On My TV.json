@@ -1,0 +1,61 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "",
+ "frame_eqs_str": "a['warp']=0; a['dx']=(0.0+(0.010*Math.sin((70.0*a['time'])))); a['dy']=(0.0+(0.005*Math.sin((70.0*a['time'])))); a['mv_x']=(12.000+(52.000*Math.sin((a['bass']+0.0)))); a['mv_y']=(9.000+(48.000*Math.sin((a['bass']+0.0))));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 3,
+  "wave_mode": 6,
+  "fshader": 1,
+  "zoom": 1.01,
+  "wave_x": 0.91,
+  "ob_size": 0.5,
+  "ib_size": 0.5,
+  "mv_y": 48
+ },
+ "warp": "",
+ "comp": ""
+}

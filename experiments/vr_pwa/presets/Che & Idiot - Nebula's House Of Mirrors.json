@@ -1,0 +1,89 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['brot'] = 0; a['q1'] = 0; a['mrot'] = 0; a['partone'] = 0; a['q4'] = 0; a['trot'] = 0; a['q2'] = 0; a['q3'] = 0; a['wave_myster'] = 0;",
+ "frame_eqs_str": "a['brot']=(a['brot']+(0.035*a['bass'])); a['mrot']=(a['mrot']+(0.035*a['mid'])); a['trot']=(a['trot']+(0.035*a['treb'])); a['wave_r']=(sqr(Math.cos((1.7*a['brot'])))*Math.sin(bitand(a['bass'],a['treb']))); a['wave_g']=(sqr(Math.cos((1.8*a['brot'])))*Math.sin(bitand(a['mid'],a['bass']))); a['wave_b']=(sqr(Math.cos((1.9*a['brot'])))*Math.sin(bitand(a['treb'],a['mid_att']))); a['q1']=sqr(Math.sin((0.3*a['mrot']))); a['q2']=sqr(Math.sin((0.21*a['trot']))); a['q3']=sqr(Math.sin(((0.17*a['brot'])+(0.05*a['mrot'])))); a['q4']=sqr(Math.sin(((0.11*a['trot'])+(0.06*a['mrot'])))); a['wave_mystery']=(a['wave_myster']+(0.6*Math.sin(above(a['mid_att'], a['bass']))));",
+ "pixel_eqs_str": "a['partone']=above(above(Math.tan(((a['y']*above(a['treb'], a['treb_att']))*18.85)), 0), above(Math.tan(((a['x']*above(a['bass'], a['bass_att']))*12.57)), 0)); a['cx']=(((Math.abs(a['partone'])>0.00001)?(a['q1']):(a['q3']))-(a['x']*Math.sin(((Math.abs(equal(a['bass'], a['bass_att']))>0.00001)?((0.2+a['x'])):((0.6+a['y'])))))); a['cy']=(((Math.abs(a['partone'])>0.00001)?(a['q2']):(a['q4']))-(a['y']*Math.sin(((Math.abs(equal(a['mid'], a['mid_att']))>0.00001)?((0.2-a['y'])):((0.6-a['x'])))))); a['rot']=(((0.007*((Math.abs(a['partone'])>0.00001)?((a['bass']+a['mid'])):((-a['treb']-a['mid']))))-((a['rot']*Math.sin(equal(a['mid'], a['treb'])))*(a['rad']-(a['y']*a['ang']))))+(0.02*Math.sin(above(a['bass'], a['bass_att'])))); a['dx']=bitand(a['dx'],a['rad']); a['dy']=bitand(a['dy'],a['rad']);",
+ "baseVals": {
+  "rating": 4,
+  "gammaadj": 1.7,
+  "decay": 0.979,
+  "echo_zoom": 1.000499,
+  "echo_alpha": 0.5,
+  "echo_orient": 3,
+  "wave_mode": 1,
+  "wave_brighten": 0,
+  "wave_a": 1.000416,
+  "wave_scale": 1.220674,
+  "wave_smoothing": 0,
+  "wave_mystery": -0.08,
+  "modwavealphastart": 1,
+  "modwavealphaend": 1,
+  "zoomexp": 1.000158,
+  "zoom": 1.000223,
+  "rot": 0.04,
+  "dx": -0.02,
+  "warp": 0,
+  "sx": 0.990099,
+  "sy": 1.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0,
+  "ob_a": 1,
+  "ib_size": 0,
+  "ib_a": 1,
+  "mv_x": 19.199995,
+  "mv_y": 14.4,
+  "mv_l": 0.5,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

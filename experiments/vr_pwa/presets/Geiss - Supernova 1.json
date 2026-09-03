@@ -1,0 +1,73 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['my_rad'] = 0; a['my_x'] = 0; a['my_y'] = 0; a['my_mod'] = 0;",
+ "frame_eqs_str": "a['wave_r']=(a['wave_r']+(0.150*((0.60*Math.sin((1.037*a['time'])))+(0.40*Math.sin((0.370*a['time'])))))); a['wave_g']=(a['wave_g']+(0.150*((0.60*Math.sin((0.944*a['time'])))+(0.40*Math.sin((0.441*a['time'])))))); a['wave_b']=(a['wave_b']+(0.150*((0.60*Math.sin((0.851*a['time'])))+(0.40*Math.sin((0.55*a['time'])))))); a['rot']=(a['rot']+(0.007*((0.60*Math.sin((0.381*a['time'])))+(0.40*Math.sin((0.579*a['time'])))))); a['cx']=(a['cx']+(0.210*((0.60*Math.sin((0.374*a['time'])))+(0.40*Math.sin((0.294*a['time'])))))); a['cy']=(a['cy']+(0.210*((0.60*Math.sin((0.393*a['time'])))+(0.40*Math.sin((0.223*a['time'])))))); a['dx']=(a['dx']+(0.005*((0.60*Math.sin((0.234*a['time'])))+(0.40*Math.sin((0.277*a['time'])))))); a['dy']=(a['dy']+(0.005*((0.60*Math.sin((0.284*a['time'])))+(0.40*Math.sin((0.247*a['time'])))))); a['my_rad']=sqrt(((a['my_x']*a['my_x'])+(a['my_y']*a['my_y']))); a['my_mod']=(16-(14*below(a['my_rad'], 0.2))); a['decay']=(a['decay']-(0.01*equal(mod(a['frame'],a['my_mod']), 0))); a['my_x']=((0.2*Math.sin((a['time']*0.392)))+(0.2*Math.sin(((a['time']*0.551)+2)))); a['my_y']=((0.2*Math.sin(((a['time']*0.322)+1)))+(0.2*Math.sin(((a['time']*0.611)+3)))); a['dx']=(a['dx']+(0.03*a['my_x'])); a['dy']=(a['dy']+(0.03*a['my_y'])); a['wave_x']=(a['wave_x']-(0.89*a['my_x'])); a['wave_y']=(a['wave_y']+(0.89*a['my_y']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 1,
+  "gammaadj": 1.994,
+  "decay": 0.99,
+  "echo_zoom": 1.089924,
+  "echo_alpha": 0.5,
+  "wave_mode": 2,
+  "bmotionvectorson": 0,
+  "wave_a": 2.2,
+  "wave_scale": 0.810235,
+  "wave_smoothing": 0.5,
+  "warpscale": 3.37199,
+  "zoom": 1.0418,
+  "warp": 0.23801,
+  "wave_r": 0.6,
+  "wave_g": 0.5,
+  "wave_b": 0.5
+ },
+ "warp": "",
+ "comp": ""
+}

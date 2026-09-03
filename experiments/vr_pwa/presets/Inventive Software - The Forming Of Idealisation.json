@@ -1,0 +1,82 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "b": 0,
+    "a": 0.05
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "usedots": 1,
+    "r": 0.5,
+    "g": 0,
+    "a": 0.1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "samples": 200,
+    "usedots": 1,
+    "scaling": 0.741922,
+    "r": 0,
+    "g": 0,
+    "a": 0.42
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['treble'] = 0;",
+ "frame_eqs_str": "a['rot']=(0.01+(0.06*((a['bass']+(0.6*a['mid']))+(0.8*a['treble'])))); a['sx']=(1+(0.03*a['bass']));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 5,
+  "gammaadj": 1.79,
+  "wave_brighten": 0,
+  "wave_a": 0.249741,
+  "warpscale": 100,
+  "zoom": 1.072135,
+  "warp": 0.100406,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

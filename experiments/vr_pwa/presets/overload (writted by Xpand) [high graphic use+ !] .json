@@ -1,0 +1,96 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 3,
+    "ang": 1,
+    "tex_ang": 0.25,
+    "tex_zoom": 0.95,
+    "r": 0.2,
+    "g": 0.2,
+    "r2": 1,
+    "a2": 1,
+    "border_g": 0,
+    "border_b": 0,
+    "border_a": 1
+   },
+   "init_eqs_str": " ",
+   "frame_eqs_str": "a['r2']=(above(a['treb'], (a['bass']*1.01))*Math.cos((a['time']*2))); a['g2']=((above(a['treb'], (a['bass']*1.11))*a['r2'])+div(Math.cos(a['time']),7)); a['sides']=(3+Math.floor((a['treb']*2.5))); a['textured']=(1-below(a['bass'], 1.2)); a['additive']=above(a['bass'], (a['treb']+0.15));"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['moder'] = 0; a['uuy'] = 0; a['this'] = 0; a['virtual'] = 0; a['timers1'] = 0; a['timers2'] = 0; a['uux'] = 0; a['xtm'] = 0; a['shader'] = 0; a['token1'] = 0; a['mask'] = 0;",
+ "frame_eqs_str": "",
+ "pixel_eqs_str": "a['timers1']=a['time']; a['timers2']=(a['timers2']+a['treb']); a['uux']=Math.abs((a['x']-0.5)); a['uuy']=Math.abs((a['y']-0.5)); a['moder']=(above(a['uux'], 0.08)*above(a['uuy'], 0.08)); a['shader']=sqrt((sqr((a['rad']+Math.sin(a['shader'])))+sqr((1-a['rad'])))); a['token1']=sqr(((a['mask']+Math.sin(a['time']))-a['rad'])); a['virtual']=(a['rad']*Math.abs((Math.sin((a['time']+a['virtual']))*0.5))); a['mask']=below(Math.sin((((Math.cos((a['y']*2))*2)+Math.cos(((a['x']*2)+a['time'])))+a['time'])), a['shader']); a['this']=(a['mask']*a['virtual']); a['xtm']=(a['rad']+(Math.abs(((a['mask']*a['moder'])-a['this']))*5)); a['zoom']=sqr(a['xtm']);",
+ "baseVals": {
+  "rating": 2,
+  "gammaadj": 1,
+  "decay": 0.985,
+  "echo_zoom": 0.999609,
+  "echo_orient": 3,
+  "wave_mode": 7,
+  "wave_a": 0.5,
+  "wave_scale": 0.6401,
+  "wave_smoothing": 0.27,
+  "warpanimspeed": 5.99579,
+  "warpscale": 1.331,
+  "zoomexp": 1.01,
+  "zoom": 0.999525,
+  "warp": 0.01,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "wave_y": 1,
+  "ob_size": 0.3,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "mv_x": 3.2,
+  "mv_y": 3.000001,
+  "mv_l": 3.95,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

@@ -1,0 +1,75 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {},
+   "init_eqs_str": " ",
+   "frame_eqs_str": "",
+   "point_eqs_str": ""
+  }
+ ],
+ "init_eqs_str": "a['q1'] = 0;",
+ "frame_eqs_str": "a['warp']=0; a['wave_r']=bitand(-1,a['bass']); a['wave_g']=bitand(-1,a['treb']); a['wave_b']=((Math.abs(below(a['wave_r'], 1))>0.00001)?(((Math.abs(below(a['wave_g'], 1))>0.00001)?(1):(0))):(0)); a['q1']=(0.475*(a['bass']+a['bass_att'])); a['ib_a']=(a['treb']-0.8); a['ob_a']=(a['mid']-0.8); a['ib_r']=(1-a['wave_b']); a['ib_g']=(1-a['wave_r']); a['ib_b']=(1-a['wave_g']);",
+ "pixel_eqs_str": "a['zoom']=((Math.abs(above(a['rad'], 0.275))>0.00001)?(((a['rad']*0.1)+a['q1'])):((1+(0.1*a['rad']))));",
+ "baseVals": {
+  "rating": 4,
+  "wave_dots": 1,
+  "wave_thick": 1,
+  "wave_a": 1.315701,
+  "wave_scale": 1.868316,
+  "wave_smoothing": 0.72,
+  "wave_mystery": -0.5,
+  "wave_r": 0.5,
+  "wave_g": 0.5,
+  "wave_b": 0.5,
+  "ob_size": 0.035,
+  "ob_a": 1,
+  "ib_size": 0.005,
+  "ib_r": 0,
+  "ib_g": 0,
+  "ib_b": 0,
+  "ib_a": 1,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}

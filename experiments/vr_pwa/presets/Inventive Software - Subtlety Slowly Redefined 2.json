@@ -1,0 +1,97 @@
+{
+ "shapes": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "g": 1,
+    "b": 1,
+    "a": 0.5,
+    "r2": 1,
+    "b2": 1,
+    "a2": 0.4999,
+    "border_a": 0.25
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['x']=(0.5+(0.3*Math.sin(a['time']))); a['y']=(0.5+(0.3*Math.cos(a['time']))); a['r']=(0.3*((a['bass']+a['mid'])+a['treble'])); a['g']=(0.2*((a['bass']+a['mid'])+a['treble'])); a['b']=(0.1*((a['bass']+a['mid'])+a['treble'])); a['r2']=(0.1*((a['bass']+a['mid'])+a['treble'])); a['g2']=(0.2*((a['bass']+a['mid'])+a['treble'])); a['b2']=(0.3*((a['bass']+a['mid'])+a['treble']));"
+  },
+  {
+   "baseVals": {
+    "enabled": 1,
+    "sides": 100,
+    "g": 1,
+    "b": 1,
+    "a": 0.5,
+    "r2": 1,
+    "b2": 1,
+    "a2": 0.5,
+    "border_a": 0
+   },
+   "init_eqs_str": "a['treble'] = 0; ",
+   "frame_eqs_str": "a['x']=(0.5-(0.3*Math.sin(a['time']))); a['y']=(0.5-(0.3*Math.cos(a['time']))); a['r']=(0.1*((a['bass']+a['mid'])+a['treble'])); a['g']=(0.2*((a['bass']+a['mid'])+a['treble'])); a['b']=(0.25*((a['bass']+a['mid'])+a['treble'])); a['r2']=(0.3*((a['bass']+a['mid'])+a['treble'])); a['g2']=(0.2*((a['bass']+a['mid'])+a['treble'])); a['b2']=(0.15*((a['bass']+a['mid'])+a['treble'])); a['border_a']=Math.sin(a['time']);"
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "waves": [
+  {
+   "baseVals": {
+    "enabled": 1,
+    "thick": 1,
+    "additive": 1,
+    "smoothing": 1,
+    "b": 0,
+    "a": 0.5
+   },
+   "init_eqs_str": "a['treble'] = 0; a['treble_att'] = 0; ",
+   "frame_eqs_str": "a['r']=(div(1,3)*((a['bass']+a['mid'])+a['treble'])); a['g']=(div(1,3)*((a['bass_att']+a['mid_att'])+a['treble_att']));",
+   "point_eqs_str": ""
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  },
+  {
+   "baseVals": {
+    "enabled": 0
+   }
+  }
+ ],
+ "init_eqs_str": "a['treble'] = 0;",
+ "frame_eqs_str": "a['warp']=(0.25*((a['bass']+a['mid'])+a['treble'])); a['rot']=((0.01*((a['bass']+a['mid'])+a['treble']))*Math.sin(a['time'])); a['zoom']=(1+(0.01*Math.sin(a['time'])));",
+ "pixel_eqs_str": "",
+ "baseVals": {
+  "rating": 5,
+  "wave_brighten": 0,
+  "wave_a": 100,
+  "wave_smoothing": 0.27,
+  "zoom": 1.02,
+  "wave_r": 0.75,
+  "wave_g": 0,
+  "wave_b": 0.75,
+  "mv_x": 64,
+  "mv_y": 2.016,
+  "mv_dy": -0.1,
+  "mv_l": 5,
+  "mv_r": 0,
+  "mv_g": 0,
+  "mv_b": 0.7,
+  "mv_a": 0
+ },
+ "warp": "",
+ "comp": ""
+}
